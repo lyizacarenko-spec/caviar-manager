@@ -3,374 +3,776 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🐟 Помічник менеджера — Caviar Store</title>
+<title>Ikorka — Помічник менеджера</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f0f2f5; min-height: 100vh; }
-  .header { background: linear-gradient(135deg, #1a1a2e, #16213e); color: white; padding: 16px 20px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
-  .header h1 { font-size: 20px; font-weight: 700; }
-  .header p { font-size: 13px; opacity: 0.7; margin-top: 4px; }
-  .container { max-width: 480px; margin: 0 auto; padding: 16px; }
-  .menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
-  .menu-btn { background: white; border: none; border-radius: 16px; padding: 20px 16px; cursor: pointer; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.2s; font-size: 14px; font-weight: 600; color: #1a1a2e; }
-  .menu-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
-  .menu-btn .icon { font-size: 32px; display: block; margin-bottom: 8px; }
-  .menu-btn.accent { background: linear-gradient(135deg, #e8773a, #d4521a); color: white; }
-  .panel { display: none; background: white; border-radius: 16px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 16px; }
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:wght@300;400;500&display=swap');
+
+  :root {
+    --bg: #0f0d0a;
+    --surface: #1a1712;
+    --card: #1e1b15;
+    --border: #2e2b23;
+    --gold: #c9963a;
+    --gold-light: #e8b55a;
+    --red: #c94040;
+    --green: #4caf7a;
+    --text: #f0ead8;
+    --muted: #7a7060;
+    --accent: #d4a853;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+  }
+
+  header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #13110d;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--gold);
+  }
+  .logo span {
+    color: var(--muted);
+    font-size: 12px;
+    font-family: 'DM Sans', sans-serif;
+    display: block;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 300;
+  }
+
+  .main { padding: 16px; max-width: 760px; margin: 0 auto; }
+
+  .nav-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .nav-btn {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 14px;
+    cursor: pointer;
+    transition: all 0.18s;
+    text-align: left;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+  }
+  .nav-btn:hover { border-color: var(--gold); background: #252018; }
+  .nav-btn.active { border-color: var(--gold); background: #251f14; }
+  .nav-btn .icon { font-size: 22px; margin-bottom: 6px; display: block; }
+  .nav-btn .label { font-size: 14px; font-weight: 500; display: block; }
+  .nav-btn .sub { font-size: 11px; color: var(--muted); margin-top: 2px; display: block; }
+
+  .full-btn { grid-column: span 2; }
+
+  .panel { display: none; animation: fadeIn 0.2s ease; }
   .panel.active { display: block; }
-  .panel-title { font-size: 17px; font-weight: 700; color: #1a1a2e; margin-bottom: 16px; }
-  .back-btn { background: #f0f2f5; border: none; border-radius: 10px; padding: 8px 16px; cursor: pointer; font-size: 13px; font-weight: 600; color: #666; margin-bottom: 16px; display: inline-block; }
-  .price-tabs { display: flex; gap: 6px; margin-bottom: 12px; flex-wrap: wrap; }
-  .tab-btn { background: #f0f2f5; border: none; border-radius: 10px; padding: 7px 12px; cursor: pointer; font-size: 12px; font-weight: 600; color: #666; transition: all 0.2s; }
-  .tab-btn.active { background: #e8773a; color: white; }
-  .discount-selector { display: flex; gap: 6px; margin-bottom: 16px; flex-wrap: wrap; }
-  .disc-btn { background: #f0f2f5; border: none; border-radius: 8px; padding: 6px 12px; cursor: pointer; font-size: 12px; font-weight: 700; color: #666; transition: all 0.2s; }
-  .disc-btn.active { background: #1a1a2e; color: white; }
-  .price-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  .price-table th { background: #f8f9fa; padding: 9px 10px; text-align: left; font-size: 11px; color: #888; font-weight: 600; border-bottom: 2px solid #eee; }
-  .price-table td { padding: 9px 10px; border-bottom: 1px solid #f0f2f5; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+  .panel-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    color: var(--gold);
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* PRICE */
+  .discount-tabs {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+  .disc-btn {
+    padding: 7px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 12px;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.18s;
+    white-space: nowrap;
+  }
+  .disc-btn:hover { border-color: var(--gold); color: var(--text); }
+  .disc-btn.active { background: var(--gold); color: #0f0d0a; border-color: var(--gold); font-weight: 600; }
+
+  .price-section { margin-bottom: 18px; }
+  .price-section-title {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--muted);
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--border);
+  }
+  .price-table { width: 100%; border-collapse: collapse; }
+  .price-table th {
+    text-align: left;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+    padding: 5px 8px;
+    font-weight: 400;
+  }
+  .price-table td {
+    padding: 9px 8px;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(46,43,35,0.6);
+  }
   .price-table tr:last-child td { border-bottom: none; }
-  .name { font-weight: 600; color: #1a1a2e; }
-  .price { font-weight: 700; color: #e8773a; font-size: 14px; }
-  .weight { color: #888; font-size: 11px; }
-  .premium-row td { background: #fff8f5; }
-  .note-small { color: #888; font-size: 10px; display: block; }
-  .promo-card { background: linear-gradient(135deg, #fff8f5, #ffe8d6); border-radius: 12px; padding: 14px; margin-bottom: 10px; border-left: 4px solid #e8773a; }
-  .promo-title { font-weight: 700; color: #d4521a; font-size: 14px; margin-bottom: 6px; }
-  .promo-desc { font-size: 13px; color: #555; line-height: 1.6; }
-  .section-label { font-size: 11px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 1px; margin: 16px 0 8px; }
-  .set-card { background: #f8f9fa; border-radius: 12px; padding: 14px; margin-bottom: 10px; border: 1px solid #eee; }
-  .set-title { font-weight: 700; color: #1a1a2e; font-size: 13px; margin-bottom: 8px; }
-  .set-row { display: flex; justify-content: space-between; font-size: 12px; padding: 3px 0; border-bottom: 1px solid #eee; }
-  .set-row:last-of-type { border-bottom: none; }
-  .set-row .sitem { color: #444; }
-  .set-row .sval { font-weight: 600; color: #e8773a; }
-  .set-row .sval.free { color: #27ae60; }
-  .set-note { font-size: 11px; color: #888; margin-top: 8px; font-style: italic; }
-  .type-card { background: #f8f9fa; border-radius: 12px; padding: 14px; margin-bottom: 10px; }
-  .type-card.premium { background: linear-gradient(135deg, #fff8f5, #ffe8d6); border: 1px solid #f0c4a8; }
-  .type-name { font-weight: 700; color: #1a1a2e; font-size: 15px; margin-bottom: 6px; }
-  .type-desc { font-size: 13px; color: #555; line-height: 1.6; }
-  .type-tag { display: inline-block; background: #e8773a; color: white; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 20px; margin-bottom: 6px; }
-  .type-tag.gold { background: linear-gradient(135deg, #f0a500, #c87800); }
-  .type-features { margin-top: 8px; padding-left: 16px; }
-  .type-features li { font-size: 12px; color: #666; margin-top: 3px; }
-  .storage-card { background: #f0f8ff; border-radius: 12px; padding: 16px; margin-bottom: 10px; border-left: 4px solid #4a90d9; }
-  .storage-title { font-weight: 700; color: #2c5f8a; font-size: 14px; margin-bottom: 8px; }
-  .storage-text { font-size: 13px; color: #444; line-height: 1.7; }
-  .storage-text ul { padding-left: 16px; margin-top: 6px; }
-  .np-card { background: #f0fff4; border-radius: 12px; padding: 16px; margin-bottom: 10px; border-left: 4px solid #27ae60; }
-  .np-title { font-weight: 700; color: #1a7a40; font-size: 14px; margin-bottom: 8px; }
-  .np-text { font-size: 13px; color: #444; line-height: 1.7; }
-  .obj-item { background: #f8f9fa; border-radius: 12px; padding: 14px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; }
-  .obj-q { font-weight: 700; color: #d4521a; font-size: 13px; display: flex; justify-content: space-between; align-items: center; }
-  .obj-q::after { content: '▼'; font-size: 10px; color: #aaa; }
-  .obj-item.open .obj-q::after { content: '▲'; }
-  .obj-a { font-size: 13px; color: #444; line-height: 1.6; display: none; margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee; }
-  .obj-item.open .obj-a { display: block; }
-  .obj-item.open { background: #fff3ed; border: 1px solid #f0c4a8; }
-  .tip-card { background: #f0f8ff; border-radius: 12px; padding: 14px; margin-bottom: 10px; border-left: 4px solid #4a90d9; }
-  .tip-title { font-weight: 700; color: #2c5f8a; font-size: 13px; margin-bottom: 6px; }
-  .tip-text { font-size: 13px; color: #444; line-height: 1.6; }
-  .badge { display: inline-block; background: #e8773a; color: white; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 10px; margin-left: 4px; vertical-align: middle; }
-  .badge.gold { background: linear-gradient(135deg, #f0a500, #c87800); }
+  .price-val { color: var(--gold-light); font-weight: 600; font-size: 15px; }
+  .weight { color: var(--muted); font-size: 11px; }
+  .copy-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 3px 7px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 10px;
+    transition: all 0.15s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .copy-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .copy-btn.copied { border-color: var(--green); color: var(--green); }
+
+  /* PROMO */
+  .promo-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 10px;
+  }
+  .promo-tag {
+    display: inline-block;
+    background: rgba(201,150,58,0.12);
+    color: var(--gold);
+    border: 1px solid rgba(201,150,58,0.25);
+    padding: 2px 9px;
+    border-radius: 20px;
+    font-size: 10px;
+    margin-bottom: 7px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .promo-title { font-weight: 500; font-size: 15px; margin-bottom: 5px; }
+  .promo-desc { color: var(--muted); font-size: 13px; line-height: 1.6; }
+  .promo-desc strong { color: var(--gold); }
+
+  /* TYPES */
+  .type-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 9px;
+  }
+  .type-name { font-size: 15px; font-weight: 500; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+  .type-dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
+  .type-info { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .type-tip { font-size: 12px; color: var(--gold); margin-top: 6px; }
+
+  /* OBJECTIONS */
+  .obj-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 10px;
+  }
+  .obj-q {
+    color: #e05050;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    line-height: 1.4;
+  }
+  .obj-icon { flex-shrink: 0; font-size: 16px; }
+  .obj-a { font-size: 13px; line-height: 1.75; color: var(--text); padding-left: 24px; }
+  .obj-a strong { color: var(--gold-light); }
+  .obj-script {
+    background: rgba(201,150,58,0.07);
+    border-left: 2px solid var(--gold);
+    padding: 9px 11px;
+    border-radius: 0 8px 8px 0;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.65;
+    margin-top: 10px;
+    margin-left: 24px;
+  }
+
+  /* TECHNIQUES */
+  .tech-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 10px;
+  }
+  .tech-name { font-size: 15px; font-weight: 500; color: var(--gold); margin-bottom: 6px; }
+  .tech-desc { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 9px; }
+  .tech-example {
+    background: rgba(201,150,58,0.07);
+    border-left: 2px solid var(--gold);
+    padding: 9px 11px;
+    border-radius: 0 8px 8px 0;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.65;
+  }
+
+  .toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(60px);
+    background: var(--green);
+    color: #fff;
+    padding: 9px 18px;
+    border-radius: 20px;
+    font-size: 13px;
+    transition: transform 0.3s;
+    z-index: 999;
+    pointer-events: none;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
 </style>
 </head>
 <body>
-<div class="header">
-  <h1>🐟 Помічник менеджера</h1>
-  <p>Caviar Store — все потрібне в одному місці</p>
-</div>
-<div class="container">
 
-  <div id="mainMenu">
-    <div class="menu-grid">
-      <button class="menu-btn accent" onclick="showPanel('price')"><span class="icon">💰</span>Прайс та знижки</button>
-      <button class="menu-btn" onclick="showPanel('promos')"><span class="icon">🎁</span>Акції та сети</button>
-      <button class="menu-btn" onclick="showPanel('types')"><span class="icon">🐠</span>Види ікри</button>
-      <button class="menu-btn" onclick="showPanel('storage')"><span class="icon">❄️</span>Зберігання та НП</button>
-      <button class="menu-btn" onclick="showPanel('objections')"><span class="icon">💬</span>Заперечення</button>
-      <button class="menu-btn" onclick="showPanel('tips')"><span class="icon">⚡</span>Прийоми продажу</button>
-    </div>
+<header>
+  <div class="logo">🐟 Ikorka <span>Помічник менеджера</span></div>
+</header>
+
+<div class="main">
+  <div class="nav-grid">
+    <button class="nav-btn active" onclick="show('price', this)">
+      <span class="icon">💰</span>
+      <span class="label">Прайс</span>
+      <span class="sub">Ціни зі знижками</span>
+    </button>
+    <button class="nav-btn" onclick="show('promo', this)">
+      <span class="icon">🎁</span>
+      <span class="label">Акції</span>
+      <span class="sub">Активні пропозиції</span>
+    </button>
+    <button class="nav-btn" onclick="show('types', this)">
+      <span class="icon">🐠</span>
+      <span class="label">Види ікри</span>
+      <span class="sub">Характеристики</span>
+    </button>
+    <button class="nav-btn" onclick="show('obj', this)">
+      <span class="icon">💬</span>
+      <span class="label">Заперечення</span>
+      <span class="sub">Відповіді клієнтам</span>
+    </button>
+    <button class="nav-btn" onclick="show('upsell', this)">
+      <span class="icon">🎯</span>
+      <span class="label">Допродажі</span>
+      <span class="sub">Що і коли пропонувати</span>
+    </button>
+    <button class="nav-btn" onclick="show('anti', this)">
+      <span class="icon">🚫</span>
+      <span class="label">Антифрази</span>
+      <span class="sub">Що не можна казати</span>
+    </button>
+    <button class="nav-btn full-btn" onclick="show('tech', this)">
+      <span class="icon">🏆</span>
+      <span class="label">Прийоми продажів</span>
+      <span class="sub">Техніки та скрипти</span>
+    </button>
   </div>
 
-  <!-- PRICE -->
-  <div id="pricePanel" class="panel">
-    <button class="back-btn" onclick="showMenu()">← Назад</button>
+  <!-- ══ PRICE ══ -->
+  <div id="panel-price" class="panel active">
     <div class="panel-title">💰 Прайс-лист</div>
-    <div class="price-tabs">
-      <button class="tab-btn active" onclick="setTab('glass_big',this)">Скло великі</button>
-      <button class="tab-btn" onclick="setTab('plastic',this)">Пластик 500г</button>
-      <button class="tab-btn" onclick="setTab('glass_small',this)">Скло малі</button>
-      <button class="tab-btn" onclick="setTab('xxl',this)">ХХЛ 1.5кг</button>
+    <div class="discount-tabs">
+      <button class="disc-btn active" onclick="setDiscount(0, this)">Повна ціна</button>
+      <button class="disc-btn" onclick="setDiscount(5, this)">−5%</button>
+      <button class="disc-btn" onclick="setDiscount(7, this)">−7%</button>
+      <button class="disc-btn" onclick="setDiscount(10, this)">−10% дожим</button>
+      <button class="disc-btn" onclick="setDiscount(12, this)">−12% опт</button>
     </div>
-    <div class="discount-selector">
-      <button class="disc-btn active" onclick="setDiscount(0,this)">Повна</button>
-      <button class="disc-btn" onclick="setDiscount(5,this)">-5%</button>
-      <button class="disc-btn" onclick="setDiscount(7,this)">-7%</button>
-      <button class="disc-btn" onclick="setDiscount(10,this)">-10%</button>
-      <button class="disc-btn" onclick="setDiscount(12,this)">-12% опт</button>
-    </div>
-    <div id="priceContent"></div>
+    <div id="price-content"></div>
   </div>
 
-  <!-- PROMOS -->
-  <div id="promosPanel" class="panel">
-    <button class="back-btn" onclick="showMenu()">← Назад</button>
-    <div class="panel-title">🎁 Акції та сети</div>
-    <div class="section-label">📌 Сталі акції (0.5 кг)</div>
-    <div class="promo-card"><div class="promo-title">🔥 1+1=3</div><div class="promo-desc">Купуй 2 банки — 3-тя безкоштовно.</div></div>
-    <div class="promo-card"><div class="promo-title">💎 3=4 + безкоштовна доставка</div><div class="promo-desc">Купуй 3 банки — 4-та безкоштовно + доставка за нашим рахунком.</div></div>
-    <div class="promo-card"><div class="promo-title">🏆 4=6 + безкоштовна доставка</div><div class="promo-desc">Купуй 4 банки — отримуй 6 + доставка безкоштовно.</div></div>
-    <div class="promo-card"><div class="promo-title">⭐ 3=5 (без знижки)</div><div class="promo-desc">Повна вартість без знижок. Доставка за рахунок клієнта.</div></div>
-    <div class="promo-card"><div class="promo-title">📦 ХХЛ 1.5 кг = 1299 грн (1=2)</div><div class="promo-desc">Щука, Кета, Кижуч, Веслонос, Лосось. Для постійних клієнтів — та сама ціна.</div></div>
+  <!-- ══ PROMO ══ -->
+  <div id="panel-promo" class="panel">
+    <div class="panel-title">🎁 Активні акції</div>
 
-    <div class="section-label">🛒 Сети (холодка)</div>
-    <div class="set-card">
-      <div class="set-title">Сет 998 грн — Скло, безпл. доставка</div>
-      <div class="set-row"><span class="sitem">Горбуша</span><span class="sval">333 грн</span></div>
-      <div class="set-row"><span class="sitem">Форель</span><span class="sval">332 грн</span></div>
-      <div class="set-row"><span class="sitem">Осетр</span><span class="sval">332 грн</span></div>
-      <div class="set-row"><span class="sitem">КтМ + ВМ</span><span class="sval free">1+1 🎁</span></div>
-      <div class="set-note">Доп. продаж: Лосось 430 грн, ГП 470 грн</div>
+    <div class="promo-card">
+      <div class="promo-tag">🔥 Хіт продажів</div>
+      <div class="promo-title">Акція 1+1=3 — скло та пластик 0.5 кг</div>
+      <div class="promo-desc">Купуєш 2 банки — третя у подарунок. Ціна: <strong>−5% від стандарту</strong>. Доставка за рахунок клієнта.</div>
     </div>
-    <div class="set-card">
-      <div class="set-title">Сет 1215 грн — Скло, безпл. доставка</div>
-      <div class="set-row"><span class="sitem">КтМ</span><span class="sval">151 грн</span></div>
-      <div class="set-row"><span class="sitem">ЛМ, КжМ, ВМ, ЩМ, ГМ, ФМ, ЧМ (7 шт)</span><span class="sval">152 грн</span></div>
+
+    <div class="promo-card">
+      <div class="promo-tag">⭐ Вигода</div>
+      <div class="promo-title">Акція 3=5 — скло та пластик 0.5 кг</div>
+      <div class="promo-desc">Купуєш 3 — отримуєш 5. <strong>Повна ціна без знижки</strong>. Скло та пластик 0.5 кг.</div>
     </div>
-    <div class="set-card">
-      <div class="set-title">Сет 1299 грн — Скло, безпл. доставка</div>
-      <div class="set-row"><span class="sitem">Горбуша</span><span class="sval">432 грн</span></div>
-      <div class="set-row"><span class="sitem">Форель</span><span class="sval">432 грн</span></div>
-      <div class="set-row"><span class="sitem">Осетр</span><span class="sval">432 грн</span></div>
-      <div class="set-row"><span class="sitem">ЛМ + ВМ + КтМ</span><span class="sval free">1+1+1 🎁</span></div>
+
+    <div class="promo-card">
+      <div class="promo-tag">📦 ХХЛ MAX</div>
+      <div class="promo-title">ХХЛ пластик 1.5 кг — 1299 грн (1=2)</div>
+      <div class="promo-desc">Щука, Кета, Кижуч, Веслонос, Лосось. <strong>1299 грн = 2 звичайних банки</strong>. Вигідно для сімʼї та корпоративу.</div>
     </div>
-    <div class="set-card">
-      <div class="set-title">Сет 1440 грн — Скло, безпл. доставка</div>
-      <div class="set-row"><span class="sitem">Горбуша × 2</span><span class="sval">359 грн/шт</span></div>
-      <div class="set-row"><span class="sitem">Форель × 2</span><span class="sval">360 грн/шт</span></div>
-      <div class="set-row"><span class="sitem">Осетр × 2</span><span class="sval free">1+1 🎁</span></div>
-      <div class="set-note">Доп. продаж: КтМ 169 грн, Лосось 430 грн</div>
-    </div>
-    <div class="set-card">
-      <div class="set-title">Сет 1440 грн — Пластик, безпл. доставка</div>
-      <div class="set-row"><span class="sitem">Горбуша × 2</span><span class="sval">360 грн/шт</span></div>
-      <div class="set-row"><span class="sitem">Форель × 2</span><span class="sval">359 грн/шт</span></div>
-      <div class="set-row"><span class="sitem">Лосось × 2</span><span class="sval free">1+1 🎁</span></div>
-      <div class="set-note">Доп. продаж: Кета 430 грн, Горб Прем 470 грн</div>
-    </div>
-    <div class="set-card">
-      <div class="set-title">Сет 1540 грн — Скло, безпл. доставка</div>
-      <div class="set-row"><span class="sitem">Горбуша × 2</span><span class="sval">385 грн/шт</span></div>
-      <div class="set-row"><span class="sitem">Форель × 1</span><span class="sval">383 грн</span></div>
-      <div class="set-row"><span class="sitem">Осетр × 1</span><span class="sval">385 грн</span></div>
-      <div class="set-row"><span class="sitem">Кижуч + Лосось</span><span class="sval free">🎁</span></div>
-      <div class="set-note">Доп. продаж: ЧП 550 грн, ГП 470 грн</div>
-    </div>
-    <div class="set-card">
-      <div class="set-title">Сет 1485 грн — Скло, безпл. доставка</div>
-      <div class="set-row"><span class="sitem">Лосось × 1</span><span class="sval">495 грн</span></div>
-      <div class="set-row"><span class="sitem">Кета × 1</span><span class="sval">495 грн</span></div>
-      <div class="set-row"><span class="sitem">Веслонос × 1</span><span class="sval">494 грн</span></div>
-      <div class="set-row"><span class="sitem">Щука × 1</span><span class="sval free">🎁</span></div>
-      <div class="set-note">Доп. продаж: на вибір (не прем) 430 грн</div>
-    </div>
-    <div class="section-label">🏢 РЗПК</div>
-    <div class="set-card">
-      <div class="set-title">Сет 1109 грн — Пластик, безпл. доставка</div>
-      <div class="set-row"><span class="sitem">Горбуша × 1</span><span class="sval">370 грн</span></div>
-      <div class="set-row"><span class="sitem">Форель × 1</span><span class="sval">369 грн</span></div>
-      <div class="set-row"><span class="sitem">Лосось × 1</span><span class="sval">369 грн</span></div>
-      <div class="set-row"><span class="sitem">Кета × 1</span><span class="sval free">🎁</span></div>
-      <div class="set-note">Доп. продаж: на вибір (не прем) 430 грн</div>
-    </div>
-    <div class="section-label">🏪 ХБ</div>
-    <div class="set-card">
-      <div class="set-title">Сет 1199 грн — Скло, безпл. доставка</div>
-      <div class="set-row"><span class="sitem">Горбуша × 1</span><span class="sval">399 грн</span></div>
-      <div class="set-row"><span class="sitem">Форель × 1</span><span class="sval">400 грн</span></div>
-      <div class="set-row"><span class="sitem">Лосось × 1</span><span class="sval">400 грн</span></div>
-      <div class="set-row"><span class="sitem">Кета × 1</span><span class="sval free">🎁</span></div>
-      <div class="set-note">Доп. продаж: на вибір (не прем) 430 грн</div>
-    </div>
-    <div class="set-card">
-      <div class="set-title">Сет 1205 грн — Пластик, безпл. доставка</div>
-      <div class="set-row"><span class="sitem">Лосось × 1</span><span class="sval">401 грн</span></div>
-      <div class="set-row"><span class="sitem">Кета × 1</span><span class="sval">401 грн</span></div>
-      <div class="set-row"><span class="sitem">Веслонос × 1</span><span class="sval">402 грн</span></div>
-      <div class="set-row"><span class="sitem">Щука × 1</span><span class="sval free">🎁</span></div>
-      <div class="set-note">Доп. продаж: на вибір (не прем) 430 грн</div>
+
+    <div class="promo-card">
+      <div class="promo-tag">🎂 Подарунки</div>
+      <div class="promo-title">Малі банки 200/230 г — від 149 грн</div>
+      <div class="promo-desc">Від 10 шт — <strong>149 / 169 грн</strong>. Постійним клієнтам — та сама ціна. Чорна осетрова 200 г — 179 грн (10+). Ідеально для наборів.</div>
     </div>
   </div>
 
-  <!-- TYPES -->
-  <div id="typesPanel" class="panel">
-    <button class="back-btn" onclick="showMenu()">← Назад</button>
+  <!-- ══ TYPES ══ -->
+  <div id="panel-types" class="panel">
     <div class="panel-title">🐠 Види ікри</div>
-    <div class="section-label">⭐ Преміум колекція</div>
-    <div class="type-card premium">
-      <div class="type-tag gold">★ Преміум</div>
-      <div class="type-name">⭐ Горбуша Преміум</div>
-      <div class="type-desc">Найпопулярніший вибір серед поціновувачів класичної червоної ікри. Ідеально як для щоденного задоволення, так і для святкового столу.</div>
-      <ul class="type-features"><li>Ніжний смак</li><li>Середнє зерно</li><li>Приємна текстура</li><li>Універсальна у подачі</li></ul>
-    </div>
-    <div class="type-card premium">
-      <div class="type-tag gold">★ Преміум</div>
-      <div class="type-name">🔴 Кета Преміум</div>
-      <div class="type-desc">Більш делікатний та благородний смак. Обирають ті, хто любить м'яку ікру з вираженим смаком.</div>
-      <ul class="type-features"><li>Крупніше зерно</li><li>Насичений післясмак</li><li>Легка солоність</li><li>Преміальна структура</li></ul>
-    </div>
-    <div class="type-card premium">
-      <div class="type-tag gold">★ Преміум</div>
-      <div class="type-name">⚫ Осетр Преміум</div>
-      <div class="type-desc">Справжній делікатес преміум сегменту. Для особливих моментів та поціновувачів вишуканої гастрономії.</div>
-      <ul class="type-features"><li>Благородний чорний колір</li><li>Витончений смак</li><li>Щільне зерно</li><li>Ресторанний рівень подачі</li></ul>
-    </div>
-    <div class="section-label">🐟 Класична колекція</div>
-    <div class="type-card"><div class="type-tag">Найпопулярніша</div><div class="type-name">🟠 Горбуша</div><div class="type-desc">Класична червона ікра. Середнє зерно, насичений смак. Скло 440г / Пластик 500г.</div></div>
-    <div class="type-card"><div class="type-name">🔴 Лосось</div><div class="type-desc">Велике зерно, яскравий колір, ніжний смак. Відмінний варіант для подарунку. Скло 500г / Пластик 500г.</div></div>
-    <div class="type-card"><div class="type-name">🔴 Кета</div><div class="type-desc">Велике зерно, насичений морський смак. Скло 500г / Пластик 500г.</div></div>
-    <div class="type-card"><div class="type-name">🟡 Форель</div><div class="type-desc">Дрібне зерно, делікатний смак. Для тих, хто не любить яскравий рибний смак. Скло 440г / Пластик 500г.</div></div>
-    <div class="type-card"><div class="type-name">🟠 Кижуч</div><div class="type-desc">Середнє зерно, збалансований смак між горбушею і лососем. Якість за розумну ціну.</div></div>
-    <div class="type-card"><div class="type-name">🟡 Веслонос</div><div class="type-desc">Унікальна річкова риба. Ікра нагадує чорну за смаком — делікатес для поціновувачів.</div></div>
-    <div class="type-card"><div class="type-name">🟡 Щука</div><div class="type-desc">Найдоступніша за ціною. Дрібне зерно. Добрий варіант для першого замовлення або обмеженого бюджету.</div></div>
-    <div class="type-card"><div class="type-name">⚫ Осетр (чорна)</div><div class="type-desc">Класична чорна ікра. Маленькі банки 200г — ідеально для подарунку. Вершковий смак.</div></div>
-  </div>
 
-  <!-- STORAGE & NP -->
-  <div id="storagePanel" class="panel">
-    <button class="back-btn" onclick="showMenu()">← Назад</button>
-    <div class="panel-title">❄️ Зберігання та умови НП</div>
-    <div class="section-label">❄️ Умови зберігання</div>
-    <div class="storage-card">
-      <div class="storage-title">📦 Закрита упаковка</div>
-      <div class="storage-text">Зберігати <strong>3 місяці</strong> при температурі від 0°C до +5°C. Оберігати від прямих сонячних променів.</div>
+    <div class="type-card">
+      <div class="type-name"><span class="type-dot" style="background:#ff6b35"></span>Горбуша</div>
+      <div class="type-info">Найпопулярніший вид. Яскравий помаранчевий колір, середнє зерно, легкий ніжний смак. Є стандарт (440 г) і Преміум (500 г).</div>
+      <div class="type-tip">💡 Ідеальний вибір для першої покупки</div>
     </div>
-    <div class="storage-card">
-      <div class="storage-title">🔓 Після відкриття — 14 діб</div>
-      <div class="storage-text">За умови правильного зберігання:
-        <ul><li>Використовувати лише чисті столові прибори</li><li>Після кожного використання щільно закривати кришку</li><li>Не допускати потрапляння повітря у банку</li><li>Зберігати у холодильнику</li></ul>
-      </div>
+
+    <div class="type-card">
+      <div class="type-name"><span class="type-dot" style="background:#e84040"></span>Кета</div>
+      <div class="type-info">Велике зерно, насичений червоний колір, щільна оболонка. Класика червоної ікри. Є стандарт і Преміум.</div>
+      <div class="type-tip">💡 Один з найбільш впізнаваних видів</div>
     </div>
-    <div class="section-label">🚚 Умови Нової Пошти</div>
-    <div class="np-card">
-      <div class="np-title">💳 Комісія НП за накладений платіж</div>
-      <div class="np-text">
-        <strong>2% від вартості + 20 грн</strong><br><br>
-        • Замовлення 500 грн → комісія <strong>30 грн</strong><br>
-        • Замовлення 1000 грн → комісія <strong>40 грн</strong><br>
-        • Замовлення 1500 грн → комісія <strong>50 грн</strong><br>
-        • Замовлення 2000 грн → комісія <strong>60 грн</strong><br><br>
-        ⚠️ Завжди повідомляй клієнта про комісію заздалегідь!
-      </div>
+
+    <div class="type-card">
+      <div class="type-name"><span class="type-dot" style="background:#ff8c42"></span>Лосось</div>
+      <div class="type-info">Ніжна текстура, яскравий насичений смак, середнє зерно. Преміальний сегмент для тих, хто цінує якість.</div>
+      <div class="type-tip">💡 Хороший аргумент для клієнтів які "розбираються"</div>
     </div>
-    <div class="np-card">
-      <div class="np-title">📦 Упаковка</div>
-      <div class="np-text">Пакуємо в термоконтейнери — ікра доїде свіжою. Банки надійно захищені від биття.</div>
+
+    <div class="type-card">
+      <div class="type-name"><span class="type-dot" style="background:#ffa040"></span>Форель</div>
+      <div class="type-info">Дрібне зерно, м'який делікатний смак, менш солона. Підходить тим хто не любить яскравий рибний смак.</div>
+      <div class="type-tip">💡 Рекомендуй тим хто пробує вперше</div>
     </div>
-    <div class="section-label">⬆️ Важливо про доп. продажі</div>
-    <div class="storage-card">
-      <div class="storage-title">💡 Як робити доп. продаж</div>
-      <div class="storage-text">
-        Після закриття основного замовлення — ЗАВЖДИ пропонуй додаткову позицію:<br><br>
-        • При сеті з горбушею → Лосось або ГП (470 грн)<br>
-        • При сеті з форель/горбуша → маленькі банки КтМ (169 грн)<br>
-        • При будь-якому сеті → ЧП або Осетр Преміум (550 грн)<br>
-        • Стандартна ціна доп. продажу: <strong>430–550 грн</strong>
-      </div>
+
+    <div class="type-card">
+      <div class="type-name"><span class="type-dot" style="background:#c0600a"></span>Кижуч</div>
+      <div class="type-info">Середнє зерно, темніший колір, насичений смак. Рідше зустрічається у продажу — аргумент для любителів ексклюзиву.</div>
+      <div class="type-tip">💡 "Не у всіх є" — хороший гачок</div>
+    </div>
+
+    <div class="type-card">
+      <div class="type-name"><span class="type-dot" style="background:#c9963a"></span>Веслонос</div>
+      <div class="type-info">Унікальний прісноводний вид. Золотистий колір, делікатний вишуканий смак. Преміум альтернатива чорній ікрі за враженнями.</div>
+      <div class="type-tip">💡 "Золота ікра" — відмінний подарунковий варіант</div>
+    </div>
+
+    <div class="type-card">
+      <div class="type-name"><span class="type-dot" style="background:#b07010"></span>Осетр</div>
+      <div class="type-info">Найпреміальніший вид. Великі золотисті ікринки, вишуканий смак. Є стандарт (440 г) і Преміум (500 г).</div>
+      <div class="type-tip">💡 Топ-вибір для подарунку керівнику чи партнеру</div>
+    </div>
+
+    <div class="type-card">
+      <div class="type-name"><span class="type-dot" style="background:#1a1a1a;border:1px solid #555"></span>Чорна осетрова</div>
+      <div class="type-info">Справжня чорна ікра в малих банках 200 г. Статусний подарунок, абсолютний ексклюзив асортименту.</div>
+      <div class="type-tip">💡 Для корпоративних подарунків — незамінна</div>
+    </div>
+
+    <div class="type-card">
+      <div class="type-name"><span class="type-dot" style="background:#aaa"></span>Щука</div>
+      <div class="type-info">Найдоступніша ціна. Дрібне зерно, специфічний смак. Хороший вибір для великих об'ємів або перших проб.</div>
+      <div class="type-tip">💡 Для бюджетних замовлень і ХХЛ</div>
     </div>
   </div>
 
-  <!-- OBJECTIONS -->
-  <div id="objectionsPanel" class="panel">
-    <button class="back-btn" onclick="showMenu()">← Назад</button>
+  <!-- ══ OBJECTIONS ══ -->
+  <div id="panel-obj" class="panel">
     <div class="panel-title">💬 Робота із запереченнями</div>
-    <div class="obj-item" onclick="toggleObj(this)"><div class="obj-q">😤 "Дорого!"</div><div class="obj-a">"Розумію! Давайте порахуємо — банка 500г вистачає на 10-15 бутербродів. Виходить ~30-40 грн за порцію. Дешевше, ніж суші 🍣 А у нас зараз 4=6 з безкоштовною доставкою — дуже вигідно!"</div></div>
-    <div class="obj-item" onclick="toggleObj(this)"><div class="obj-q">🤔 "Подумаю..."</div><div class="obj-a">"Звичайно! Поки думаєте — акція 4=6 з безкоштовною доставкою діє зараз. Можу зарезервувати для вас? Або надішлю фото свіжої партії 😊"</div></div>
-    <div class="obj-item" onclick="toggleObj(this)"><div class="obj-q">😕 "В магазині дешевше"</div><div class="obj-a">"В магазині ікра зберігається місяцями завдяки консервантам. Наша — без консервантів, термін 3 місяці закрита / 14 діб після відкриття. Склад: ікра, сіль, олія — і все! Різниця відчувається з першого укусу 😊"</div></div>
-    <div class="obj-item" onclick="toggleObj(this)"><div class="obj-q">🧐 "Яка різниця між видами?"</div><div class="obj-a">"Горбуша — класика. Лосось/Кета — велике зерно, преміум смак. Форель — ніжна, дрібне зерно. Щука — найбюджетніша. Чорна осетрова — делікатес! Що важливіше — ціна чи смак?"</div></div>
-    <div class="obj-item" onclick="toggleObj(this)"><div class="obj-q">😬 "Не впевнений у якості"</div><div class="obj-a">"Склад: ікра, сіль, соняшникова олія — ніяких Е-шок. Прямі постачання без посередників. Сотні постійних клієнтів, які беруть щомісяця. Можу показати відгуки?"</div></div>
-    <div class="obj-item" onclick="toggleObj(this)"><div class="obj-q">📦 "Скло чи пластик?"</div><div class="obj-a">"Скло — краще зберігає смак, гарніше як подарунок 🎁 Пластик — легший, зручніше відкривати, трохи дешевше. Для себе — пластик, для подарунку — скло!"</div></div>
-    <div class="obj-item" onclick="toggleObj(this)"><div class="obj-q">🚚 "Скільки коштує доставка?"</div><div class="obj-a">"При акціях 3=4 та 4=6 — доставка безкоштовна! При накладеному платежі є комісія НП: 2% + 20 грн — це стандартна комісія пошти, не наша. Пакуємо в термоконтейнери 👌"</div></div>
-    <div class="obj-item" onclick="toggleObj(this)"><div class="obj-q">😴 "Немає грошей"</div><div class="obj-a">"Без проблем! Можу записати і нагадати. А поки — маленькі банки від 149 грн, щоб спробувати без великих витрат 😊"</div></div>
-    <div class="obj-item" onclick="toggleObj(this)"><div class="obj-q">🤨 "Навіщо Преміум?"</div><div class="obj-a">"Преміум — крупніше зерно, глибший смак, вишуканіша текстура. Звичайна — чудова щодня. Преміум — коли хочеться справжнього задоволення або wow-подарунку. Різниця відчувається одразу!"</div></div>
+
+    <div class="obj-card">
+      <div class="obj-q"><span class="obj-icon">❌</span>Дорого!</div>
+      <div class="obj-a">
+        Розумію. Давайте порівняємо: у нас <strong>свіжа ікра без посередників</strong>, прямо від виробника. У магазинах та конкурентів — часто заморожений продукт або з консервантами. Плюс у нас є акція <strong>1+1=3</strong> — виходить дешевше ніж здається.
+      </div>
+      <div class="obj-script">«Скажіть, а де ви зазвичай берете ікру? Давайте порахуємо разом — з акцією 1+1=3 одна банка виходить всього N грн. Це вигідніше ніж у більшості магазинів, і якість зовсім інша.»</div>
+    </div>
+
+    <div class="obj-card">
+      <div class="obj-q"><span class="obj-icon">❌</span>Не треба / не потрібно</div>
+      <div class="obj-a">
+        Окей, не наполягаю. Але дозвольте запитати: <strong>коли у вас наступне свято або подія?</strong> Ікра — це завжди актуальний подарунок або пригощання. Можна взяти малу банку просто спробувати — це лише 159 грн.
+      </div>
+      <div class="obj-script">«А якщо не для себе — чи є у вас близькі, яким ікра точно сподобається? Невелика баночка як увага — завжди доречно.»</div>
+    </div>
+
+    <div class="obj-card">
+      <div class="obj-q"><span class="obj-icon">❌</span>Не на часі / зараз не актуально</div>
+      <div class="obj-a">
+        Розумію, часи складні. Але саме зараз <strong>ціни фіксовані</strong> і є акції. Через місяць умови можуть змінитись. Можу зарезервувати за сьогоднішньою ціною — щоб ви не прогадали.
+      </div>
+      <div class="obj-script">«Скажіть, а коли у вас буде актуально? Я зателефоную саме тоді. Або — можу надіслати один раз нагадування, щоб не забути про нашу пропозицію.»</div>
+    </div>
+
+    <div class="obj-card">
+      <div class="obj-q"><span class="obj-icon">❌</span>Не смачна / ікра не така / пробували — не сподобалась</div>
+      <div class="obj-a">
+        Дуже важливо! <strong>Яку саме пробували?</strong> Горбуша, кета, форель — смак дуже різний. Можливо просто не той вид. Наша ікра без зайвої солі і консервантів — смак зовсім інший ніж у магазині. Пропоную спробувати маленьку банку — щоб порівняти.
+      </div>
+      <div class="obj-script">«А якщо б смак вам сподобався — ви б узяли? Давайте я підберу вид під ваш смак. Любите ніжне — форель. Класику — горбуша або кета. Щось незвичне — веслонос.»</div>
+    </div>
+
+    <div class="obj-card">
+      <div class="obj-q"><span class="obj-icon">❌</span>Біла ікра / чи є біла ікра?</div>
+      <div class="obj-a">
+        Білої ікри у природі <strong>не існує як окремого виду</strong>. "Біла ікра" — це маркетингова назва для імітації або дуже світлої ікри веслоноса чи осетра. У нас є <strong>золотиста ікра веслоноса</strong> — вона має делікатний смак і виглядає дуже ефектно. Чудова альтернатива!
+      </div>
+      <div class="obj-script">«Веслонос — це і є "золота ікра". Унікальний прісноводний вид, дуже незвичний і смачний. Ідеально як подарунок або для тих хто хоче щось особливе.»</div>
+    </div>
+
+    <div class="obj-card">
+      <div class="obj-q"><span class="obj-icon">❌</span>Потрібні сертифікати / документи на продукцію</div>
+      <div class="obj-a">
+        Звичайно! Вся наша продукція має <strong>необхідні документи</strong>. Склад простий і чесний: ікра, сіль, соняшникова олія. Без консервантів і барвників. Можу надіслати декларацію відповідності або інші документи — <strong>скажіть які саме потрібні</strong>, підготуємо.
+      </div>
+      <div class="obj-script">«Які документи вас цікавлять — декларація, сертифікат якості? Уточніть, і я передам запит. Зазвичай надаємо протягом дня.»</div>
+    </div>
+
   </div>
 
-  <!-- TIPS -->
-  <div id="tipsPanel" class="panel">
-    <button class="back-btn" onclick="showMenu()">← Назад</button>
-    <div class="panel-title">⚡ Прийоми продажу</div>
-    <div class="tip-card"><div class="tip-title">🎯 Звуження вибору</div><div class="tip-text">"Для себе чи в подарунок?" → "Скло чи пластик?" → "Великий чи маленький об'єм?" Крок за кроком до конкретного продукту.</div></div>
-    <div class="tip-card"><div class="tip-title">🔥 Терміновість</div><div class="tip-text">"Акція 4=6 діє обмежений час", "Залишилось 3 банки Кети Преміум", "Свіжа партія щойно прийшла — розбирають швидко".</div></div>
-    <div class="tip-card"><div class="tip-title">⬆️ Доп. продаж</div><div class="tip-text">Після закриття замовлення ЗАВЖДИ пропонуй ще одну позицію: "До вашого замовлення чудово підійде Лосось!" Ціна: 430–550 грн.</div></div>
-    <div class="tip-card"><div class="tip-title">🎁 Подарунок</div><div class="tip-text">"Осетр Преміум або Кета Преміум — це справжній wow-подарунок. Скло виглядає дуже презентабельно 🎁"</div></div>
-    <div class="tip-card"><div class="tip-title">📊 Порівняння</div><div class="tip-text">"В ресторані порція ікри — 150-200 грн. У нас банка 500г — це 10-15 порцій. Рахунок на нашу користь 😄"</div></div>
-    <div class="tip-card"><div class="tip-title">🤝 Соціальний доказ</div><div class="tip-text">"Кета Преміум розлітається першою", "Постійні клієнти беруть щомісяця", "Вчора клієнтка взяла сет 4=6 для корпоративу — всі в захваті!"</div></div>
-    <div class="tip-card"><div class="tip-title">✅ Питання-закриття</div><div class="tip-text">Замість "Берете?" → "Оплата карткою чи накладеним?" або "Доставка на завтра чи після завтра?"</div></div>
-    <div class="tip-card"><div class="tip-title">💎 Апсел на Преміум</div><div class="tip-text">"Дивитесь на Кету — чудово! Є Кета Преміум — крупніше зерно, глибший смак. Різниця ~80 грн, але відчуття зовсім інше. Варто спробувати!"</div></div>
+  <!-- ══ TECHNIQUES ══ -->
+  <div id="panel-upsell" class="panel">
+    <div class="panel-title">🎯 Допродажі</div>
+
+    <div style="background:#1e1b15;border-radius:14px;padding:16px;margin-bottom:12px;border-left:3px solid #c9963a">
+      <div style="font-weight:700;color:#e8b55a;font-size:14px;margin-bottom:12px">📦 До набору з горбушею</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="background:#252018;border-radius:10px;padding:12px">
+          <div style="font-weight:600;color:#f0ead8;font-size:13px">⭐ Горбуша Преміум</div>
+          <div style="font-size:12px;color:#7a7060;margin-top:4px">«До горбуші є Преміум версія — ніжніше зерно, вишуканіший смак. Різниця ~110 грн, але відчуття зовсім інше!»</div>
+        </div>
+        <div style="background:#252018;border-radius:10px;padding:12px">
+          <div style="font-weight:600;color:#f0ead8;font-size:13px">🔴 Лосось 0.5</div>
+          <div style="font-size:12px;color:#7a7060;margin-top:4px">«До горбуші чудово підійде Лосось — інший смак, цікаво порівняти. Клієнти дуже люблять таке поєднання!»</div>
+        </div>
+        <div style="background:#252018;border-radius:10px;padding:12px">
+          <div style="font-weight:600;color:#f0ead8;font-size:13px">🎁 Маленька банка КтМ</div>
+          <div style="font-size:12px;color:#7a7060;margin-top:4px">«Є ще маленькі банки 230г — зручно спробувати новий смак або взяти як доповнення. Всього 169 грн!»</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#1e1b15;border-radius:14px;padding:16px;margin-bottom:12px;border-left:3px solid #c9963a">
+      <div style="font-weight:700;color:#e8b55a;font-size:14px;margin-bottom:12px">😐 Якщо клієнт вагається</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="background:#252018;border-radius:10px;padding:12px">
+          <div style="font-weight:600;color:#f0ead8;font-size:13px">🔬 Маленький об'єм</div>
+          <div style="font-size:12px;color:#7a7060;margin-top:4px">«Якщо не впевнені — є маленькі банки 200/230г від 149 грн. Спробуйте спочатку, а потім вже великі!»</div>
+        </div>
+        <div style="background:#252018;border-radius:10px;padding:12px">
+          <div style="font-weight:600;color:#f0ead8;font-size:13px">🎁 Варіант подарунку</div>
+          <div style="font-size:12px;color:#7a7060;margin-top:4px">«Це чудовий подарунок! Скло виглядає дуже презентабельно. Осетр Преміум або Кета Преміум — це справжній wow!»</div>
+        </div>
+        <div style="background:#252018;border-radius:10px;padding:12px">
+          <div style="font-weight:600;color:#f0ead8;font-size:13px">🔥 Акційна банка</div>
+          <div style="font-size:12px;color:#7a7060;margin-top:4px">«Зараз є акція 4=6 з безкоштовною доставкою — це найвигідніший варіант. Якщо брати, то зараз!»</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#1e1b15;border-radius:14px;padding:16px;margin-bottom:12px;border-left:3px solid #c9963a">
+      <div style="font-weight:700;color:#e8b55a;font-size:14px;margin-bottom:12px">💎 Апсел на Преміум</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="background:#252018;border-radius:10px;padding:12px">
+          <div style="font-weight:600;color:#f0ead8;font-size:13px">Горбуша → Горбуша Преміум</div>
+          <div style="font-size:12px;color:#7a7060;margin-top:4px">«Є Преміум версія — ніжніший смак, приємніша текстура. Різниця ~110 грн, але це зовсім інший рівень задоволення!»</div>
+        </div>
+        <div style="background:#252018;border-radius:10px;padding:12px">
+          <div style="font-weight:600;color:#f0ead8;font-size:13px">Кета → Кета Преміум</div>
+          <div style="font-size:12px;color:#7a7060;margin-top:4px">«Є Кета Преміум — крупніше зерно, насиченіший смак, легка солоність. Різниця ~80 грн, але відчуття зовсім інше!»</div>
+        </div>
+        <div style="background:#252018;border-radius:10px;padding:12px">
+          <div style="font-weight:600;color:#f0ead8;font-size:13px">Осетр → Осетр Преміум</div>
+          <div style="font-size:12px;color:#7a7060;margin-top:4px">«Є Осетр Преміум — ресторанний рівень. Щільніше зерно, витончений смак. Для справді особливого моменту!»</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#1e1b15;border-radius:14px;padding:16px;border-left:3px solid #4caf7a">
+      <div style="font-weight:700;color:#4caf7a;font-size:14px;margin-bottom:8px">💡 Золоте правило допродажу</div>
+      <div style="font-size:13px;color:#f0ead8;line-height:1.7">Після закриття основного замовлення — <strong>завжди</strong> пропонуй одну додаткову позицію. Не дві, не три — одну! Не питай «чи потрібно ще щось» — пропонуй конкретно:<br><br>«До вашого замовлення чудово підійде ___»</div>
+    </div>
   </div>
 
+  <div id="panel-anti" class="panel">
+    <div class="panel-title">🚫 Антифрази</div>
+
+    <div style="background:#1e1b15;border-radius:14px;padding:16px;margin-bottom:12px">
+      <div style="font-weight:700;color:#c94040;font-size:14px;margin-bottom:12px">❌ Що не можна казати</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+
+        <div style="background:#252018;border-radius:10px;padding:12px;border-left:3px solid #c94040">
+          <div style="color:#c94040;font-weight:700;font-size:13px">❌ «Ну подумайте»</div>
+          <div style="font-size:12px;color:#7a7060;margin:6px 0">Дає дозвіл піти і не повернутись</div>
+          <div style="color:#4caf7a;font-weight:600;font-size:12px">✅ «Що саме вас зупиняє? Давайте розберемось разом»</div>
+        </div>
+
+        <div style="background:#252018;border-radius:10px;padding:12px;border-left:3px solid #c94040">
+          <div style="color:#c94040;font-weight:700;font-size:13px">❌ «Ну якщо хочете»</div>
+          <div style="font-size:12px;color:#7a7060;margin:6px 0">Знижує цінність продукту, виглядає невпевнено</div>
+          <div style="color:#4caf7a;font-weight:600;font-size:12px">✅ «Рекомендую — це наш хіт, клієнти повертаються саме за цим»</div>
+        </div>
+
+        <div style="background:#252018;border-radius:10px;padding:12px;border-left:3px solid #c94040">
+          <div style="color:#c94040;font-weight:700;font-size:13px">❌ «У нас найдешевше»</div>
+          <div style="font-size:12px;color:#7a7060;margin:6px 0">Робить конкуренцію по ціні, знижує цінність</div>
+          <div style="color:#4caf7a;font-weight:600;font-size:12px">✅ «У нас найкраще співвідношення ціна/якість — без консервантів, пряме постачання»</div>
+        </div>
+
+        <div style="background:#252018;border-radius:10px;padding:12px;border-left:3px solid #c94040">
+          <div style="color:#c94040;font-weight:700;font-size:13px">❌ «Я не знаю» / «Не впевнений»</div>
+          <div style="font-size:12px;color:#7a7060;margin:6px 0">Руйнує довіру до вас як до експерта</div>
+          <div style="color:#4caf7a;font-weight:600;font-size:12px">✅ «Зараз уточню і одразу відпишу» — і дійсно уточніть!</div>
+        </div>
+
+        <div style="background:#252018;border-radius:10px;padding:12px;border-left:3px solid #c94040">
+          <div style="color:#c94040;font-weight:700;font-size:13px">❌ «Будете брати?»</div>
+          <div style="font-size:12px;color:#7a7060;margin:6px 0">Легко відповісти «ні» — і розмова закінчена</div>
+          <div style="color:#4caf7a;font-weight:600;font-size:12px">✅ «Оформлюємо на завтра чи на п'ятницю?»</div>
+        </div>
+
+        <div style="background:#252018;border-radius:10px;padding:12px;border-left:3px solid #c94040">
+          <div style="color:#c94040;font-weight:700;font-size:13px">❌ «Дорого, але...»</div>
+          <div style="font-size:12px;color:#7a7060;margin:6px 0">Самі підтверджуєте заперечення клієнта</div>
+          <div style="color:#4caf7a;font-weight:600;font-size:12px">✅ «Давайте порахуємо — банка 500г це 10-15 порцій, ~30-40 грн кожна»</div>
+        </div>
+
+        <div style="background:#252018;border-radius:10px;padding:12px;border-left:3px solid #c94040">
+          <div style="color:#c94040;font-weight:700;font-size:13px">❌ «Перетелефонуємо вам пізніше»</div>
+          <div style="font-size:12px;color:#7a7060;margin:6px 0">Клієнт охолоне і не візьме трубку</div>
+          <div style="color:#4caf7a;font-weight:600;font-size:12px">✅ «Коли вам зручно — я напишу у Viber прямо зараз»</div>
+        </div>
+
+        <div style="background:#252018;border-radius:10px;padding:12px;border-left:3px solid #c94040">
+          <div style="color:#c94040;font-weight:700;font-size:13px">❌ «Нічим не можу допомогти»</div>
+          <div style="font-size:12px;color:#7a7060;margin:6px 0">Закриває діалог і відштовхує клієнта</div>
+          <div style="color:#4caf7a;font-weight:600;font-size:12px">✅ «Давайте знайдемо варіант, який вам підійде!»</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:#1e1b15;border-radius:14px;padding:16px;border-left:3px solid #e8b55a">
+      <div style="font-weight:700;color:#e8b55a;font-size:14px;margin-bottom:8px">🧠 Психологія клієнта</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <div style="background:#252018;border-radius:10px;padding:12px">
+          <div style="font-weight:600;color:#f0ead8;font-size:13px">«Дорого» = не побачив цінність</div>
+          <div style="font-size:12px;color:#7a7060;margin-top:4px">Не знижуй ціну — поясни що входить у вартість</div>
+        </div>
+        <div style="background:#252018;border-radius:10px;padding:12px">
+          <div style="font-weight:600;color:#f0ead8;font-size:13px">«Я подумаю» = боїться помилитись</div>
+          <div style="font-size:12px;color:#7a7060;margin-top:4px">Зніми ризик: «Якщо не сподобається — скажіть, розберемось»</div>
+        </div>
+        <div style="background:#252018;border-radius:10px;padding:12px">
+          <div style="font-weight:600;color:#f0ead8;font-size:13px">«Не треба» = не включився</div>
+          <div style="font-size:12px;color:#7a7060;margin-top:4px">Задай питання: «А для кого зазвичай берете ікру?»</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+    <div class="panel-title">🏆 Прийоми продажів</div>
+
+    <div class="tech-card">
+      <div class="tech-name">🪝 Гачок — питання замість відмови</div>
+      <div class="tech-desc">Коли клієнт каже "ні" — не здавайтесь, а задайте питання. Питання повертає діалог і дає інформацію.</div>
+      <div class="tech-example">«Скажіть, що заважає спробувати? / А коли б це було актуально? / Яку ікру ви зазвичай берете?»</div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-name">🎯 Звуження — від "ні" до "можливо"</div>
+      <div class="tech-desc">Велике замовлення лякає. Запропонуйте мінімум — маленьку банку для проби. Низький поріг входу знімає опір.</div>
+      <div class="tech-example">«Не обов'язково відразу багато. Візьміть одну маленьку на 159 грн — просто спробуйте. Якщо не сподобається — більше не дзвонитиму.»</div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-name">⏰ Дефіцит і терміновість</div>
+      <div class="tech-desc">Акція не вічна. Ціна може змінитись. Легкий тиск часу прискорює рішення.</div>
+      <div class="tech-example">«Акція 1+1=3 діє обмежений час. Зараз я можу зафіксувати ціну — щоб не прогадати.»</div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-name">🎁 Подарунковий фрейм</div>
+      <div class="tech-desc">Ікра — ідеальний подарунок. Якщо клієнт не бере для себе — переключіть на подарунок близьким, колегам, партнерам.</div>
+      <div class="tech-example">«А чи є у вас близькі, яким ікра точно сподобається? День народження, свято, просто увага — маленька банка виглядає дуже гідно.»</div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-name">📊 Порівняння вигоди</div>
+      <div class="tech-desc">Покажіть ціну в перерахунку на одну банку з акцією. Математика переконує краще за слова.</div>
+      <div class="tech-example">«З акцією 3=5 одна банка виходить всього N грн. У супермаркеті така сама коштує більше, і якість значно гірша.»</div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-name">🔄 Підбір під смак</div>
+      <div class="tech-desc">Не пропонуйте все одразу. Задайте 1-2 питання і підберіть конкретний вид. Персональна рекомендація підвищує довіру.</div>
+      <div class="tech-example">«Любите ніжне і не дуже солоне? — Форель або горбуша. Хочете класику з великим зерном? — Кета. Щось особливе для подарунку? — Веслонос або осетр.»</div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-name">✅ Закриття угоди</div>
+      <div class="tech-desc">Не питайте "будете брати?" — питайте деталі замовлення. Це переводить клієнта в режим покупця.</div>
+      <div class="tech-example">«Скло чи пластик вам зручніше? / На яку адресу доставити? / Оформлюємо на завтра чи на п'ятницю?»</div>
+    </div>
+
+  </div>
 </div>
+
+<div class="toast" id="toast">✓ Скопійовано</div>
+
 <script>
-const prices = {
-  glass_big: [
-    {name:'Щука',weight:'500 г',base:429,d5:408,d7:399,d10:386,d12:378},
-    {name:'Горбуша',weight:'440 г',base:459,d5:436,d7:427,d10:413,d12:404},
-    {name:'Горбуша Преміум',weight:'500 г',base:569,d5:541,d7:529,d10:512,d12:501,premium:true},
-    {name:'Форель',weight:'440 г',base:449,d5:427,d7:418,d10:404,d12:395},
-    {name:'Лосось',weight:'500 г',base:519,d5:493,d7:483,d10:467,d12:457},
-    {name:'Кижуч',weight:'500 г',base:509,d5:484,d7:473,d10:458,d12:448},
-    {name:'Кета',weight:'500 г',base:539,d5:512,d7:501,d10:485,d12:474},
-    {name:'Кета Преміум',weight:'500 г',base:619,d5:588,d7:576,d10:557,d12:545,premium:true},
-    {name:'Веслонос',weight:'500 г',base:559,d5:531,d7:520,d10:503,d12:492},
-    {name:'Осетр',weight:'440 г',base:549,d5:522,d7:511,d10:494,d12:483},
-    {name:'Осетр Преміум',weight:'500 г',base:619,d5:588,d7:576,d10:557,d12:544,premium:true},
-  ],
-  plastic: [
-    {name:'Щука',weight:'500 г',base:379,d5:360,d7:352,d10:341,d12:334},
-    {name:'Горбуша',weight:'500 г',base:399,d5:379,d7:371,d10:359,d12:351},
-    {name:'Горбуша Прем',weight:'500 г',base:549,d5:522,d7:511,d10:494,d12:483,premium:true},
-    {name:'Форель',weight:'500 г',base:409,d5:389,d7:380,d10:368,d12:360},
-    {name:'Лосось',weight:'500 г',base:469,d5:446,d7:436,d10:422,d12:413},
-    {name:'Кижуч',weight:'500 г',base:459,d5:436,d7:427,d10:413,d12:404},
-    {name:'Кета',weight:'500 г',base:499,d5:474,d7:464,d10:449,d12:439},
-    {name:'Веслонос',weight:'500 г',base:509,d5:484,d7:473,d10:458,d12:448},
-    {name:'Осетр',weight:'500 г',base:529,d5:503,d7:492,d10:476,d12:466},
-    {name:'Осетр Прем',weight:'500 г',base:589,d5:560,d7:548,d10:530,d12:518,premium:true},
-  ],
-  glass_small: [
-    {name:'Форель / Горбуша (ГМ/ФМ)',weight:'200 г',base:159,d5:149,d7:149,d10:149,d12:149,note:'10+ шт: 149 грн'},
-    {name:'Лосось, Кета, Веслонос, Кижуч, Щука',weight:'230 г',base:179,d5:169,d7:169,d10:169,d12:169,note:'10+ шт: 169 грн'},
-    {name:'Чорна осетрова (ЧМ)',weight:'200 г',base:189,d5:179,d7:179,d10:179,d12:179,note:'10+ шт: 179 грн'},
-  ],
-  xxl: [
-    {name:'Щука',weight:'1.5 кг',base:1299,d5:1299,d7:1299,d10:1299,d12:1299,note:'1=2 банки'},
-    {name:'Кета',weight:'1.5 кг',base:1299,d5:1299,d7:1299,d10:1299,d12:1299,note:'1=2 банки'},
-    {name:'Кижуч',weight:'1.5 кг',base:1299,d5:1299,d7:1299,d10:1299,d12:1299,note:'1=2 банки'},
-    {name:'Веслонос',weight:'1.5 кг',base:1299,d5:1299,d7:1299,d10:1299,d12:1299,note:'1=2 банки'},
-    {name:'Лосось',weight:'1.5 кг',base:1299,d5:1299,d7:1299,d10:1299,d12:1299,note:'1=2 банки'},
-  ]
-};
-let currentTab='glass_big', currentDiscount=0;
-function setTab(tab,btn){currentTab=tab;document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderPrice();}
-function setDiscount(d,btn){currentDiscount=d;document.querySelectorAll('.disc-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderPrice();}
-function getPrice(item){if(currentDiscount===0)return item.base;if(currentDiscount===5)return item.d5;if(currentDiscount===7)return item.d7;if(currentDiscount===10)return item.d10;if(currentDiscount===12)return item.d12;return item.base;}
-function renderPrice(){
-  const data=prices[currentTab];
-  const label=currentDiscount===0?'Ціна':`Ціна -${currentDiscount}%`;
-  let html=`<table class="price-table"><thead><tr><th>Продукт</th><th>Вага</th><th>${label}</th></tr></thead><tbody>`;
-  data.forEach(item=>{
-    const note=item.note?`<span class="note-small">${item.note}</span>`:'';
-    const badge=item.premium?'<span class="badge gold">★</span>':'';
-    html+=`<tr class="${item.premium?'premium-row':''}"><td class="name">${item.name}${badge}</td><td class="weight">${item.weight}${note}</td><td class="price">${getPrice(item)} ₴</td></tr>`;
-  });
-  html+='</tbody></table>';
-  document.getElementById('priceContent').innerHTML=html;
-}
-function showPanel(name){document.getElementById('mainMenu').style.display='none';document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));document.getElementById(name+'Panel').classList.add('active');if(name==='price')renderPrice();window.scrollTo(0,0);}
-function showMenu(){document.getElementById('mainMenu').style.display='block';document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));window.scrollTo(0,0);}
-function toggleObj(el){el.classList.toggle('open');}
+  // Data
+  const glassLarge = [
+    { name: 'Щука', weight: '500 г', prices: [429, 408, 399, 386, 378] },
+    { name: 'Горбуша', weight: '440 г', prices: [459, 436, 427, 413, 404] },
+    { name: 'Горбуша Преміум', weight: '500 г', prices: [569, 541, 529, 512, 501] },
+    { name: 'Форель', weight: '440 г', prices: [449, 427, 418, 404, 395] },
+    { name: 'Лосось', weight: '500 г', prices: [519, 493, 483, 467, 457] },
+    { name: 'Кижуч', weight: '500 г', prices: [509, 484, 473, 458, 448] },
+    { name: 'Кета', weight: '500 г', prices: [539, 512, 501, 485, 474] },
+    { name: 'Веслонос', weight: '500 г', prices: [559, 531, 520, 503, 492] },
+    { name: 'Осетр', weight: '440 г', prices: [549, 522, 511, 494, 483] },
+    { name: 'Осетр Преміум', weight: '500 г', prices: [619, 588, 576, 557, 544] },
+    { name: 'Кета Преміум', weight: '500 г', prices: [619, 588, 576, 557, 545] },
+  ];
+
+  const plasticLarge = [
+    { name: 'Щука', weight: '500 г', prices: [379, 360, 352, 341, 334] },
+    { name: 'Горбуша', weight: '500 г', prices: [399, 379, 371, 359, 351] },
+    { name: 'Горбуша Прем', weight: '500 г', prices: [549, 522, 511, 494, 483] },
+    { name: 'Форель', weight: '500 г', prices: [409, 389, 380, 368, 360] },
+    { name: 'Лосось', weight: '500 г', prices: [469, 446, 436, 422, 413] },
+    { name: 'Кижуч', weight: '500 г', prices: [459, 436, 427, 413, 404] },
+    { name: 'Кета', weight: '500 г', prices: [499, 474, 464, 449, 439] },
+    { name: 'Веслонос', weight: '500 г', prices: [509, 484, 473, 458, 448] },
+    { name: 'Осетр', weight: '500 г', prices: [529, 503, 492, 476, 466] },
+    { name: 'Осетр Прем', weight: '500 г', prices: [589, 560, 548, 530, 518] },
+  ];
+
+  const glassSmall = [
+    { name: 'Форель, Горбуша', weight: '200 г', prices: [159, 159, 159, 149, 149] },
+    { name: 'Лосось, Кета, Веслонос, Кижуч, Щука', weight: '230 г', prices: [179, 179, 179, 169, 169] },
+    { name: 'Чорна осетрова', weight: '200 г', prices: [189, 189, 189, 179, 179] },
+  ];
+
+  const xxl = [
+    { name: 'Щука / Кета / Кижуч / Веслонос / Лосось', weight: '1.5 кг', prices: [1299, 1299, 1299, 1299, 1299] },
+  ];
+
+  const discLabels = ['Повна ціна', '-5%', '-7%', '-10%', '-12% опт'];
+  let currentDisc = 0;
+
+  function buildTable(items, discIdx) {
+    let html = '<table class="price-table"><thead><tr><th>Найменування</th><th>Вага</th><th>Ціна</th><th></th></tr></thead><tbody>';
+    items.forEach(item => {
+      const price = item.prices[discIdx];
+      const priceStr = price === 'немає' ? '—' : price + ' грн';
+      html += `<tr>
+        <td>${item.name}</td>
+        <td class="weight">${item.weight}</td>
+        <td class="price-val">${priceStr}</td>
+        <td><button class="copy-btn" onclick="copyPrice('${item.name} ${item.weight} — ${priceStr}', this)">копіювати</button></td>
+      </tr>`;
+    });
+    html += '</tbody></table>';
+    return html;
+  }
+
+  function renderPrices(discIdx) {
+    const label = discLabels[discIdx];
+    document.getElementById('price-content').innerHTML = `
+      <div class="price-section">
+        <div class="price-section-title">🫙 Скло великий об'єм (440/500 г) — ${label}</div>
+        ${buildTable(glassLarge, discIdx)}
+      </div>
+      <div class="price-section">
+        <div class="price-section-title">🧴 Пластик 500 г — ${label}</div>
+        ${buildTable(plasticLarge, discIdx)}
+      </div>
+      <div class="price-section">
+        <div class="price-section-title">🎁 Скло малий об'єм (200/230 г)</div>
+        ${buildTable(glassSmall, discIdx)}
+      </div>
+      <div class="price-section">
+        <div class="price-section-title">📦 ХХЛ MAX пластик 1.5 кг</div>
+        ${buildTable(xxl, discIdx)}
+      </div>
+    `;
+  }
+
+  function setDiscount(pct, btn) {
+    const map = { 0: 0, 5: 1, 7: 2, 10: 3, 12: 4 };
+    currentDisc = map[pct];
+    document.querySelectorAll('.disc-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderPrices(currentDisc);
+  }
+
+  function show(id, btn) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    if (btn) btn.classList.add('active');
+  }
+
+  function copyPrice(text, btn) {
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = '✓';
+      btn.classList.add('copied');
+      showToast();
+      setTimeout(() => { btn.textContent = 'копіювати'; btn.classList.remove('copied'); }, 2000);
+    });
+  }
+
+  function showToast() {
+    const t = document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 1800);
+  }
+
+  // Init
+  renderPrices(0);
 </script>
 </body>
 </html>
