@@ -25,37 +25,32 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .bk{background:#1a1712;border:1px solid #2e2b23;border-radius:11px;padding:8px 15px;cursor:pointer;font-size:12px;font-weight:600;color:#7a7060;margin-bottom:13px;display:inline-flex;align-items:center;gap:5px}
 .pt{font-size:17px;font-weight:700;color:#c9963a;margin-bottom:13px}
 .sl{font-size:10px;font-weight:700;color:#7a7060;text-transform:uppercase;letter-spacing:1px;margin:16px 0 8px}
-/* PRICE */
 .tabs{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
 .tb{background:#1a1712;border:1px solid #2e2b23;border-radius:9px;padding:6px 11px;cursor:pointer;font-size:11px;font-weight:600;color:#7a7060}
 .tb.active{background:#c9963a;border-color:#c9963a;color:#0f0d0a}
 .dr{display:flex;gap:6px;margin-bottom:13px;flex-wrap:wrap}
 .db{background:#1a1712;border:1px solid #2e2b23;border-radius:7px;padding:5px 10px;cursor:pointer;font-size:11px;font-weight:700;color:#7a7060}
 .db.active{background:#2e2b23;color:#e8b55a;border-color:#c9963a}
-table.pt{width:100%;border-collapse:collapse;font-size:12px}
-table.pt th{background:#1a1712;padding:8px 9px;text-align:left;font-size:10px;color:#7a7060;font-weight:700;border-bottom:1px solid #2e2b23;text-transform:uppercase}
-table.pt td{padding:8px 9px;border-bottom:1px solid #1e1b15;color:#b8b0a0}
-table.pt tr:last-child td{border-bottom:none}
-table.pt .nm{font-weight:600;color:#f0ead8}
-table.pt .pr{font-weight:700;color:#c9963a;font-size:13px}
-table.pt .prow td{background:#1e1b15}
+table.ptbl{width:100%;border-collapse:collapse;font-size:12px}
+table.ptbl th{background:#1a1712;padding:8px 9px;text-align:left;font-size:10px;color:#7a7060;font-weight:700;border-bottom:1px solid #2e2b23;text-transform:uppercase}
+table.ptbl td{padding:8px 9px;border-bottom:1px solid #1e1b15;color:#b8b0a0}
+table.ptbl tr:last-child td{border-bottom:none}
+table.ptbl .nm{font-weight:600;color:#f0ead8}
+table.ptbl .pr{font-weight:700;color:#c9963a;font-size:13px}
+table.ptbl .prow td{background:#1e1b15}
 .ns{color:#7a7060;font-size:10px;display:block}
 .warn{background:#1a1510;border:1px solid #3a2e1a;border-radius:9px;padding:9px 12px;font-size:11px;color:#e8b55a;margin-top:10px}
-/* PROMO */
-.pc{background:#1a1712;border-radius:12px;padding:13px;margin-bottom:9px;border-left:3px solid #c9963a;border:1px solid #2e2b23;border-left:3px solid #c9963a}
+.pc{background:#1a1712;border-radius:12px;padding:13px;margin-bottom:9px;border:1px solid #2e2b23;border-left:3px solid #c9963a}
 .pt2{font-weight:700;color:#e8b55a;font-size:13px;margin-bottom:4px}
 .pd{font-size:12px;color:#b8b0a0;line-height:1.6}
-/* SETS */
-.dl{background:#c9963a;color:#0f0d0a;font-size:10px;font-weight:700;padding:4px 11px;border-radius:18px;display:inline-block;margin:12px 0 8px;text-transform:uppercase;letter-spacing:.5px}
 .sc{background:#1a1712;border-radius:12px;padding:13px;margin-bottom:8px;border:1px solid #2e2b23}
+.sc.gb{border-left:3px solid #4aaf7a}
+.sc.vid{border-left:3px solid #af4a7a}
 .st{font-weight:700;color:#e8b55a;font-size:12px;margin-bottom:9px;padding-bottom:7px;border-bottom:1px solid #2e2b23}
 .sr{display:flex;justify-content:space-between;align-items:center;font-size:12px;padding:4px 0;border-bottom:1px solid #1e1b15}
 .sr:last-of-type{border-bottom:none}
-.si{color:#b8b0a0}
-.sv{font-weight:700;color:#c9963a}
-.sv.fr{color:#4caf7a}
+.si{color:#b8b0a0}.sv{font-weight:700;color:#c9963a}.sv.fr{color:#4caf7a}
 .sn{font-size:10px;color:#7a7060;margin-top:7px;padding-top:6px;border-top:1px dashed #2e2b23;font-style:italic}
-/* FAQ */
 input{width:100%;padding:11px 15px;border:1px solid #2e2b23;border-radius:11px;font-size:13px;margin-bottom:11px;outline:none;background:#1a1712;color:#f0ead8}
 input:focus{border-color:#c9963a}
 input::placeholder{color:#7a7060}
@@ -67,7 +62,6 @@ input::placeholder{color:#7a7060}
 .fi.open .fa{display:block}
 .fi.open{border-color:#c9963a}
 .nores{text-align:center;color:#7a7060;padding:28px;font-size:13px}
-/* CARDS */
 .card{background:#1a1712;border-radius:12px;padding:13px;margin-bottom:9px;border:1px solid #2e2b23}
 .ct{font-weight:700;font-size:13px;margin-bottom:7px}
 .ct.gold{color:#e8b55a}.ct.red{color:#e05555}.ct.green{color:#4caf7a}.ct.blue{color:#4a90d9}
@@ -82,25 +76,33 @@ input::placeholder{color:#7a7060}
 .ui{background:#13110d;border-radius:9px;padding:11px;margin-bottom:7px;border-left:3px solid #c9963a}
 .ut{color:#e8b55a;font-weight:700;font-size:12px;margin-bottom:4px}
 .ub{font-size:11px;color:#7a7060;line-height:1.6}
-/* NP */
 .nr{display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:1px solid #1e1b15}
 .nr:last-child{border-bottom:none}
 .nl{color:#b8b0a0}.nv{font-weight:700;color:#c9963a}
-/* VIBE */
 .vc{background:linear-gradient(135deg,#1a1510,#251e10);border:1px solid #3a2e1a;border-radius:14px;padding:18px;margin-bottom:10px;text-align:center}
 .ve{font-size:36px;margin-bottom:8px}
 .vt{font-size:15px;font-weight:700;color:#e8b55a;line-height:1.5}
 .vs{font-size:12px;color:#7a7060;margin-top:6px}
-/* PHOTO */
 .photo-wrap{border-radius:14px;overflow:hidden;margin-bottom:14px;border:1px solid #2e2b23}
 .photo-wrap img{width:100%;display:block}
 .photo-cap{background:#1a1712;padding:10px 14px;font-size:11px;color:#7a7060;text-align:center}
+.sets-tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.stb{background:#1a1712;border:1px solid #2e2b23;border-radius:9px;padding:7px 12px;cursor:pointer;font-size:11px;font-weight:700;color:#7a7060;transition:all .15s}
+.stb.active{background:#c9963a;border-color:#c9963a;color:#0f0d0a}
+.stb.gbtn{border-color:#2e5a3a;color:#4aaf7a}
+.stb.gbtn.active{background:#4aaf7a;border-color:#4aaf7a;color:#0f0d0a}
+.stb.vbtn{border-color:#5a2e3a;color:#af4a7a}
+.stb.vbtn.active{background:#af4a7a;border-color:#af4a7a;color:#fff}
+.sets-section{display:none}.sets-section.active{display:block}
+.dep-label{font-size:11px;font-weight:700;padding:4px 10px;border-radius:12px;display:inline-block;margin:10px 0 6px}
+.dep-rzpk{background:#c9963a22;color:#c9963a;border:1px solid #c9963a44}
+.dep-hb{background:#4a90d922;color:#4a90d9;border:1px solid #4a90d944}
 </style>
 </head>
 <body>
 <div class="hdr">
   <h1>🐟 Помічник менеджера</h1>
-  <p>Caviar Store — твій інструмент продажів</p>
+  <p>Ikorka Shop — твій інструмент продажів</p>
 </div>
 <div class="wrap">
 
@@ -134,16 +136,17 @@ input::placeholder{color:#7a7060}
       <button class="tb" onclick="setTab('pb',this)">Пластик 500г</button>
       <button class="tb" onclick="setTab('gs',this)">Малі банки</button>
       <button class="tb" onclick="setTab('xxl',this)">ХХЛ 1.5кг</button>
+      <button class="tb" onclick="setTab('hot',this)">🔥 Гарячий</button>
+      <button class="tb" onclick="setTab('vid',this)">🔄 Відмови</button>
     </div>
-    <div class="dr">
+    <div class="dr" id="discRow">
       <button class="db active" onclick="setDisc(0,this)">Повна</button>
-      <button class="db" onclick="setDisc(5,this)">-5%</button>
       <button class="db" onclick="setDisc(7,this)">-7%</button>
       <button class="db" onclick="setDisc(10,this)">-10%</button>
-      <button class="db" onclick="setDisc(12,this)">-12% опт</button>
+      <button class="db" onclick="setDisc(12,this)">-12% пост</button>
     </div>
     <div id="priceContent"></div>
-    <div class="warn">⚠️ Преміальної ікри в маленьких банках немає!</div>
+    <div class="warn" id="priceWarn"></div>
   </div>
 
   <!-- АКЦІЇ -->
@@ -151,7 +154,7 @@ input::placeholder{color:#7a7060}
     <button class="bk" onclick="back()">← Назад</button>
     <div class="pt">🔥 Активні акції</div>
     <div class="photo-wrap">
-      <img src="https://i.postimg.cc/K8cGfryZ/2024-02-10-0342.jpg" alt="Ікра Caviar Store">
+      <img src="https://i.postimg.cc/K8cGfryZ/2024-02-10-0342.jpg" alt="Ікра Ikorka Shop">
       <div class="photo-cap">Свіжа ікра — пряме постачання без консервантів</div>
     </div>
     <div class="pc"><div class="pt2">🔥 1+1=3</div><div class="pd">Купуй 2 банки (440/500г) — 3-тя безкоштовно. Доставка за рахунок клієнта.</div></div>
@@ -166,144 +169,249 @@ input::placeholder{color:#7a7060}
   <div id="setsPanel" class="panel">
     <button class="bk" onclick="back()">← Назад</button>
     <div class="pt">🛒 Готові сети</div>
-
-    <div class="dl">🛒 РЗПК</div>
-    <div class="sc"><div class="st">Сет 998 грн — Скло, безпл. дост.</div>
-      <div class="sr"><span class="si">Горбуша × 1</span><span class="sv">333 грн</span></div>
-      <div class="sr"><span class="si">Форель × 1</span><span class="sv">332 грн</span></div>
-      <div class="sr"><span class="si">Осетр × 1</span><span class="sv">332 грн</span></div>
-      <div class="sr"><span class="si">КтМ + ВМ</span><span class="sv fr">1+1 🎁</span></div>
-      <div class="sn">Доп: Лосось 430 грн, ГП 470 грн</div>
-    </div>
-    <div class="sc"><div class="st">Сет 1109 грн — Пластик, безпл. дост.</div>
-      <div class="sr"><span class="si">Горбуша × 1</span><span class="sv">370 грн</span></div>
-      <div class="sr"><span class="si">Форель × 1</span><span class="sv">369 грн</span></div>
-      <div class="sr"><span class="si">Лосось × 1</span><span class="sv">369 грн</span></div>
-      <div class="sr"><span class="si">Кета × 1</span><span class="sv fr">🎁</span></div>
-      <div class="sn">Доп: на вибір (не прем) 430 грн</div>
-    </div>
-    <div class="sc"><div class="st">Сет 1215 грн — Скло, безпл. дост.</div>
-      <div class="sr"><span class="si">КтМ</span><span class="sv">151 грн</span></div>
-      <div class="sr"><span class="si">ЛМ, КжМ, ВМ, ЩМ, ГМ, ФМ, ЧМ (7 шт)</span><span class="sv">152 грн</span></div>
-    </div>
-    <div class="sc"><div class="st">Сет 1299 грн — Скло, безпл. дост.</div>
-      <div class="sr"><span class="si">Горбуша</span><span class="sv">432 грн</span></div>
-      <div class="sr"><span class="si">Форель</span><span class="sv">432 грн</span></div>
-      <div class="sr"><span class="si">Осетр</span><span class="sv">432 грн</span></div>
-      <div class="sr"><span class="si">ЛМ + ВМ + КтМ</span><span class="sv fr">1+1+1 🎁</span></div>
-    </div>
-    <div class="sc"><div class="st">Сет 1440 грн — Скло, безпл. дост.</div>
-      <div class="sr"><span class="si">Горбуша × 2</span><span class="sv">359 грн/шт</span></div>
-      <div class="sr"><span class="si">Форель × 2</span><span class="sv">360 грн/шт</span></div>
-      <div class="sr"><span class="si">Осетр × 2</span><span class="sv fr">1+1 🎁</span></div>
-      <div class="sn">Доп: КтМ 169 грн, Лосось 430 грн</div>
-    </div>
-    <div class="sc"><div class="st">Сет 1440 грн — Пластик, безпл. дост.</div>
-      <div class="sr"><span class="si">Горбуша × 2</span><span class="sv">360 грн/шт</span></div>
-      <div class="sr"><span class="si">Форель × 2</span><span class="sv">359 грн/шт</span></div>
-      <div class="sr"><span class="si">Лосось × 2</span><span class="sv fr">1+1 🎁</span></div>
-      <div class="sn">Доп: Кета 430 грн, Горб Прем 470 грн</div>
-    </div>
-    <div class="sc"><div class="st">Сет 1540 грн — Скло, безпл. дост.</div>
-      <div class="sr"><span class="si">Горбуша × 2</span><span class="sv">385 грн/шт</span></div>
-      <div class="sr"><span class="si">Форель × 1</span><span class="sv">383 грн</span></div>
-      <div class="sr"><span class="si">Осетр × 1</span><span class="sv">385 грн</span></div>
-      <div class="sr"><span class="si">Кижуч + Лосось</span><span class="sv fr">🎁</span></div>
-      <div class="sn">Доп: ЧП 550 грн, ГП 470 грн</div>
+    <div class="sets-tabs">
+      <button class="stb active" onclick="setSetsTab('rzpk',this)">🛒 РЗПК</button>
+      <button class="stb gbtn" onclick="setSetsTab('gb',this)">🔥 Гарячий відділ</button>
+      <button class="stb vbtn" onclick="setSetsTab('vid',this)">🔄 Відмови</button>
     </div>
 
-    <div class="dl">🏪 ХБ</div>
-    <div class="sc"><div class="st">Сет 1000 грн — Скло, безпл. дост.</div>
-      <div class="sr"><span class="si">Горбуша × 1</span><span class="sv">333 грн</span></div>
-      <div class="sr"><span class="si">Форель × 1</span><span class="sv">333 грн</span></div>
-      <div class="sr"><span class="si">Осетр × 1</span><span class="sv">333 грн</span></div>
-      <div class="sr"><span class="si">Щука</span><span class="sv fr">🎁</span></div>
-      <div class="sn">Доп: Лосось 350 грн, ГП 450 грн</div>
-    </div>
-    <div class="sc"><div class="st">Сет 1199 грн — Скло, безпл. дост.</div>
-      <div class="sr"><span class="si">Горбуша × 1</span><span class="sv">399 грн</span></div>
-      <div class="sr"><span class="si">Форель × 1</span><span class="sv">400 грн</span></div>
-      <div class="sr"><span class="si">Лосось × 1</span><span class="sv">400 грн</span></div>
-      <div class="sr"><span class="si">Кета × 1</span><span class="sv fr">🎁</span></div>
-      <div class="sn">Доп: на вибір (не прем) 430 грн</div>
-    </div>
-    <div class="sc"><div class="st">Сет 1205 грн — Пластик, безпл. дост.</div>
-      <div class="sr"><span class="si">Лосось × 1</span><span class="sv">401 грн</span></div>
-      <div class="sr"><span class="si">Кета × 1</span><span class="sv">401 грн</span></div>
-      <div class="sr"><span class="si">Веслонос × 1</span><span class="sv">402 грн</span></div>
-      <div class="sr"><span class="si">Щука × 1</span><span class="sv fr">🎁</span></div>
-      <div class="sn">Доп: на вибір (не прем) 430 грн</div>
-    </div>
-    <div class="sc"><div class="st">Сет 1250 грн — Скло, безпл. дост.</div>
-      <div class="sr"><span class="si">Горбуша × 1</span><span class="sv">416 грн</span></div>
-      <div class="sr"><span class="si">Форель × 1</span><span class="sv">416 грн</span></div>
-      <div class="sr"><span class="si">Лосось × 1</span><span class="sv">416 грн</span></div>
-      <div class="sr"><span class="si">Кета × 1</span><span class="sv fr">🎁</span></div>
-      <div class="sn">Доп: на вибір 350 грн</div>
-    </div>
-    <div class="sc"><div class="st">Сет 1380 грн — Пластик, безпл. дост.</div>
-      <div class="sr"><span class="si">Горбуша × 1</span><span class="sv">344 грн</span></div>
-      <div class="sr"><span class="si">Форель × 1</span><span class="sv">345 грн</span></div>
-      <div class="sr"><span class="si">Лосось × 1</span><span class="sv fr">🎁</span></div>
-      <div class="sn">Доп: ЧП, ГП 450 грн, ЛМ/ВМ/КжМ 169 грн</div>
-    </div>
-    <div class="sc"><div class="st">Сет 1485 грн — Скло, безпл. дост.</div>
-      <div class="sr"><span class="si">Лосось × 1</span><span class="sv">495 грн</span></div>
-      <div class="sr"><span class="si">Кета × 1</span><span class="sv">495 грн</span></div>
-      <div class="sr"><span class="si">Веслонос × 1</span><span class="sv">494 грн</span></div>
-      <div class="sr"><span class="si">Щука × 1</span><span class="sv fr">🎁</span></div>
-      <div class="sn">Доп: на вибір (не прем) 430 грн</div>
+    <!-- РЗПК СЕТИ -->
+    <div id="sets-rzpk" class="sets-section active">
+      <div class="sc"><div class="st">Сет 998 грн — Скло, безпл. дост.</div>
+        <div class="sr"><span class="si">Горбуша × 1</span><span class="sv">333 грн</span></div>
+        <div class="sr"><span class="si">Форель × 1</span><span class="sv">332 грн</span></div>
+        <div class="sr"><span class="si">Осетр × 1</span><span class="sv">332 грн</span></div>
+        <div class="sr"><span class="si">КтМ + ВМ</span><span class="sv fr">1+1 🎁</span></div>
+        <div class="sn">Доп: Лосось 430 грн, ГП 470 грн</div>
+      </div>
+      <div class="sc"><div class="st">Сет 1109 грн — Пластик, безпл. дост.</div>
+        <div class="sr"><span class="si">Горбуша × 1</span><span class="sv">370 грн</span></div>
+        <div class="sr"><span class="si">Форель × 1</span><span class="sv">369 грн</span></div>
+        <div class="sr"><span class="si">Лосось × 1</span><span class="sv">369 грн</span></div>
+        <div class="sr"><span class="si">Кета × 1</span><span class="sv fr">🎁</span></div>
+        <div class="sn">Доп: на вибір (не прем) 430 грн</div>
+      </div>
+      <div class="sc"><div class="st">Сет 1215 грн — Скло, безпл. дост.</div>
+        <div class="sr"><span class="si">КтМ</span><span class="sv">151 грн</span></div>
+        <div class="sr"><span class="si">ЛМ, КжМ, ВМ, ЩМ, ГМ, ФМ, ЧМ (7 шт)</span><span class="sv">152 грн</span></div>
+      </div>
+      <div class="sc"><div class="st">Сет 1299 грн — Скло, безпл. дост.</div>
+        <div class="sr"><span class="si">Горбуша</span><span class="sv">432 грн</span></div>
+        <div class="sr"><span class="si">Форель</span><span class="sv">432 грн</span></div>
+        <div class="sr"><span class="si">Осетр</span><span class="sv">432 грн</span></div>
+        <div class="sr"><span class="si">ЛМ + ВМ + КтМ</span><span class="sv fr">1+1+1 🎁</span></div>
+      </div>
+      <div class="sc"><div class="st">Сет 1440 грн — Скло, безпл. дост.</div>
+        <div class="sr"><span class="si">Горбуша × 2</span><span class="sv">359 грн/шт</span></div>
+        <div class="sr"><span class="si">Форель × 2</span><span class="sv">360 грн/шт</span></div>
+        <div class="sr"><span class="si">Осетр × 2</span><span class="sv fr">1+1 🎁</span></div>
+        <div class="sn">Доп: КтМ 169 грн, Лосось 430 грн</div>
+      </div>
+      <div class="sc"><div class="st">Сет 1440 грн — Пластик, безпл. дост.</div>
+        <div class="sr"><span class="si">Горбуша × 2</span><span class="sv">360 грн/шт</span></div>
+        <div class="sr"><span class="si">Форель × 2</span><span class="sv">359 грн/шт</span></div>
+        <div class="sr"><span class="si">Лосось × 2</span><span class="sv fr">1+1 🎁</span></div>
+        <div class="sn">Доп: Кета 430 грн, Горб Прем 470 грн</div>
+      </div>
+      <div class="sc"><div class="st">Сет 1540 грн — Скло, безпл. дост.</div>
+        <div class="sr"><span class="si">Горбуша × 2</span><span class="sv">385 грн/шт</span></div>
+        <div class="sr"><span class="si">Форель × 1</span><span class="sv">383 грн</span></div>
+        <div class="sr"><span class="si">Осетр × 1</span><span class="sv">385 грн</span></div>
+        <div class="sr"><span class="si">Кижуч + Лосось</span><span class="sv fr">🎁</span></div>
+        <div class="sn">Доп: ЧП 550 грн, ГП 470 грн</div>
+      </div>
+      <div class="dep-label dep-hb">🏪 ХБ</div>
+      <div class="sc"><div class="st">Сет 1199 грн — Скло, безпл. дост.</div>
+        <div class="sr"><span class="si">Горбуша × 1</span><span class="sv">399 грн</span></div>
+        <div class="sr"><span class="si">Форель × 1</span><span class="sv">400 грн</span></div>
+        <div class="sr"><span class="si">Лосось × 1</span><span class="sv">400 грн</span></div>
+        <div class="sr"><span class="si">Кета × 1</span><span class="sv fr">🎁</span></div>
+        <div class="sn">Доп: на вибір (не прем) 430 грн</div>
+      </div>
+      <div class="sc"><div class="st">Сет 1205 грн — Пластик, безпл. дост.</div>
+        <div class="sr"><span class="si">Лосось × 1</span><span class="sv">401 грн</span></div>
+        <div class="sr"><span class="si">Кета × 1</span><span class="sv">401 грн</span></div>
+        <div class="sr"><span class="si">Веслонос × 1</span><span class="sv">402 грн</span></div>
+        <div class="sr"><span class="si">Щука × 1</span><span class="sv fr">🎁</span></div>
+        <div class="sn">Доп: на вибір (не прем) 430 грн</div>
+      </div>
+      <div class="sc"><div class="st">Сет 1485 грн — Скло, безпл. дост.</div>
+        <div class="sr"><span class="si">Лосось × 1</span><span class="sv">495 грн</span></div>
+        <div class="sr"><span class="si">Кета × 1</span><span class="sv">495 грн</span></div>
+        <div class="sr"><span class="si">Веслонос × 1</span><span class="sv">494 грн</span></div>
+        <div class="sr"><span class="si">Щука × 1</span><span class="sv fr">🎁</span></div>
+        <div class="sn">Доп: на вибір (не прем) 430 грн</div>
+      </div>
     </div>
 
-    <div class="dl">🔄 Відділ відмов</div>
-    <div class="sc"><div class="st">Сет 998 грн — Скло/Пласт, безпл. дост.</div>
-      <div class="sr"><span class="si">Горбуша × 1</span><span class="sv">333 грн</span></div>
-      <div class="sr"><span class="si">Форель × 1</span><span class="sv">332 грн</span></div>
-      <div class="sr"><span class="si">Осетр × 1</span><span class="sv">332 грн</span></div>
-      <div class="sr"><span class="si">КтМ + ВМ</span><span class="sv fr">1+1 🎁</span></div>
-      <div class="sn">Доп: Лосось 350 грн, ГП 450 грн</div>
+    <!-- ГАРЯЧИЙ ВІДДІЛ СЕТИ -->
+    <div id="sets-gb" class="sets-section">
+      <div class="sc gb"><div class="st">Сет 1000 грн — Скло, безпл. дост.</div>
+        <div class="sr"><span class="si">Горбуша × 1</span><span class="sv">333 грн</span></div>
+        <div class="sr"><span class="si">Форель × 1</span><span class="sv">333 грн</span></div>
+        <div class="sr"><span class="si">Осетр × 1</span><span class="sv">333 грн</span></div>
+        <div class="sr"><span class="si">Щука</span><span class="sv fr">🎁</span></div>
+        <div class="sn">Доп: Лосось 350 грн, ГП 450(452) грн</div>
+      </div>
+      <div class="sc gb"><div class="st">Сет 959 грн — Пластик, безпл. дост.</div>
+        <div class="sr"><span class="si">Горбуша × 1</span><span class="sv">320 грн</span></div>
+        <div class="sr"><span class="si">Форель × 1</span><span class="sv">319 грн</span></div>
+        <div class="sr"><span class="si">Лосось × 1</span><span class="sv">319 грн</span></div>
+        <div class="sr"><span class="si">Кета × 1</span><span class="sv fr">🎁</span></div>
+        <div class="sn">Доп: на вибір 350 грн</div>
+      </div>
+      <div class="sc gb"><div class="st">Сет 1250 грн — Скло, безпл. дост.</div>
+        <div class="sr"><span class="si">Горбуша × 1</span><span class="sv">416 грн</span></div>
+        <div class="sr"><span class="si">Форель × 1</span><span class="sv">416 грн</span></div>
+        <div class="sr"><span class="si">Лосось × 1</span><span class="sv">416 грн</span></div>
+        <div class="sr"><span class="si">Кета × 1</span><span class="sv fr">🎁</span></div>
+        <div class="sn">Доп: на вибір 350 грн</div>
+      </div>
+      <div class="sc gb"><div class="st">Сет 1380 грн — Пластик, безпл. дост.</div>
+        <div class="sr"><span class="si">Горбуша × 1</span><span class="sv">344 грн</span></div>
+        <div class="sr"><span class="si">Форель × 1</span><span class="sv">345 грн</span></div>
+        <div class="sr"><span class="si">Лосось × 1</span><span class="sv fr">🎁</span></div>
+      </div>
+      <div class="sc gb"><div class="st">Сет 1440 грн — Скло, безпл. дост. (Серт 1330)</div>
+        <div class="sr"><span class="si">Горбуша × 1</span><span class="sv">360 грн (Серт 332)</span></div>
+        <div class="sr"><span class="si">Форель × 1</span><span class="sv">359 грн (Серт 333)</span></div>
+        <div class="sr"><span class="si">Осетр × 1</span><span class="sv fr">🎁</span></div>
+        <div class="sn">Доп: КтМ 169 грн, ЛМ 169 грн</div>
+      </div>
+      <div class="sc gb"><div class="st">Сет 1540 грн — Скло, безпл. дост.</div>
+        <div class="sr"><span class="si">Горбуша × 1</span><span class="sv">385 грн</span></div>
+        <div class="sr"><span class="si">Форель × 1</span><span class="sv">383 грн</span></div>
+        <div class="sr"><span class="si">Осетр × 1</span><span class="sv">385 грн</span></div>
+        <div class="sr"><span class="si">Кижуч + Лосось</span><span class="sv fr">🎁</span></div>
+        <div class="sn">Доп: ЧП, ГП 450 грн</div>
+      </div>
+      <div class="sc gb"><div class="st">Б200 — для підписників ЧБ — Скло, безпл. дост.</div>
+        <div class="sr"><span class="si">Набір 998/1440/1549/1299</span><span class="sv">на вибір ФМ, ЧМ, ГМ</span></div>
+        <div class="sn">Доп: на вибір 350 грн</div>
+      </div>
+      <div class="sc gb"><div class="st">Сет 1599 грн — Скло, безпл. дост.</div>
+        <div class="sr"><span class="si">ГП × 1</span><span class="sv">533 грн</span></div>
+        <div class="sr"><span class="si">Лосось × 1</span><span class="sv">533 грн</span></div>
+        <div class="sr"><span class="si">Чорний Осетр × 1</span><span class="sv">533 грн</span></div>
+        <div class="sr"><span class="si">Форель + КтМ + ВМ</span><span class="sv fr">🎁</span></div>
+      </div>
+      <div class="sc gb"><div class="st">1+1=3 — 970 грн — Скло</div>
+        <div class="sr"><span class="si">Лосось × 1</span><span class="sv">485 грн</span></div>
+        <div class="sr"><span class="si">Кета × 1</span><span class="sv">485 грн</span></div>
+        <div class="sr"><span class="si">Щука × 1</span><span class="sv fr">🎁</span></div>
+        <div class="sn">Доп: ГП 450 грн, Лосось 350 грн</div>
+      </div>
+      <div class="sc gb"><div class="st">1+1=3 — 958 грн — Скло</div>
+        <div class="sr"><span class="si">Лосось × 1</span><span class="sv">459 грн</span></div>
+        <div class="sr"><span class="si">Кета × 1</span><span class="sv">499 грн</span></div>
+        <div class="sr"><span class="si">Веслонос × 1</span><span class="sv fr">🎁</span></div>
+        <div class="sn">Доп: ГП 450 грн, Лосось 350 грн, Форель 333 грн</div>
+      </div>
+      <div class="sc gb"><div class="st">Сет 998 NEW — Скло, безпл. дост.</div>
+        <div class="sr"><span class="si">Горбуша × 1</span><span class="sv">333 грн</span></div>
+        <div class="sr"><span class="si">Форель × 1</span><span class="sv">333 грн</span></div>
+        <div class="sr"><span class="si">Осетр × 1</span><span class="sv">333 грн</span></div>
+        <div class="sr"><span class="si">На вибір × 2 (КтМ, ЩМ, ВМ, КжМ, ГМ, ФМ)</span><span class="sv fr">🎁🎁</span></div>
+        <div class="sn">Доп: Лосось 350 грн, ГП 450(452) грн</div>
+      </div>
+      <div class="sc gb"><div class="st">Сет 2199 NEW — Скло, безпл. дост.</div>
+        <div class="sr"><span class="si">ГП × 1</span><span class="sv">439 грн</span></div>
+        <div class="sr"><span class="si">ЧП × 1</span><span class="sv">439 грн</span></div>
+        <div class="sr"><span class="si">КтП × 1</span><span class="sv">439 грн</span></div>
+        <div class="sr"><span class="si">Ф × 1</span><span class="sv">439 грн</span></div>
+        <div class="sr"><span class="si">Горбуша × 1</span><span class="sv">439 грн</span></div>
+        <div class="sr"><span class="si">Лосось + Кета</span><span class="sv fr">🎁</span></div>
+        <div class="sn">Доп: Щ 385 грн, КжМ+ЩМ 370 грн</div>
+      </div>
+      <div class="sc gb"><div class="st">Сет 1299 NEW — Скло, безпл. дост.</div>
+        <div class="sr"><span class="si">ГП × 1</span><span class="sv fr">🎁</span></div>
+        <div class="sr"><span class="si">КтП × 1</span><span class="sv">649 грн</span></div>
+        <div class="sr"><span class="si">ЧП × 1</span><span class="sv">649 грн</span></div>
+        <div class="sn">Доп: Лосось 400 грн</div>
+      </div>
     </div>
-    <div class="sc"><div class="st">Сет 1205 грн — Скло, безпл. дост.</div>
-      <div class="sr"><span class="si">КтМ</span><span class="sv">155 грн</span></div>
-      <div class="sr"><span class="si">ЛМ, КжМ, ВМ, ЩМ, ГМ, ФМ, ЧМ (7 шт)</span><span class="sv">150 грн</span></div>
-      <div class="sn">+ Лосось доп. продаж</div>
-    </div>
-    <div class="sc"><div class="st">Сет 1320 грн — Пластик, безпл. дост.</div>
-      <div class="sr"><span class="si">Горбуша × 1</span><span class="sv">329 грн</span></div>
-      <div class="sr"><span class="si">Форель × 1</span><span class="sv">330 грн</span></div>
-      <div class="sr"><span class="si">Осетр × 1</span><span class="sv">330 грн</span></div>
-      <div class="sr"><span class="si">Лосось × 1</span><span class="sv">330 грн</span></div>
-      <div class="sr"><span class="si">Кета × 1</span><span class="sv fr">🎁</span></div>
-      <div class="sn">Доп: КтМ 169 грн, Лосось 350 грн</div>
-    </div>
-    <div class="sc"><div class="st">Сет 1340 грн — Пластик, безпл. дост.</div>
-      <div class="sr"><span class="si">Горбуша × 2</span><span class="sv">335 грн/шт</span></div>
-      <div class="sr"><span class="si">Форель × 2</span><span class="sv">334 грн/шт</span></div>
-      <div class="sr"><span class="si">Осетр × 2</span><span class="sv fr">1+1 🎁</span></div>
-      <div class="sn">Доп: КтМ 169 грн, Лосось 350 грн</div>
-    </div>
-    <div class="sc"><div class="st">Сет 1370 грн — Скло, безпл. дост.</div>
-      <div class="sr"><span class="si">Горбуша × 2</span><span class="sv">335 грн/шт</span></div>
-      <div class="sr"><span class="si">Форель × 2</span><span class="sv">334 грн/шт</span></div>
-      <div class="sr"><span class="si">Осетр × 2</span><span class="sv fr">1+1 🎁</span></div>
-      <div class="sn">Доп: КтМ 169 грн, Лосось 350 грн</div>
-    </div>
-    <div class="sc"><div class="st">Сет 1485 грн — Скло, безпл. дост.</div>
-      <div class="sr"><span class="si">Горбуша × 2</span><span class="sv">359 грн/шт</span></div>
-      <div class="sr"><span class="si">Форель × 2</span><span class="sv">360 грн/шт</span></div>
-      <div class="sr"><span class="si">Лосось × 2</span><span class="sv fr">1+1 🎁</span></div>
-      <div class="sn">Доп: КтМ 169 грн, Лосось 350 грн</div>
-    </div>
-    <div class="sc"><div class="st">3=4 — 1519 грн — Скло, безпл. дост.</div>
-      <div class="sr"><span class="si">Кета Прем × 1</span><span class="sv">—</span></div>
-      <div class="sr"><span class="si">Горбуша Прем × 1</span><span class="sv">—</span></div>
-      <div class="sr"><span class="si">Осетр Прем × 1</span><span class="sv">—</span></div>
-      <div class="sr"><span class="si">На вибір × 1</span><span class="sv fr">🎁</span></div>
-      <div class="sn">Доп: на вибір (не прем)</div>
-    </div>
-    <div class="sc"><div class="st">1+1=3 — 1115 грн — Скло</div>
-      <div class="sr"><span class="si">Кета Прем × 3</span><span class="sv fr">1+1=3 🎁</span></div>
-      <div class="sn">Доп: ГП</div>
+
+    <!-- ВІДМОВИ СЕТИ -->
+    <div id="sets-vid" class="sets-section">
+      <div class="sc vid"><div class="st">Сет 998 грн — Скло/Пласт, безпл. дост.</div>
+        <div class="sr"><span class="si">Горбуша × 1</span><span class="sv">333 грн</span></div>
+        <div class="sr"><span class="si">Форель × 1</span><span class="sv">332 грн</span></div>
+        <div class="sr"><span class="si">Осетр × 1</span><span class="sv">332 грн</span></div>
+        <div class="sr"><span class="si">КтМ + ВМ</span><span class="sv fr">1+1 🎁</span></div>
+        <div class="sn">Доп: Лосось 350 грн, ГП 450 грн</div>
+      </div>
+      <div class="sc vid"><div class="st">Сет 1110 грн — Пластик, безпл. дост.</div>
+        <div class="sr"><span class="si">Горбуша × 1</span><span class="sv">—</span></div>
+        <div class="sr"><span class="si">Форель × 1</span><span class="sv">—</span></div>
+        <div class="sr"><span class="si">Лосось × 1</span><span class="sv">—</span></div>
+        <div class="sr"><span class="si">Кета × 1</span><span class="sv fr">🎁</span></div>
+        <div class="sn">Доп: КтМ 169 грн, Лосось 333 грн</div>
+      </div>
+      <div class="sc vid"><div class="st">Сет 1190 грн — Скло, безпл. дост.</div>
+        <div class="sr"><span class="si">Горбуша × 1</span><span class="sv">—</span></div>
+        <div class="sr"><span class="si">Форель × 1</span><span class="sv">—</span></div>
+        <div class="sr"><span class="si">Лосось × 1</span><span class="sv">—</span></div>
+        <div class="sr"><span class="si">Кета × 1</span><span class="sv fr">🎁</span></div>
+        <div class="sn">Доп: КтМ 169 грн, Лосось 350 грн</div>
+      </div>
+      <div class="sc vid"><div class="st">Сет 1205 грн — Скло, безпл. дост.</div>
+        <div class="sr"><span class="si">КтМ</span><span class="sv">155 грн</span></div>
+        <div class="sr"><span class="si">ЛМ, КжМ, ВМ, ЩМ, ГМ, ФМ, ЧМ (7 шт)</span><span class="sv">150 грн</span></div>
+        <div class="sn">+ Лосось — доп. продаж | Пластик: безпл. дост.</div>
+      </div>
+      <div class="sc vid"><div class="st">Сет 1320 грн — Пластик, безпл. дост.</div>
+        <div class="sr"><span class="si">Горбуша × 1</span><span class="sv">329 грн</span></div>
+        <div class="sr"><span class="si">Форель × 1</span><span class="sv">330 грн</span></div>
+        <div class="sr"><span class="si">Осетр × 1</span><span class="sv">330 грн</span></div>
+        <div class="sr"><span class="si">Лосось × 1</span><span class="sv">330 грн</span></div>
+        <div class="sr"><span class="si">Кета × 1</span><span class="sv fr">🎁</span></div>
+        <div class="sn">Доп: КтМ 169 грн, Лосось 350 грн</div>
+      </div>
+      <div class="sc vid"><div class="st">Сет 1340 грн — Пластик, безпл. дост.</div>
+        <div class="sr"><span class="si">Горбуша × 2</span><span class="sv">335 грн/шт</span></div>
+        <div class="sr"><span class="si">Форель × 2</span><span class="sv">334 грн/шт</span></div>
+        <div class="sr"><span class="si">Осетр × 2</span><span class="sv fr">1+1 🎁</span></div>
+        <div class="sn">Доп: КтМ 169 грн, Лосось 350 грн</div>
+      </div>
+      <div class="sc vid"><div class="st">Сет 1360 грн — Скло, безпл. дост.</div>
+        <div class="sr"><span class="si">Горбуша × 1</span><span class="sv">339 грн</span></div>
+        <div class="sr"><span class="si">Форель × 1</span><span class="sv">340 грн</span></div>
+        <div class="sr"><span class="si">Осетр × 1</span><span class="sv">340 грн</span></div>
+        <div class="sr"><span class="si">Лосось × 1</span><span class="sv">340 грн</span></div>
+        <div class="sr"><span class="si">Кета × 1</span><span class="sv fr">🎁</span></div>
+        <div class="sn">Доп: КтМ 169 грн, Лосось 350 грн</div>
+      </div>
+      <div class="sc vid"><div class="st">Сет 1370 грн — Скло, безпл. дост.</div>
+        <div class="sr"><span class="si">Горбуша × 2</span><span class="sv">335 грн/шт</span></div>
+        <div class="sr"><span class="si">Форель × 2</span><span class="sv">334 грн/шт</span></div>
+        <div class="sr"><span class="si">Осетр × 2</span><span class="sv fr">1+1 🎁</span></div>
+        <div class="sn">Доп: КтМ 169 грн, Лосось 350 грн</div>
+      </div>
+      <div class="sc vid"><div class="st">Сет 1485 грн — Скло, безпл. дост.</div>
+        <div class="sr"><span class="si">Горбуша × 2</span><span class="sv">359 грн/шт</span></div>
+        <div class="sr"><span class="si">Форель × 2</span><span class="sv">360 грн/шт</span></div>
+        <div class="sr"><span class="si">Лосось × 2</span><span class="sv fr">1+1 🎁</span></div>
+        <div class="sn">Доп: КтМ 169 грн, Лосось 350 грн</div>
+      </div>
+      <div class="sc vid"><div class="st">Сет 900 грн — Скло, безпл. дост.</div>
+        <div class="sr"><span class="si">КтМ × 1</span><span class="sv">180 грн</span></div>
+        <div class="sr"><span class="si">КжМ × 1</span><span class="sv">180 грн</span></div>
+        <div class="sr"><span class="si">ЛМ × 1</span><span class="sv">180 грн</span></div>
+        <div class="sr"><span class="si">ВМ × 1</span><span class="sv">180 грн</span></div>
+        <div class="sr"><span class="si">ЩМ × 1</span><span class="sv">180 грн</span></div>
+        <div class="sr"><span class="si">ЧМ × 1</span><span class="sv">180 грн</span></div>
+      </div>
+      <div class="sc vid"><div class="st">3=4 — 1519 грн — Скло, безк. дост.</div>
+        <div class="sr"><span class="si">Кета Прем × 1</span><span class="sv">—</span></div>
+        <div class="sr"><span class="si">Горбуша Прем × 1</span><span class="sv">—</span></div>
+        <div class="sr"><span class="si">Осетр Прем × 1</span><span class="sv">—</span></div>
+        <div class="sr"><span class="si">На вибір × 1</span><span class="sv fr">🎁</span></div>
+        <div class="sn">Доп: на вибір (не прем)</div>
+      </div>
+      <div class="sc vid"><div class="st">1+1=3 — 1115 грн — Скло</div>
+        <div class="sr"><span class="si">Кета Прем × 3</span><span class="sv fr">1+1=3 🎁</span></div>
+        <div class="sn">Доп: ГП</div>
+      </div>
     </div>
   </div>
 
@@ -430,66 +538,158 @@ input::placeholder{color:#7a7060}
     <div class="vc"><div class="ve">🎯</div><div class="vt">Один правильний момент може змінити весь день</div><div class="vs">Продовжуй. Наступний клієнт може стати твоїм найкращим продажем цього місяця.</div></div>
     <div class="vc"><div class="ve">⭐</div><div class="vt">Ти продаєш не ікру — ти продаєш задоволення</div><div class="vs">Кожна банка — це чиїсь смачні вихідні, подарунок коханій людині, святковий стіл. Ти робиш людей щасливими!</div></div>
     <div class="vc"><div class="ve">🚀</div><div class="vt">Сьогодні буде крутий день!</div><div class="vs">Встав(ла) — значить вже молодець. Зараз — зроби один дзвінок. Потім ще один. Результат прийде!</div></div>
-    <div class="vc"><div class="ve">💛</div><div class="vt">Команда вірить у тебе!</div><div class="vs">Ти частина крутої команди Caviar Store. Разом — ми найкращі!</div></div>
+    <div class="vc"><div class="ve">💛</div><div class="vt">Команда вірить у тебе!</div><div class="vs">Ти частина крутої команди Ikorka Shop. Разом — ми найкращі!</div></div>
   </div>
 
 </div>
 <script>
 const prices={
   gb:[
-    {n:'Щука',w:'500г',b:429,d5:408,d7:399,d10:386,d12:378},
-    {n:'Горбуша',w:'440г',b:449,d5:427,d7:418,d10:404,d12:395},
-    {n:'Горбуша Преміум',w:'500г',b:569,d5:541,d7:529,d10:512,d12:501,p:true},
-    {n:'Форель',w:'440г',b:459,d5:436,d7:427,d10:413,d12:404},
-    {n:'Лосось',w:'500г',b:509,d5:484,d7:473,d10:458,d12:448},
-    {n:'Кижуч',w:'500г',b:509,d5:484,d7:473,d10:458,d12:448},
-    {n:'Кета',w:'500г',b:539,d5:512,d7:501,d10:485,d12:474},
-    {n:'Кета Преміум',w:'500г',b:609,d5:579,d7:566,d10:548,d12:536,p:true},
-    {n:'Веслонос',w:'500г',b:559,d5:531,d7:520,d10:503,d12:492},
-    {n:'Осетр',w:'440г',b:549,d5:522,d7:511,d10:494,d12:483},
-    {n:'Осетр Преміум',w:'500г',b:629,d5:598,d7:585,d10:566,d12:554,p:true},
+    {n:'Щука',w:'500г',b:429,d7:399,d10:386,d12:378},
+    {n:'Горбуша',w:'440г',b:449,d7:418,d10:404,d12:395},
+    {n:'Горбуша Преміум',w:'500г',b:569,d7:529,d10:512,d12:501,p:true},
+    {n:'Форель',w:'440г',b:449,d7:418,d10:404,d12:395},
+    {n:'Лосось',w:'500г',b:519,d7:483,d10:467,d12:457},
+    {n:'Кижуч',w:'500г',b:509,d7:473,d10:458,d12:448},
+    {n:'Кета',w:'500г',b:539,d7:501,d10:485,d12:474},
+    {n:'Кета Преміум',w:'500г',b:619,d7:576,d10:557,d12:545,p:true},
+    {n:'Веслонос',w:'500г',b:559,d7:520,d10:503,d12:492},
+    {n:'Осетр',w:'440г',b:549,d7:511,d10:494,d12:483},
+    {n:'Осетр Преміум',w:'500г',b:619,d7:576,d10:557,d12:545,p:true},
   ],
   pb:[
-    {n:'Щука',w:'500г',b:379,d5:360,d7:352,d10:341,d12:334},
-    {n:'Горбуша',w:'500г',b:399,d5:379,d7:371,d10:359,d12:351},
-    {n:'Горбуша Прем',w:'500г',b:549,d5:522,d7:511,d10:494,d12:483,p:true},
-    {n:'Форель',w:'500г',b:409,d5:389,d7:380,d10:368,d12:360},
-    {n:'Лосось',w:'500г',b:459,d5:436,d7:427,d10:413,d12:404},
-    {n:'Кижуч',w:'500г',b:459,d5:436,d7:427,d10:413,d12:404},
-    {n:'Кета',w:'500г',b:499,d5:474,d7:464,d10:449,d12:439},
-    {n:'Веслонос',w:'500г',b:509,d5:484,d7:473,d10:458,d12:448},
-    {n:'Осетр',w:'500г',b:529,d5:503,d7:492,d10:476,d12:466},
-    {n:'Осетр Прем',w:'500г',b:589,d5:560,d7:548,d10:530,d12:518,p:true},
+    {n:'Щука',w:'500г',b:379,d7:352,d10:341,d12:334},
+    {n:'Горбуша',w:'500г',b:399,d7:371,d10:359,d12:351},
+    {n:'Горбуша Прем',w:'500г',b:549,d7:511,d10:494,d12:483,p:true},
+    {n:'Форель',w:'500г',b:409,d7:380,d10:368,d12:360},
+    {n:'Лосось',w:'500г',b:469,d7:436,d10:422,d12:419},
+    {n:'Кижуч',w:'500г',b:459,d7:427,d10:413,d12:404},
+    {n:'Кета',w:'500г',b:499,d7:464,d10:449,d12:439},
+    {n:'Веслонос',w:'500г',b:509,d7:473,d10:458,d12:448},
+    {n:'Осетр',w:'500г',b:529,d7:492,d10:476,d12:466},
+    {n:'Осетр Прем',w:'500г',b:589,d7:548,d10:530,d12:518,p:true},
   ],
   gs:[
-    {n:'Форель / Горбуша',w:'200г',b:159,d5:149,d7:149,d10:149,d12:149,note:'10+ шт: 149 грн | Постійним: 139 грн'},
-    {n:'Лосось, Кета, Веслонос, Кижуч, Щука',w:'230г',b:179,d5:169,d7:169,d10:169,d12:169,note:'10+ шт: 169 грн | Постійним: 159 грн'},
-    {n:'Чорна осетрова',w:'200г',b:189,d5:179,d7:179,d10:179,d12:179,note:'10+ шт: 179 грн | Постійним: 169 грн'},
+    {n:'Форель / Горбуша',w:'200г',b:149,d7:149,d10:149,d12:149,note:'10+ шт: 149 грн | Постійним: 139 грн'},
+    {n:'Лосось, Кета, Веслонос, Кижуч, Щука',w:'230г',b:179,d7:169,d10:169,d12:169,note:'10+ шт: 169 грн | Постійним: 159 грн'},
+    {n:'Чорна осетрова',w:'200г',b:189,d7:179,d10:179,d12:179,note:'10+ шт: 179 грн | Постійним: 169 грн'},
   ],
   xxl:[
-    {n:'Щука',w:'1.5кг',b:1299,d5:1299,d7:1299,d10:1299,d12:1299,note:'1=2 | Постійним: 1199 грн'},
-    {n:'Кета',w:'1.5кг',b:1299,d5:1299,d7:1299,d10:1299,d12:1299,note:'1=2 | Постійним: 1199 грн'},
-    {n:'Кижуч',w:'1.5кг',b:1299,d5:1299,d7:1299,d10:1299,d12:1299,note:'1=2 | Постійним: 1199 грн'},
-    {n:'Веслонос',w:'1.5кг',b:1299,d5:1299,d7:1299,d10:1299,d12:1299,note:'1=2 | Постійним: 1199 грн'},
-    {n:'Лосось',w:'1.5кг',b:1299,d5:1299,d7:1299,d10:1299,d12:1299,note:'1=2 | Постійним: 1199 грн'},
+    {n:'Щука',w:'1.5кг',b:1299,d7:1299,d10:1299,d12:1299,note:'1=2 | Постійним: 1199 грн'},
+    {n:'Кета',w:'1.5кг',b:1299,d7:1299,d10:1299,d12:1299,note:'1=2 | Постійним: 1199 грн'},
+    {n:'Кижуч',w:'1.5кг',b:1299,d7:1299,d10:1299,d12:1299,note:'1=2 | Постійним: 1199 грн'},
+    {n:'Веслонос',w:'1.5кг',b:1299,d7:1299,d10:1299,d12:1299,note:'1=2 | Постійним: 1199 грн'},
+    {n:'Лосось',w:'1.5кг',b:1299,d7:1299,d10:1299,d12:1299,note:'1=2 | Постійним: 1199 грн'},
+  ],
+  hot:[
+    {n:'Щука',w:'скло',b:419,d7:390,d10:390,d12:369,note:'Доп продаж: 385 грн'},
+    {n:'Горбуша',w:'скло 440г',b:429,d7:399,d10:399,d12:378,note:'Доп продаж: 333 грн'},
+    {n:'Горбуша Прем',w:'скло',b:549,d7:511,d10:511,d12:483,note:'Доп продаж: 470 грн',p:true},
+    {n:'Форель',w:'скло 440г',b:429,d7:399,d10:399,d12:378,note:'Доп продаж: 333 грн'},
+    {n:'Лосось',w:'скло',b:459,d7:427,d10:427,d12:404,note:'Доп продаж: 350 грн'},
+    {n:'Кижуч',w:'скло',b:499,d7:464,d10:464,d12:439,note:'Доп продаж: 429 грн'},
+    {n:'Кета',w:'скло',b:499,d7:464,d10:464,d12:439,note:'Доп продаж: 400 грн'},
+    {n:'Веслонос',w:'скло',b:499,d7:464,d10:464,d12:439,note:'Доп продаж: 429 грн'},
+    {n:'Осетр',w:'скло 440г',b:539,d7:501,d10:501,d12:474,note:'Доп продаж: 333 грн'},
+    {n:'Кета Прем',w:'скло',b:599,d7:557,d10:557,d12:527,note:'Доп продаж: 557 грн',p:true},
+    {n:'Осетр Прем',w:'скло',b:609,d7:566,d10:566,d12:536,note:'Доп продаж: 570 грн',p:true},
+    {n:'— ПЛАСТИК —',w:'',b:0,d7:0,d10:0,d12:0,sep:true},
+    {n:'Щука',w:'пласт',b:369,d7:343,d10:343,d12:325},
+    {n:'Горбуша',w:'пласт',b:399,d7:371,d10:371,d12:351},
+    {n:'Горбуша Прем',w:'пласт',b:499,d7:464,d10:464,d12:439,p:true},
+    {n:'Форель',w:'пласт',b:389,d7:362,d10:362,d12:342},
+    {n:'Лосось',w:'пласт',b:409,d7:380,d10:380,d12:360},
+    {n:'Кижуч',w:'пласт',b:449,d7:418,d10:418,d12:395},
+    {n:'Кета',w:'пласт',b:449,d7:418,d10:418,d12:395},
+    {n:'Веслонос',w:'пласт',b:459,d7:427,d10:427,d12:404},
+    {n:'Осетр',w:'пласт',b:497,d7:462,d10:462,d12:437},
+    {n:'Осетр Прем',w:'пласт',b:569,d7:529,d10:529,d12:501,p:true},
+  ],
+  vid:[
+    {n:'Щука',w:'скло',b:429,d7:429,d10:386,d12:378},
+    {n:'Горбуша',w:'скло',b:459,d7:459,d10:413,d12:404},
+    {n:'Горбуша Прем',w:'скло',b:549,d7:549,d10:494,d12:483,p:true},
+    {n:'Форель',w:'скло',b:449,d7:449,d10:404,d12:395},
+    {n:'Лосось',w:'скло',b:519,d7:519,d10:467,d12:457},
+    {n:'Кижуч',w:'скло',b:509,d7:509,d10:458,d12:448},
+    {n:'Кета Прем',w:'скло',b:619,d7:619,d10:557,d12:545,p:true},
+    {n:'Кета',w:'скло',b:539,d7:539,d10:485,d12:474},
+    {n:'Веслонос',w:'скло',b:559,d7:559,d10:503,d12:492},
+    {n:'Осетр',w:'скло',b:549,d7:549,d10:494,d12:483},
+    {n:'Осетр Прем',w:'скло',b:619,d7:619,d10:557,d12:545,p:true},
+    {n:'ХХЛ (всі)',w:'1.5кг',b:1299,d7:1299,d10:1299,d12:1299,note:'Постійним: 1299 грн'},
+    {n:'— МАЛІ БАНКИ —',w:'',b:0,d7:0,d10:0,d12:0,sep:true},
+    {n:'200г (до 10 шт)',w:'200г',b:189,d7:189,d10:170,d12:149,note:'ЧМ: +11.8%'},
+    {n:'230г (до 10 шт)',w:'230г',b:179,d7:179,d10:179,d12:169},
+    {n:'— ПЛАСТИК —',w:'',b:0,d7:0,d10:0,d12:0,sep:true},
+    {n:'Щука',w:'пласт',b:379,d7:379,d10:341,d12:334},
+    {n:'Горбуша',w:'пласт',b:399,d7:399,d10:359,d12:351},
+    {n:'Горбуша Прем',w:'пласт',b:549,d7:549,d10:494,d12:483,p:true},
+    {n:'Форель',w:'пласт',b:409,d7:409,d10:368,d12:360},
+    {n:'Лосось',w:'пласт',b:469,d7:469,d10:422,d12:419},
+    {n:'Кижуч',w:'пласт',b:459,d7:459,d10:419,d12:404},
+    {n:'Кета',w:'пласт',b:499,d7:499,d10:449,d12:439},
+    {n:'Веслонос',w:'пласт',b:509,d7:509,d10:458,d12:448},
+    {n:'Осетр',w:'пласт',b:529,d7:529,d10:476,d12:466},
+    {n:'Осетр Прем',w:'пласт',b:589,d7:589,d10:530,d12:518,p:true},
   ]
 };
+
+const warnings={
+  gb:'⚠️ Горбуша і Форель у склі — 440г. Решта — 500г.',
+  pb:'',
+  gs:'⚠️ Преміальної ікри в маленьких банках немає!',
+  xxl:'📦 ХХЛ 1.5кг — акція 1=2. Постійним клієнтам — 1199 грн.',
+  hot:'🔥 Гарячий відділ. Знижка 7% — стандартна, -12% для постійних підписників.',
+  vid:'🔄 Відділ відмов. Повна ціна без знижок. Знижки -10% та -12% для постійних.'
+};
+
 let cTab='gb',cDisc=0;
-function setTab(t,b){cTab=t;document.querySelectorAll('.tb').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderPrice();}
-function setDisc(d,b){cDisc=d;document.querySelectorAll('.db').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderPrice();}
-function gp(item){return cDisc===0?item.b:cDisc===5?item.d5:cDisc===7?item.d7:cDisc===10?item.d10:item.d12;}
+function setTab(t,b){
+  cTab=t;
+  document.querySelectorAll('.tb').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  renderPrice();
+}
+function setDisc(d,b){
+  cDisc=d;
+  document.querySelectorAll('.db').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  renderPrice();
+}
+function gp(item){
+  if(item.sep)return null;
+  return cDisc===0?item.b:cDisc===7?item.d7:cDisc===10?item.d10:item.d12;
+}
 function renderPrice(){
   const data=prices[cTab];
-  const lbl=cDisc===0?'Ціна':`Ціна -${cDisc}%`;
-  let h=`<table class="pt"><thead><tr><th>Продукт</th><th>Вага</th><th>${lbl}</th></tr></thead><tbody>`;
+  const lbl=cDisc===0?'Ціна':cDisc===7?'Ціна -7%':cDisc===10?'Ціна -10%':'Ціна -12%';
+  let h=`<table class="ptbl"><thead><tr><th>Продукт</th><th>Об'єм</th><th>${lbl}</th></tr></thead><tbody>`;
   data.forEach(item=>{
+    if(item.sep){
+      h+=`<tr><td colspan="3" style="background:#2e2b23;color:#c9963a;font-weight:700;font-size:11px;padding:6px 9px;text-align:center">${item.n}</td></tr>`;
+      return;
+    }
+    const price=gp(item);
     const note=item.note?`<span class="ns">${item.note}</span>`:'';
     const badge=item.p?'<span style="background:#c9963a;color:#0f0d0a;font-size:9px;font-weight:700;padding:1px 5px;border-radius:8px;margin-left:4px">★</span>':'';
-    h+=`<tr class="${item.p?'prow':''}"><td class="nm">${item.n}${badge}</td><td style="color:#7a7060;font-size:11px">${item.w}${note}</td><td class="pr">${gp(item)} ₴</td></tr>`;
+    const priceStr=price>0?`${price} ₴`:'—';
+    h+=`<tr class="${item.p?'prow':''}"><td class="nm">${item.n}${badge}</td><td style="color:#7a7060;font-size:11px">${item.w}${note}</td><td class="pr">${priceStr}</td></tr>`;
   });
   h+='</tbody></table>';
   document.getElementById('priceContent').innerHTML=h;
+  const warnEl=document.getElementById('priceWarn');
+  warnEl.textContent=warnings[cTab]||'';
+  warnEl.style.display=warnings[cTab]?'block':'none';
 }
+
+function setSetsTab(tab,btn){
+  document.querySelectorAll('.stb').forEach(x=>x.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.sets-section').forEach(x=>x.classList.remove('active'));
+  document.getElementById('sets-'+tab).classList.add('active');
+}
+
 const faqs=[
   {q:"Чи можна заморозити ікру?",a:"Ні! При заморозці зерно лопається, текстура і смак псуються назавжди. Зберігайте тільки в холодильнику при 0°C до +5°C.",tags:"заморозити заморозка холодильник"},
   {q:"Скільки зберігається після відкриття?",a:"14 діб після відкриття за умови: чисті прибори, щільно закрита кришка, без повітря, у холодильнику.",tags:"зберігається відкриття термін скільки"},
@@ -498,14 +698,11 @@ const faqs=[
   {q:"Чим горбуша відрізняється від форелі?",a:"Горбуша — середнє зерно, насичений класичний смак, найпопулярніша. Форель — дрібніше зерно, ніжний делікатний смак. Для тих, хто не любить яскравий рибний смак.",tags:"горбуша форель різниця смак"},
   {q:"Чим відрізняється Преміум від звичайного?",a:"Горбуша Преміум — ніжніший смак, приємніша текстура. Кета Преміум — крупніше зерно, насичений післясмак. Осетр Преміум — щільне зерно, ресторанний рівень. Різниця відчувається одразу!",tags:"преміум різниця звичайна навіщо"},
   {q:"Є сертифікати?",a:"Обов'язкова сертифікація харчових продуктів в Україні скасована у 2009 році рішенням КМУ. Сертифікація є добровільною — відсутність сертифікату це норма, а не недолік.",tags:"сертифікати документи якість"},
-  {q:"Яка ціна на горбушу?",a:"Скло 440г: повна — 449 грн, -5% — 427 грн, -10% — 404 грн, -12% — 395 грн. Пластик 500г: повна — 399 грн, -10% — 359 грн. Горбуша Преміум скло 500г: 569 грн.",tags:"ціна горбуша скільки коштує"},
-  {q:"Яка ціна на лосось?",a:"Скло 500г: повна — 509 грн, -5% — 484 грн, -10% — 458 грн, -12% — 448 грн. Пластик 500г: повна — 459 грн, -10% — 413 грн.",tags:"ціна лосось скільки коштує"},
-  {q:"Яка ціна на кету?",a:"Скло 500г: повна — 539 грн, -10% — 485 грн. Кета Преміум скло 500г: 609 грн. Пластик 500г: повна — 499 грн, -10% — 449 грн.",tags:"ціна кета скільки коштує"},
-  {q:"Яка ціна на форель?",a:"Скло 440г: повна — 459 грн, -5% — 436 грн, -10% — 413 грн, -12% — 404 грн. Пластик 500г: повна — 409 грн, -10% — 368 грн.",tags:"ціна форель скільки коштує"},
   {q:"Яка комісія Нової Пошти?",a:"2% від вартості + 20 грн. Приклади: 500 грн → 30 грн, 1000 грн → 40 грн, 1500 грн → 50 грн, 2000 грн → 60 грн. Завжди попереджайте клієнта заздалегідь!",tags:"комісія нп нова пошта накладений платіж"},
   {q:"Відправляєте за кордон?",a:"Нова Пошта за правилами не відправляє харчові продукти за кордон. Але є можливість через приватного перевізника. Уточнюйте індивідуально.",tags:"закордон кордон міжнародна доставка"},
   {q:"Яка доставка по Україні?",a:"Доставка Новою Поштою по всій Україні. При акціях 3=4 та 4=6 — доставка безкоштовна! При накладеному платежі комісія НП: 2% + 20 грн.",tags:"доставка нова пошта україна безкоштовна"},
   {q:"Що таке ХХЛ банка?",a:"ХХЛ — пластикова банка 1.5 кг за ціною двох. 1299 грн (постійним 1199 грн). Щука, Кета, Кижуч, Веслонос, Лосось. Вигідно для великих замовлень.",tags:"ххл велика банка 1.5 кг опт"},
+  {q:"Яка різниця між гарячим відділом і РЗПК?",a:"РЗПК — відділ активних продажів, основні сети. Гарячий відділ (ГБ) — свої сети і прайс зі знижками для постійних клієнтів. Відділ відмов — спеціальні пропозиції для клієнтів які відмовились.",tags:"гарячий відділ рзпк відмови різниця"},
 ];
 function renderFaq(list){
   const el=document.getElementById('faqList');
