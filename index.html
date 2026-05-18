@@ -16,6 +16,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .btn:active{transform:scale(.96)}
 .btn .ic{font-size:26px;display:block;margin-bottom:6px}
 .btn.acc{background:linear-gradient(135deg,#c9963a,#a07020);border-color:#c9963a;color:#0f0d0a}
+.btn.fish{background:linear-gradient(135deg,#0f2018,#0a1a10);border:2px solid #3adf8a;color:#4adf9a}
 .btn.full{grid-column:span 2}
 .btn.vibe{background:linear-gradient(135deg,#1a1a2e,#16213e);border-color:#4a4a8a;color:#a0b0ff}
 .motd{background:linear-gradient(135deg,#1a1510,#221c10);border:1px solid #3a2e1a;border-radius:14px;padding:14px;margin-top:12px;text-align:center}
@@ -24,10 +25,13 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .panel{display:none}.panel.active{display:block}
 .bk{background:#1a1712;border:1px solid #2e2b23;border-radius:11px;padding:8px 15px;cursor:pointer;font-size:12px;font-weight:600;color:#7a7060;margin-bottom:13px;display:inline-flex;align-items:center;gap:5px}
 .pt{font-size:17px;font-weight:700;color:#c9963a;margin-bottom:13px}
+.pt.teal{color:#4adf9a}
 .sl{font-size:10px;font-weight:700;color:#7a7060;text-transform:uppercase;letter-spacing:1px;margin:16px 0 8px}
+.sl.teal{color:#2e8a6a}
 .tabs{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
 .tb{background:#1a1712;border:1px solid #2e2b23;border-radius:9px;padding:6px 11px;cursor:pointer;font-size:11px;font-weight:600;color:#7a7060}
 .tb.active{background:#c9963a;border-color:#c9963a;color:#0f0d0a}
+.tb.fish-tab.active{background:#2e7a5a;border-color:#4adf9a;color:#d0fff0}
 .dr{display:flex;gap:6px;margin-bottom:13px;flex-wrap:wrap}
 .db{background:#1a1712;border:1px solid #2e2b23;border-radius:7px;padding:5px 10px;cursor:pointer;font-size:11px;font-weight:700;color:#7a7060}
 .db.active{background:#2e2b23;color:#e8b55a;border-color:#c9963a}
@@ -38,8 +42,12 @@ table.ptbl tr:last-child td{border-bottom:none}
 table.ptbl .nm{font-weight:600;color:#f0ead8}
 table.ptbl .pr{font-weight:700;color:#c9963a;font-size:13px}
 table.ptbl .prow td{background:#1e1b15}
+table.ptbl .fishrow td{background:#0f1e1a}
+table.ptbl .pr.fp{color:#4adf9a}
+table.ptbl .pr.fd{color:#8adf4a}
+table.ptbl .pr.fa2{color:#ffdf6a}
 .ns{color:#7a7060;font-size:10px;display:block}
-.warn{background:#1a1510;border:1px solid #3a2e1a;border-radius:9px;padding:9px 12px;font-size:11px;color:#e8b55a;margin-top:10px}
+.warn{background:#1a1510;border:1px solid #3a2e1a;border-radius:9px;padding:9px 12px;font-size:11px;color:#e8b55a;margin-top:10px;display:none}
 .pc{background:#1a1712;border-radius:12px;padding:13px;margin-bottom:9px;border:1px solid #2e2b23;border-left:3px solid #c9963a}
 .pt2{font-weight:700;color:#e8b55a;font-size:13px;margin-bottom:4px}
 .pd{font-size:12px;color:#b8b0a0;line-height:1.6}
@@ -51,30 +59,39 @@ table.ptbl .prow td{background:#1e1b15}
 .sr:last-of-type{border-bottom:none}
 .si{color:#b8b0a0}.sv{font-weight:700;color:#c9963a}.sv.fr{color:#4caf7a}
 .sn{font-size:10px;color:#7a7060;margin-top:7px;padding-top:6px;border-top:1px dashed #2e2b23;font-style:italic}
+.sn.fish{color:#2e8a6a}
 input{width:100%;padding:11px 15px;border:1px solid #2e2b23;border-radius:11px;font-size:13px;margin-bottom:11px;outline:none;background:#1a1712;color:#f0ead8}
 input:focus{border-color:#c9963a}
 input::placeholder{color:#7a7060}
 .fi{background:#1a1712;border:1px solid #2e2b23;border-radius:11px;padding:13px;margin-bottom:7px;cursor:pointer}
+.fi.fish-fi{border-color:#1e4a3a}
 .fq{font-weight:700;color:#c9963a;font-size:12px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.fq.teal{color:#4adf9a}
 .fq::after{content:'▼';font-size:9px;color:#7a7060;flex-shrink:0}
 .fi.open .fq::after{content:'▲'}
 .fa{font-size:12px;color:#b8b0a0;line-height:1.7;display:none;margin-top:9px;padding-top:9px;border-top:1px solid #2e2b23}
 .fi.open .fa{display:block}
 .fi.open{border-color:#c9963a}
+.fi.fish-fi.open{border-color:#4adf9a}
 .nores{text-align:center;color:#7a7060;padding:28px;font-size:13px}
 .card{background:#1a1712;border-radius:12px;padding:13px;margin-bottom:9px;border:1px solid #2e2b23}
+.card.fish-card{background:#0a1a10;border-color:#1e4a3a}
 .ct{font-weight:700;font-size:13px;margin-bottom:7px}
-.ct.gold{color:#e8b55a}.ct.red{color:#e05555}.ct.green{color:#4caf7a}.ct.blue{color:#4a90d9}
+.ct.gold{color:#e8b55a}.ct.red{color:#e05555}.ct.green{color:#4caf7a}.ct.blue{color:#4a90d9}.ct.teal{color:#4adf9a}
 .cb{font-size:12px;color:#b8b0a0;line-height:1.7}
 .ai{background:#13110d;border-radius:9px;padding:11px;margin-bottom:7px;border-left:3px solid #e05555}
 .ab{color:#e05555;font-weight:700;font-size:12px;margin-bottom:3px}
 .aw{font-size:10px;color:#7a7060;margin-bottom:5px}
 .ag{color:#4caf7a;font-weight:600;font-size:11px}
 .ti{background:#13110d;border-radius:9px;padding:11px;margin-bottom:7px;border-left:3px solid #4a90d9}
+.ti.fish-ti{border-left-color:#2e7a5a}
 .tt{color:#4a90d9;font-weight:700;font-size:12px;margin-bottom:4px}
+.tt.teal{color:#4adf9a}
 .tb2{font-size:12px;color:#b8b0a0;line-height:1.6}
 .ui{background:#13110d;border-radius:9px;padding:11px;margin-bottom:7px;border-left:3px solid #c9963a}
+.ui.fish-ui{border-left-color:#2e7a5a;background:#0a1510}
 .ut{color:#e8b55a;font-weight:700;font-size:12px;margin-bottom:4px}
+.ut.teal{color:#4adf9a}
 .ub{font-size:11px;color:#7a7060;line-height:1.6}
 .nr{display:flex;justify-content:space-between;font-size:12px;padding:6px 0;border-bottom:1px solid #1e1b15}
 .nr:last-child{border-bottom:none}
@@ -97,6 +114,31 @@ input::placeholder{color:#7a7060}
 .dep-label{font-size:11px;font-weight:700;padding:4px 10px;border-radius:12px;display:inline-block;margin:10px 0 6px}
 .dep-rzpk{background:#c9963a22;color:#c9963a;border:1px solid #c9963a44}
 .dep-hb{background:#4a90d922;color:#4a90d9;border:1px solid #4a90d944}
+
+/* FISH PANEL */
+.fish-hero{background:linear-gradient(135deg,#0a1a10,#0f2018);border:1px solid #2e6a4a;border-radius:14px;padding:16px;margin-bottom:14px}
+.fish-hero-title{font-size:16px;font-weight:700;color:#4adf9a;margin-bottom:3px}
+.fish-hero-sub{font-size:11px;color:#2e8a5a}
+.fish-price-block{background:#0f1e18;border:1px solid #1e4a3a;border-radius:12px;padding:13px;margin-bottom:10px}
+.fish-price-block-title{font-size:10px;font-weight:700;color:#2e7a5a;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;padding-bottom:7px;border-bottom:1px solid #1e4a3a}
+.fish-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid #1a3028}
+.fish-row:last-child{border-bottom:none}
+.fish-row-left .fw{font-weight:600;color:#d0fff0;font-size:13px}
+.fish-row-left .fb{font-size:9px;font-weight:700;padding:2px 7px;border-radius:8px;display:inline-block;margin-top:3px}
+.fb.std{background:#1e4a3a;color:#4adf9a;border:1px solid #2e6a4a}
+.fb.alt{background:#2a3a1a;color:#8adf4a;border:1px solid #4a6a2a}
+.fb.promo{background:#3a3010;color:#ffdf6a;border:1px solid #6a5a20}
+.fish-price{font-weight:700;font-size:17px;color:#4adf9a}
+.fish-price.disc{color:#8adf4a}
+.fish-price.special{color:#ffdf6a}
+.fish-delivery{background:#1a1a08;border:1px solid #3a3010;border-radius:10px;padding:10px 13px;margin-bottom:12px;font-size:11px;color:#a8a850;line-height:1.8}
+.fish-delivery strong{color:#ffdf6a}
+.fish-script-wrap{background:#0a1a10;border:1px solid #1e5a3a;border-radius:12px;padding:13px;margin-bottom:10px}
+.fish-script-title{font-size:10px;font-weight:700;color:#4adf9a;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;padding-bottom:7px;border-bottom:1px solid #1e4a3a}
+.fish-step{display:flex;gap:10px;margin-bottom:9px;font-size:12px;line-height:1.6}
+.fish-step-n{background:#1e4a3a;color:#4adf9a;font-weight:700;font-size:10px;min-width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.fish-step-t{color:#a0c0b0}
+.fish-step-t em{color:#4adf9a;font-style:normal;font-weight:600}
 </style>
 </head>
 <body>
@@ -113,6 +155,7 @@ input::placeholder{color:#7a7060}
       <button class="btn" onclick="go('promo')"><span class="ic">🔥</span>Акції</button>
       <button class="btn" onclick="go('sets')"><span class="ic">🛒</span>Сети</button>
       <button class="btn" onclick="go('types')"><span class="ic">🐠</span>Види ікри</button>
+      <button class="btn fish full" onclick="go('fish')"><span class="ic">🐟</span>Лосось слабосолений — НОВИНКА!</button>
       <button class="btn" onclick="go('obj')"><span class="ic">💬</span>Заперечення</button>
       <button class="btn" onclick="go('upsell')"><span class="ic">🎯</span>Допродажі</button>
       <button class="btn" onclick="go('tips')"><span class="ic">⚡</span>Лайфхаки</button>
@@ -138,6 +181,7 @@ input::placeholder{color:#7a7060}
       <button class="tb" onclick="setTab('xxl',this)">ХХЛ 1.5кг</button>
       <button class="tb" onclick="setTab('hot',this)">🔥 Гарячий</button>
       <button class="tb" onclick="setTab('vid',this)">🔄 Відмови</button>
+      <button class="tb fish-tab" onclick="setTab('fish',this)">🐟 Риба</button>
     </div>
     <div class="dr" id="discRow">
       <button class="db active" onclick="setDisc(0,this)">Повна</button>
@@ -163,6 +207,7 @@ input::placeholder{color:#7a7060}
     <div class="pc"><div class="pt2">⭐ 3=5 (без знижки)</div><div class="pd">Купуй 3 — отримуй 5. Повна вартість. Доставка за рахунок клієнта.</div></div>
     <div class="pc"><div class="pt2">📦 ХХЛ 1.5 кг = 1299 грн (1=2)</div><div class="pd">Щука, Кета, Кижуч, Веслонос, Лосось. Для постійних клієнтів — 1199 грн.</div></div>
     <div class="pc"><div class="pt2">🎁 10 малих банок + безкоштовна доставка</div><div class="pd">Форель/Горбуша 200г — 149 грн (постійним 139 грн). Решта 230г — 169 грн (постійним 159 грн). Чорна осетрова — 179 грн (постійним 169 грн).</div></div>
+    <div class="pc" style="border-left-color:#4adf9a;background:#0a1a10"><div class="pt2" style="color:#4adf9a">🐟 НОВИНКА: Лосось слабосолений</div><div class="pd">Роздріб: 300г — 369 грн / 500г — 499 грн.<br>Знижена ціна: 300г — 339 грн / 500г — 459 грн.<br>В акції 1440/1299 скло: 300г — 299 грн / 500г — 399 грн.</div></div>
   </div>
 
   <!-- СЕТИ -->
@@ -174,8 +219,6 @@ input::placeholder{color:#7a7060}
       <button class="stb gbtn" onclick="setSetsTab('gb',this)">🔥 Гарячий відділ</button>
       <button class="stb vbtn" onclick="setSetsTab('vid',this)">🔄 Відмови</button>
     </div>
-
-    <!-- РЗПК СЕТИ -->
     <div id="sets-rzpk" class="sets-section active">
       <div class="sc"><div class="st">Сет 998 грн — Скло, безпл. дост.</div>
         <div class="sr"><span class="si">Горбуша × 1</span><span class="sv">333 грн</span></div>
@@ -200,12 +243,13 @@ input::placeholder{color:#7a7060}
         <div class="sr"><span class="si">Форель</span><span class="sv">432 грн</span></div>
         <div class="sr"><span class="si">Осетр</span><span class="sv">432 грн</span></div>
         <div class="sr"><span class="si">ЛМ + ВМ + КтМ</span><span class="sv fr">1+1+1 🎁</span></div>
+        <div class="sn fish">🐟 Риба-допродаж: 300г — 299 грн, 500г — 399 грн</div>
       </div>
       <div class="sc"><div class="st">Сет 1440 грн — Скло, безпл. дост.</div>
         <div class="sr"><span class="si">Горбуша × 2</span><span class="sv">359 грн/шт</span></div>
         <div class="sr"><span class="si">Форель × 2</span><span class="sv">360 грн/шт</span></div>
         <div class="sr"><span class="si">Осетр × 2</span><span class="sv fr">1+1 🎁</span></div>
-        <div class="sn">Доп: КтМ 169 грн, Лосось 430 грн</div>
+        <div class="sn fish">🐟 Риба-допродаж: 300г — 299 грн, 500г — 399 грн</div>
       </div>
       <div class="sc"><div class="st">Сет 1440 грн — Пластик, безпл. дост.</div>
         <div class="sr"><span class="si">Горбуша × 2</span><span class="sv">360 грн/шт</span></div>
@@ -243,8 +287,6 @@ input::placeholder{color:#7a7060}
         <div class="sn">Доп: на вибір (не прем) 430 грн</div>
       </div>
     </div>
-
-    <!-- ГАРЯЧИЙ ВІДДІЛ СЕТИ -->
     <div id="sets-gb" class="sets-section">
       <div class="sc gb"><div class="st">Сет 1000 грн — Скло, безпл. дост.</div>
         <div class="sr"><span class="si">Горбуша × 1</span><span class="sv">333 грн</span></div>
@@ -330,8 +372,6 @@ input::placeholder{color:#7a7060}
         <div class="sn">Доп: Лосось 400 грн</div>
       </div>
     </div>
-
-    <!-- ВІДМОВИ СЕТИ -->
     <div id="sets-vid" class="sets-section">
       <div class="sc vid"><div class="st">Сет 998 грн — Скло/Пласт, безпл. дост.</div>
         <div class="sr"><span class="si">Горбуша × 1</span><span class="sv">333 грн</span></div>
@@ -415,6 +455,95 @@ input::placeholder{color:#7a7060}
     </div>
   </div>
 
+  <!-- РИБА (НОВИНКА) -->
+  <div id="fishPanel" class="panel">
+    <button class="bk" onclick="back()">← Назад</button>
+    <div class="pt teal">🐟 Лосось слабосолений — НОВИНКА</div>
+
+    <div class="fish-hero">
+      <div class="fish-hero-title">Свіжий лосось слабосолений</div>
+      <div class="fish-hero-sub">Роздрібний продаж · Два фасування · Без консервантів</div>
+    </div>
+
+    <div class="fish-price-block">
+      <div class="fish-price-block-title">💰 Стандартні ціни (роздріб)</div>
+      <div class="fish-row">
+        <div class="fish-row-left"><div class="fw">🐟 300 грам</div><span class="fb std">Стандарт</span></div>
+        <div class="fish-price">369 ₴</div>
+      </div>
+      <div class="fish-row">
+        <div class="fish-row-left"><div class="fw">🐟 500 грам</div><span class="fb std">Стандарт</span></div>
+        <div class="fish-price">499 ₴</div>
+      </div>
+    </div>
+
+    <div class="fish-price-block">
+      <div class="fish-price-block-title">🔖 Знижена ціна (замість безкоштовної доставки)</div>
+      <div class="fish-row">
+        <div class="fish-row-left"><div class="fw">🐟 300 грам</div><span class="fb alt">Знижена</span></div>
+        <div class="fish-price disc">339 ₴</div>
+      </div>
+      <div class="fish-row">
+        <div class="fish-row-left"><div class="fw">🐟 500 грам</div><span class="fb alt">Знижена</span></div>
+        <div class="fish-price disc">459 ₴</div>
+      </div>
+    </div>
+
+    <div class="fish-price-block">
+      <div class="fish-price-block-title">⭐ Допродаж в акції 1440 скло / 1299 скло</div>
+      <div class="fish-row">
+        <div class="fish-row-left"><div class="fw">🐟 300 грам</div><span class="fb promo">Акційна</span></div>
+        <div class="fish-price special">299 ₴</div>
+      </div>
+      <div class="fish-row">
+        <div class="fish-row-left"><div class="fw">🐟 500 грам</div><span class="fb promo">Акційна</span></div>
+        <div class="fish-price special">399 ₴</div>
+      </div>
+    </div>
+
+    <div class="fish-delivery">
+      <strong>🚚 Доставка:</strong><br>
+      ❌ Безкоштовна доставка окремо <strong>НЕ діє</strong><br>
+      ✅ Якщо клієнт бере ікорну акцію з безкоштовною доставкою — риба їде разом <strong>безкоштовно</strong><br>
+      ⚠️ В інших випадках — <strong>доставка за рахунок клієнта</strong>
+    </div>
+
+    <div class="fish-script-wrap">
+      <div class="fish-script-title">📞 Скрипт — без продажу в перші 10 сек</div>
+      <div class="fish-step">
+        <div class="fish-step-n">1</div>
+        <div class="fish-step-t"><em>«Вітаю! Це Яна, IkorkaShop. [Ім'я], ви раніше в нас замовляли — є хороша новина. Буквально хвилинка, зручно?»</em></div>
+      </div>
+      <div class="fish-step">
+        <div class="fish-step-n">2</div>
+        <div class="fish-step-t"><em>«Ми розширили асортимент — з'явилося те, що давно питали. Хочу розповісти першим нашим постійним клієнтам.»</em></div>
+      </div>
+      <div class="fish-step">
+        <div class="fish-step-n">3</div>
+        <div class="fish-step-t"><em>«У нас тепер є лосось слабосолений — 300г і 500г. Вам цікаво дізнатися умови?»</em></div>
+      </div>
+      <div class="fish-step">
+        <div class="fish-step-n">✓</div>
+        <div class="fish-step-t">
+          <em>«Так»</em> → назвати ціни → передати менеджеру<br>
+          <em>«Дорого»</em> → запропонувати 339/459 грн<br>
+          Клієнт в акції 1440/1299 скло → 299/399 грн
+        </div>
+      </div>
+    </div>
+
+    <div class="sl teal">ШПАРГАЛКА — ШВИДКА ТАБЛИЦЯ</div>
+    <table class="ptbl">
+      <thead><tr><th>Ситуація</th><th>300г</th><th>500г</th></tr></thead>
+      <tbody>
+        <tr class="fishrow"><td class="nm">Стандарт</td><td class="pr fp">369 ₴</td><td class="pr fp">499 ₴</td></tr>
+        <tr><td class="nm">Дорого / замість дост.</td><td class="pr fd">339 ₴</td><td class="pr fd">459 ₴</td></tr>
+        <tr class="fishrow"><td class="nm">Акція 1440/1299 скло</td><td class="pr fa2">299 ₴</td><td class="pr fa2">399 ₴</td></tr>
+        <tr><td class="nm">Безкоштовна дост.</td><td colspan="2" style="color:#7a7060;font-size:11px">❌ окремо &nbsp;|&nbsp; ✅ з ікорною акцією</td></tr>
+      </tbody>
+    </table>
+  </div>
+
   <!-- ВИДИ ІКРИ -->
   <div id="typesPanel" class="panel">
     <button class="bk" onclick="back()">← Назад</button>
@@ -432,6 +561,8 @@ input::placeholder{color:#7a7060}
     <div class="card"><div class="ct gold">🟡 Веслонос — від 509 грн</div><div class="cb">Унікальна річкова риба. Смак нагадує чорну ікру — делікатес для поціновувачів.</div></div>
     <div class="card"><div class="ct gold">🟡 Щука — від 379 грн</div><div class="cb">Найдоступніша. Дрібне зерно. Добрий варіант для першого замовлення.</div></div>
     <div class="card"><div class="ct gold">⚫ Осетр (чорна) — від 529 грн</div><div class="cb">Класична чорна ікра. Маленькі банки 200г — ідеально для подарунку. Вершковий смак.</div></div>
+    <div class="sl teal">🐟 НОВИНКА — РИБА</div>
+    <div class="card fish-card"><div class="ct teal">🐟 Лосось слабосолений — від 299 грн</div><div class="cb">Свіжий, без консервантів. 300г та 500г. Ідеально як допродаж до ікорного замовлення або окремо. <span style="color:#4adf9a">→ Детальніше у розділі "Риба"</span></div></div>
   </div>
 
   <!-- ЗАПЕРЕЧЕННЯ -->
@@ -448,13 +579,20 @@ input::placeholder{color:#7a7060}
     <div class="fi" onclick="this.classList.toggle('open')"><div class="fq">😴 "Немає грошей"</div><div class="fa">"Є маленькі банки від 149 грн — спробуйте без великих витрат! А потім вже велику 😊"</div></div>
     <div class="fi" onclick="this.classList.toggle('open')"><div class="fq">🤨 "Навіщо Преміум?"</div><div class="fa">"Преміум — крупніше зерно, глибший смак. Для особливих моментів або wow-подарунку. Різниця відчувається одразу! Спробуйте хоч раз 😊"</div></div>
     <div class="fi" onclick="this.classList.toggle('open')"><div class="fq">🏪 "Куплю в іншому місці"</div><div class="fa">"Розумію! Але пам'ятайте — ми без консервантів, пряме постачання. Якщо щось не сподобається — напишіть, завжди допоможемо. Наші клієнти повертаються 😊"</div></div>
+    <div class="fi fish-fi" onclick="this.classList.toggle('open')"><div class="fq teal">🐟 "Навіщо риба, якщо є ікра?"</div><div class="fa">"Лосось слабосолений — це зовсім інший продукт! Ікра — до свята, риба — на щодень. Бутерброд, салат, закуска — швидко і смачно. Плюс — свіжий, без консервантів, як і наша ікра. Спробуйте разом!"</div></div>
+    <div class="fi fish-fi" onclick="this.classList.toggle('open')"><div class="fq teal">🐟 "Дорого для риби"</div><div class="fa">"Є знижена ціна: 300г — 339 грн, 500г — 459 грн. А якщо берете акцію 1440 або 1299 скло — риба по 299/399 грн. Це вже дуже вигідно!"</div></div>
   </div>
 
   <!-- ДОПРОДАЖІ -->
   <div id="upsellPanel" class="panel">
     <button class="bk" onclick="back()">← Назад</button>
     <div class="pt">🎯 Допродажі</div>
-    <div class="card"><div class="ct green">💡 Золоте правило</div><div class="cb">Після закриття основного замовлення — ЗАВЖДИ пропонуй одну додаткову позицію. Не дві, не три — одну! Не "чи потрібно ще?" — а конкретно:<br><br><strong style="color:#e8b55a">"До вашого замовлення чудово підійде ___"</strong></div></div>
+    <div class="card"><div class="ct green">💡 Золоте правило</div><div class="cb">Після закриття основного замовлення — ЗАВЖДИ пропонуй одну додаткову позицію. Не "чи потрібно ще?" — а конкретно:<br><br><strong style="color:#e8b55a">"До вашого замовлення чудово підійде ___"</strong></div></div>
+    <div class="sl teal">🐟 ДОПРОДАЖ РИБИ (НОВИНКА)</div>
+    <div class="ui fish-ui"><div class="ut teal">🐟 До акції 1440 скло — 299/399 грн</div><div class="ub">"До вашого замовлення є новинка — лосось слабосолений за спеціальною ціною: 300г — 299 грн, 500г — 399 грн. Тільки для цієї акції!"</div></div>
+    <div class="ui fish-ui"><div class="ut teal">🐟 До акції 1299 скло — 299/399 грн</div><div class="ub">"Окремо риба 369/499 грн, але для учасників цієї акції — 300г за 299 грн, 500г за 399 грн. Додати?"</div></div>
+    <div class="ui fish-ui"><div class="ut teal">🐟 До будь-якого замовлення — 369/499 грн</div><div class="ub">"До ікри чудово підійде наш новий лосось слабосолений — свіжий, без консервантів. 300г — 369 грн, 500г — 499 грн. Спробуєте?"</div></div>
+    <div class="ui fish-ui"><div class="ut teal">🐟 Клієнт вагається — знижена ціна</div><div class="ub">"Можу зробити краще: 300г — 339 грн, 500г — 459 грн. Це спеціальна ціна замість безкоштовної доставки."</div></div>
     <div class="sl">📦 До набору з горбушею</div>
     <div class="ui"><div class="ut">⭐ Горбуша Преміум (+110 грн)</div><div class="ub">"Є Преміум версія — ніжніший смак, приємніша текстура. Різниця ~110 грн, але відчуття зовсім інше!"</div></div>
     <div class="ui"><div class="ut">🔴 Лосось 0.5</div><div class="ub">"До горбуші чудово підійде Лосось — інший смак, цікаво порівняти. Клієнти дуже люблять!"</div></div>
@@ -481,6 +619,7 @@ input::placeholder{color:#7a7060}
     <div class="ti"><div class="tt">🎁 Подарунковий фрейм</div><div class="tb2">"Це чудовий подарунок! Осетр Преміум або Кета Преміум — справжній wow для особливих людей 🎁"</div></div>
     <div class="ti"><div class="tt">🥶→🔥 Прогрів клієнта</div><div class="tb2">"Для себе дивитесь чи на подарунок?" / "Які види вам подобаються?" / "Як часто берете ікру?" — втягуй в діалог!</div></div>
     <div class="ti"><div class="tt">💎 Апсел одним реченням</div><div class="tb2">"Є ще Преміум версія — різниця ~80 грн, але відчуття зовсім інше. Варто спробувати хоч раз!"</div></div>
+    <div class="ti fish-ti"><div class="tt teal">🐟 Риба як допродаж</div><div class="tb2">"До ікри — лосось слабосолений! В акції 1440/1299 скло — по 299/399 грн. Один рядок у замовленні — і середній чек вище."</div></div>
   </div>
 
   <!-- АНТИФРАЗИ -->
@@ -632,6 +771,10 @@ const prices={
     {n:'Веслонос',w:'пласт',b:509,d7:509,d10:458,d12:448},
     {n:'Осетр',w:'пласт',b:529,d7:529,d10:476,d12:466},
     {n:'Осетр Прем',w:'пласт',b:589,d7:589,d10:530,d12:518,p:true},
+  ],
+  fish:[
+    {n:'Лосось слабосолений 300г',w:'300г',b:369,d7:369,d10:339,d12:299,fish:true,note:'Знижена: 339 | Акція 1440/1299: 299 грн'},
+    {n:'Лосось слабосолений 500г',w:'500г',b:499,d7:499,d10:459,d12:399,fish:true,note:'Знижена: 459 | Акція 1440/1299: 399 грн'},
   ]
 };
 
@@ -641,7 +784,8 @@ const warnings={
   gs:'⚠️ Преміальної ікри в маленьких банках немає!',
   xxl:'📦 ХХЛ 1.5кг — акція 1=2. Постійним клієнтам — 1199 грн.',
   hot:'🔥 Гарячий відділ. Знижка 7% — стандартна, -12% для постійних підписників.',
-  vid:'🔄 Відділ відмов. Повна ціна без знижок. Знижки -10% та -12% для постійних.'
+  vid:'🔄 Відділ відмов. Повна ціна без знижок. Знижки -10% та -12% для постійних.',
+  fish:'🐟 НОВИНКА. -10% = знижена ціна (замість безпл. дост.). -12% = акційна ціна для 1440/1299 скло.'
 };
 
 let cTab='gb',cDisc=0;
@@ -649,6 +793,8 @@ function setTab(t,b){
   cTab=t;
   document.querySelectorAll('.tb').forEach(x=>x.classList.remove('active'));
   b.classList.add('active');
+  const discRow=document.getElementById('discRow');
+  discRow.style.display=t==='fish'?'flex':'flex';
   renderPrice();
 }
 function setDisc(d,b){
@@ -673,14 +819,19 @@ function renderPrice(){
     const price=gp(item);
     const note=item.note?`<span class="ns">${item.note}</span>`:'';
     const badge=item.p?'<span style="background:#c9963a;color:#0f0d0a;font-size:9px;font-weight:700;padding:1px 5px;border-radius:8px;margin-left:4px">★</span>':'';
+    const fishBadge=item.fish?'<span style="background:#1e4a3a;color:#4adf9a;font-size:9px;font-weight:700;padding:1px 5px;border-radius:8px;margin-left:4px">🐟</span>':'';
     const priceStr=price>0?`${price} ₴`:'—';
-    h+=`<tr class="${item.p?'prow':''}"><td class="nm">${item.n}${badge}</td><td style="color:#7a7060;font-size:11px">${item.w}${note}</td><td class="pr">${priceStr}</td></tr>`;
+    const priceColor=item.fish?'style="color:#4adf9a"':'';
+    h+=`<tr class="${item.p?'prow':item.fish?'fishrow':''}"><td class="nm">${item.n}${badge}${fishBadge}</td><td style="color:#7a7060;font-size:11px">${item.w}${note}</td><td class="pr" ${priceColor}>${priceStr}</td></tr>`;
   });
   h+='</tbody></table>';
   document.getElementById('priceContent').innerHTML=h;
   const warnEl=document.getElementById('priceWarn');
-  warnEl.textContent=warnings[cTab]||'';
-  warnEl.style.display=warnings[cTab]?'block':'none';
+  const w=warnings[cTab]||'';
+  warnEl.textContent=w;
+  warnEl.style.display=w?'block':'none';
+  if(cTab==='fish'){warnEl.style.background='#0f1e18';warnEl.style.borderColor='#2e6a4a';warnEl.style.color='#4adf9a';}
+  else{warnEl.style.background='';warnEl.style.borderColor='';warnEl.style.color='';}
 }
 
 function setSetsTab(tab,btn){
@@ -703,6 +854,8 @@ const faqs=[
   {q:"Яка доставка по Україні?",a:"Доставка Новою Поштою по всій Україні. При акціях 3=4 та 4=6 — доставка безкоштовна! При накладеному платежі комісія НП: 2% + 20 грн.",tags:"доставка нова пошта україна безкоштовна"},
   {q:"Що таке ХХЛ банка?",a:"ХХЛ — пластикова банка 1.5 кг за ціною двох. 1299 грн (постійним 1199 грн). Щука, Кета, Кижуч, Веслонос, Лосось. Вигідно для великих замовлень.",tags:"ххл велика банка 1.5 кг опт"},
   {q:"Яка різниця між гарячим відділом і РЗПК?",a:"РЗПК — відділ активних продажів, основні сети. Гарячий відділ (ГБ) — свої сети і прайс зі знижками для постійних клієнтів. Відділ відмов — спеціальні пропозиції для клієнтів які відмовились.",tags:"гарячий відділ рзпк відмови різниця"},
+  {q:"🐟 Скільки коштує лосось слабосолений?",a:"Стандарт: 300г — 369 грн, 500г — 499 грн. Знижена ціна (замість безпл. доставки): 300г — 339 грн, 500г — 459 грн. В акції 1440 або 1299 скло: 300г — 299 грн, 500г — 399 грн.",tags:"риба лосось слабосолений ціна скільки"},
+  {q:"🐟 Доставка риби безкоштовна?",a:"Окремо — ні, доставка платна. Але якщо клієнт бере ікорну акцію з безкоштовною доставкою, лосось їде разом безкоштовно. Менеджер уточнить при оформленні.",tags:"риба лосось доставка безкоштовна"},
 ];
 function renderFaq(list){
   const el=document.getElementById('faqList');
