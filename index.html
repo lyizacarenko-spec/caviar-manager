@@ -7,7 +7,7 @@
 <title>Ikorka Shop — Помічник менеджера</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0f0d0a;min-height:100vh;color:#f0ead8}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#1e1a14;min-height:100vh;color:#f0ead8}
 .hdr{background:#13110d;border-bottom:1px solid #2e2b23;padding:14px 20px;text-align:center;position:sticky;top:0;z-index:100}
 .hdr h1{font-size:19px;font-weight:700;color:#c9963a}
 .hdr p{font-size:11px;color:#7a7060;margin-top:2px}
@@ -146,12 +146,16 @@ input::placeholder{color:#7a7060}
 <div class="wrap">
 
   <div id="mainMenu">
+    <div class="motd" style="margin-bottom:12px;margin-top:0">
+      <div class="motd-t">💪 Ти вже тут — значить вже молодець!</div>
+      <div class="motd-s">Один дзвінок може змінити весь день. Починай прямо зараз 🚀</div>
+    </div>
     <div class="grid">
       <button class="btn acc" onclick="go('price')"><span class="ic">💰</span>Прайс</button>
+      <button class="btn acc" onclick="go('sets')"><span class="ic">🛒</span>Сети</button>
       <button class="btn" onclick="go('promo')"><span class="ic">🔥</span>Акції</button>
-      <button class="btn" onclick="go('sets')"><span class="ic">🛒</span>Сети</button>
-      <button class="btn" onclick="go('types')"><span class="ic">🐠</span>Види ікри</button>
-      <button class="btn fish full" onclick="go('fish')"><span class="ic">🐟</span>Лосось слабосолений — НОВИНКА!</button>
+      <button class="btn" onclick="go('types')"><span class="ic">🐠</span>Асортимент</button>
+
       <button class="btn" onclick="go('obj')"><span class="ic">💬</span>Заперечення</button>
       <button class="btn" onclick="go('upsell')"><span class="ic">🎯</span>Допродажі</button>
       <button class="btn" onclick="go('tips')"><span class="ic">⚡</span>Лайфхаки</button>
@@ -160,10 +164,7 @@ input::placeholder{color:#7a7060}
       <button class="btn" onclick="go('faq')"><span class="ic">🔍</span>FAQ</button>
       <button class="btn vibe full" onclick="go('vibe')"><span class="ic">🏆</span>Ти топ! Заряджайся 💪</button>
     </div>
-    <div class="motd">
-      <div class="motd-t">🔥 Сьогодні буде крутий день!</div>
-      <div class="motd-s">Кожна розмова — це можливість. Ти справляєшся!</div>
-    </div>
+
   </div>
 
   <!-- ПРАЙС -->
@@ -203,7 +204,7 @@ input::placeholder{color:#7a7060}
     <div class="pc"><div class="pt2">⭐ 3=5 (без знижки)</div><div class="pd">Купуй 3 — отримуй 5. Повна вартість. Доставка за рахунок клієнта.</div></div>
     <div class="pc"><div class="pt2">📦 ХХЛ 1.5 кг = 1299 грн (1=2)</div><div class="pd">Щука, Кета, Кижуч, Веслонос, Лосось. Для постійних клієнтів — 1199 грн.</div></div>
     <div class="pc"><div class="pt2">🎁 10 малих банок + безкоштовна доставка</div><div class="pd">Форель/Горбуша 200г — 159 грн (постійним 139 грн). Решта 230г — 169 грн (постійним 159 грн). Чорна осетрова — 179 грн (постійним 169 грн).</div></div>
-    <div class="pc" style="border-left-color:#4adf9a;background:#0a1a10"><div class="pt2" style="color:#4adf9a">🐟 НОВИНКА: Лосось слабосолений</div><div class="pd">Роздріб: 300г — 369 грн / 500г — 499 грн.<br>Знижена ціна (кожна 2-га упаковка): 300г — 339 грн / 500г — 459 грн.</div></div>
+    <div class="pc" style="border-left-color:#4adf9a;background:#0a1a10"><div class="pt2" style="color:#4adf9a">🐟 Лосось слабосолений</div><div class="pd">Роздріб: 300г — 369 грн / 500г — 499 грн.<br>Знижена ціна (кожна 2-га упаковка): 300г — 339 грн / 500г — 459 грн.</div></div>
   </div>
 
   <!-- СЕТИ -->
@@ -211,11 +212,28 @@ input::placeholder{color:#7a7060}
     <button class="bk" onclick="back()">← Назад</button>
     <div class="pt">🛒 Готові сети</div>
     <div class="sets-tabs">
-      <button class="stb active" onclick="setSetsTab('rzpk',this)">🛒 РЗПК</button>
+      <button class="stb active" style="background:#1e4a3a;border-color:#4adf9a;color:#4adf9a" onclick="setSetsTab('fish',this)">🐟 Риба + Ікра</button>
+      <button class="stb" onclick="setSetsTab('rzpk',this)">🛒 РЗПК</button>
       <button class="stb gbtn" onclick="setSetsTab('gb',this)">🔥 Гарячий відділ</button>
       <button class="stb vbtn" onclick="setSetsTab('vid',this)">🔄 Відмови</button>
     </div>
-    <div id="sets-rzpk" class="sets-section active">
+    <div id="sets-fish" class="sets-section active">
+      <div class="sc" style="border-left:3px solid #4adf9a;background:#0a1a10">
+        <div class="st" style="color:#4adf9a">🐟 Сет 1269 грн — Риба + Ікра, безпл. дост.</div>
+        <div class="sr"><span class="si">Ікра 200г × 3</span><span class="sv" style="color:#b8b0a0;font-size:11px">будь-який вид (без прем)</span></div>
+        <div class="sr"><span class="si">Ікра 230г × 2</span><span class="sv" style="color:#b8b0a0;font-size:11px">будь-який вид (без прем)</span></div>
+        <div class="sr"><span class="si">🐟 Лосось слабосолений 300г</span><span class="sv" style="color:#4adf9a">369 грн</span></div>
+        <div class="sn fish">✅ Доставка безкоштовна</div>
+      </div>
+      <div class="sc" style="border-left:3px solid #4adf9a;background:#0a1a10">
+        <div class="st" style="color:#4adf9a">🐟 Сет 1399 грн — Риба + Ікра, безпл. дост.</div>
+        <div class="sr"><span class="si">Ікра 200г × 3</span><span class="sv" style="color:#b8b0a0;font-size:11px">будь-який вид (без прем)</span></div>
+        <div class="sr"><span class="si">Ікра 230г × 2</span><span class="sv" style="color:#b8b0a0;font-size:11px">будь-який вид (без прем)</span></div>
+        <div class="sr"><span class="si">🐟 Лосось слабосолений 500г</span><span class="sv" style="color:#4adf9a">499 грн</span></div>
+        <div class="sn fish">✅ Доставка безкоштовна</div>
+      </div>
+    </div>
+    <div id="sets-rzpk" class="sets-section">
       <div class="sc"><div class="st">Сет 998 грн — Скло, безпл. дост.</div>
         <div class="sr"><span class="si">Горбуша × 1</span><span class="sv">333 грн</span></div>
         <div class="sr"><span class="si">Форель × 1</span><span class="sv">332 грн</span></div>
@@ -454,7 +472,7 @@ input::placeholder{color:#7a7060}
   <!-- РИБА (НОВИНКА) -->
   <div id="fishPanel" class="panel">
     <button class="bk" onclick="back()">← Назад</button>
-    <div class="pt teal">🐟 Лосось слабосолений — НОВИНКА</div>
+    <div class="pt teal">🐟 Лосось слабосолений</div>
 
     <div class="fish-hero">
       <div class="fish-hero-title">Свіжий лосось слабосолений</div>
@@ -527,15 +545,17 @@ input::placeholder{color:#7a7060}
     </table>
   </div>
 
-  <!-- ВИДИ ІКРИ -->
+  <!-- ВИДИ ІКРИ / АСОРТИМЕНТ -->
   <div id="typesPanel" class="panel">
     <button class="bk" onclick="back()">← Назад</button>
-    <div class="pt">🐠 Види ікри</div>
-    <div class="sl">⭐ Преміум колекція</div>
+    <div class="pt">🐠 Весь асортимент</div>
+
+    <div class="sl">⭐ Ікра — Преміум колекція</div>
     <div class="card"><div class="ct gold">⭐ Горбуша Преміум — 569 грн скло / 549 грн пласт</div><div class="cb">Ніжний смак, середнє зерно, приємна текстура. Найпопулярніший вибір для святкового столу. Ідеально для подарунку!</div></div>
     <div class="card"><div class="ct gold">🔴 Кета Преміум — 609 грн скло</div><div class="cb">Крупніше зерно, насичений післясмак, легка солоність. Для тих, хто любить м'яку ікру з вираженим смаком. Тільки скло!</div></div>
     <div class="card"><div class="ct gold">⚫ Осетр Преміум — 629 грн скло / 589 грн пласт</div><div class="cb">Ресторанний рівень. Благородний чорний колір, витончений смак, щільне зерно. Для особливих моментів.</div></div>
-    <div class="sl">🐟 Класична колекція</div>
+
+    <div class="sl">🐠 Ікра — Класична колекція</div>
     <div class="card"><div class="ct gold">🟠 Горбуша — від 399 грн</div><div class="cb">Класика. Найпопулярніша. Середнє зерно, насичений смак. Скло 440г / Пластик 500г.</div></div>
     <div class="card"><div class="ct gold">🔴 Лосось — від 459 грн</div><div class="cb">Велике зерно, яскравий колір, ніжний смак. Відмінний варіант для подарунку.</div></div>
     <div class="card"><div class="ct gold">🔴 Кета — від 499 грн</div><div class="cb">Велике зерно, насичений морський смак. Одна з найпопулярніших для корпоративу.</div></div>
@@ -544,8 +564,31 @@ input::placeholder{color:#7a7060}
     <div class="card"><div class="ct gold">🟡 Веслонос — від 509 грн</div><div class="cb">Унікальна річкова риба. Смак нагадує чорну ікру — делікатес для поціновувачів.</div></div>
     <div class="card"><div class="ct gold">🟡 Щука — від 379 грн</div><div class="cb">Найдоступніша. Дрібне зерно. Добрий варіант для першого замовлення.</div></div>
     <div class="card"><div class="ct gold">⚫ Осетр (чорна) — від 529 грн</div><div class="cb">Класична чорна ікра. Маленькі банки 200г — ідеально для подарунку. Вершковий смак.</div></div>
-    <div class="sl teal">🐟 НОВИНКА — РИБА</div>
-    <div class="card fish-card"><div class="ct teal">🐟 Лосось слабосолений — від 339 грн</div><div class="cb">Свіжий, без консервантів. 300г та 500г. Ідеально як допродаж до ікорного замовлення або окремо. <span style="color:#4adf9a">→ Детальніше у розділі "Риба"</span></div></div>
+
+    <div class="sl teal">🐟 Риба слабосолена</div>
+    <div class="card fish-card">
+      <div class="ct teal">🐟 Лосось слабосолений 300г — 369 грн</div>
+      <div class="cb">Свіжий, без консервантів. Нарізаний шматочками — розмір шматочків може відрізнятися. Кожна 2-га упаковка зі знижкою: 339 грн.</div>
+    </div>
+    <div class="card fish-card">
+      <div class="ct teal">🐟 Лосось слабосолений 500г — 499 грн</div>
+      <div class="cb">Свіжий, без консервантів. Нарізаний шматочками — розмір шматочків може відрізнятися. Кожна 2-га упаковка зі знижкою: 459 грн.</div>
+    </div>
+
+    <div class="sl" style="color:#b06a30">🧀 Крем-сир Philadelphia</div>
+    <div class="card" style="background:#1a1208;border-color:#3a2510;border-left:3px solid #c97a30">
+      <div class="ct" style="color:#e8a050">🧀 Philadelphia Balance — 115 грн</div>
+      <div class="cb">Ніжний вершковий смак із меншим вмістом жиру. Ідеальна основа для бутербродів з ікрою та лососем. Продається як додаток до риби або ікри.</div>
+    </div>
+    <div class="card" style="background:#1a1208;border-color:#3a2510;border-left:3px solid #c97a30">
+      <div class="ct" style="color:#e8a050">🧀 Philadelphia із зеленню — 115 грн</div>
+      <div class="cb">Ідеально поєднується з ікрою, рибою та свіжими овочами. Вершковий смак із ароматом зелені. Продається як додаток до риби або ікри.</div>
+    </div>
+    <div class="card" style="background:#1a1208;border-color:#3a2510;border-left:3px solid #c97a30">
+      <div class="ct" style="color:#e8a050">🧀 Philadelphia із зеленою цибулею — 125 грн</div>
+      <div class="cb">Насичений вершковий смак із легкою пікантністю. Чудово доповнює ікру та слабосоленого лосося. Продається як додаток до риби або ікри.</div>
+    </div>
+    <div class="warn" style="display:block;background:#1a1208;border-color:#3a2510;color:#e8a050">⚠️ Крем-сир продається лише як додаток до риби або ікри. Окремо не відправляємо.</div>
   </div>
 
   <!-- ЗАПЕРЕЧЕННЯ -->
@@ -571,7 +614,7 @@ input::placeholder{color:#7a7060}
     <button class="bk" onclick="back()">← Назад</button>
     <div class="pt">🎯 Допродажі</div>
     <div class="card"><div class="ct green">💡 Золоте правило</div><div class="cb">Після закриття основного замовлення — ЗАВЖДИ пропонуй одну додаткову позицію. Не "чи потрібно ще?" — а конкретно:<br><br><strong style="color:#e8b55a">"До вашого замовлення чудово підійде ___"</strong></div></div>
-    <div class="sl teal">🐟 ДОПРОДАЖ РИБИ (НОВИНКА)</div>
+    <div class="sl teal">🐟 ДОПРОДАЖ РИБИ</div>
     <div class="ui fish-ui"><div class="ut teal">🐟 До будь-якого замовлення — 369/499 грн</div><div class="ub">"До ікри чудово підійде наш новий лосось слабосолений — свіжий, без консервантів. 300г — 369 грн, 500г — 499 грн. Спробуєте?"</div></div>
     <div class="ui fish-ui"><div class="ut teal">🐟 Клієнт вагається — знижка на 2-гу</div><div class="ub">"Беріть 2 упаковки — кожна 2-га зі знижкою: 300г — 339 грн, 500г — 459 грн. Вигідно і є запас!"</div></div>
     <div class="sl">📦 До набору з горбушею</div>
@@ -653,12 +696,13 @@ input::placeholder{color:#7a7060}
   <div id="vibePanel" class="panel">
     <button class="bk" onclick="back()">← Назад</button>
     <div class="pt">🏆 Ти топ менеджер!</div>
-    <div class="vc"><div class="ve">🔥</div><div class="vt">Кожна відмова — це крок до наступного "так"!</div><div class="vs">Найкращі менеджери не ті, хто не отримує відмов, а ті, хто продовжує діяти після них.</div></div>
-    <div class="vc"><div class="ve">💪</div><div class="vt">Ти вже зробив(ла) більше, ніж вчора</div><div class="vs">Кожен дзвінок, кожне повідомлення — це інвестиція у твій результат. Вона обов'язково повернеться!</div></div>
-    <div class="vc"><div class="ve">🎯</div><div class="vt">Один правильний момент може змінити весь день</div><div class="vs">Продовжуй. Наступний клієнт може стати твоїм найкращим продажем цього місяця.</div></div>
-    <div class="vc"><div class="ve">⭐</div><div class="vt">Ти продаєш не ікру — ти продаєш задоволення</div><div class="vs">Кожна банка — це чиїсь смачні вихідні, подарунок коханій людині, святковий стіл. Ти робиш людей щасливими!</div></div>
-    <div class="vc"><div class="ve">🚀</div><div class="vt">Сьогодні буде крутий день!</div><div class="vs">Встав(ла) — значить вже молодець. Зараз — зроби один дзвінок. Потім ще один. Результат прийде!</div></div>
-    <div class="vc"><div class="ve">💛</div><div class="vt">Команда вірить у тебе!</div><div class="vs">Ти частина крутої команди Ikorka Shop. Разом — ми найкращі!</div></div>
+    <div class="vc"><div class="ve">⚡</div><div class="vt">Перший дзвінок — найважчий. Решта — вже інерція.</div><div class="vs">Не думай про весь день. Просто зроби один дзвінок прямо зараз. Один. Потім ще один. Так і складаються рекорди.</div></div>
+    <div class="vc"><div class="ve">🎯</div><div class="vt">Відмова — це не "ні". Це "ще не зараз".</div><div class="vs">Клієнт, який сьогодні сказав "подумаю" — завтра може стати постійним. Залишайся на зв'язку, нагадуй, дбай. Твоя наполегливість — це сервіс.</div></div>
+    <div class="vc"><div class="ve">🔥</div><div class="vt">Ти не продаєш — ти вирішуєш задачу клієнта.</div><div class="vs">Хтось шукає подарунок. Хтось хоче побалувати сім'ю. Хтось просто любить смачне. Знайди їхню задачу — і рішення продасться само.</div></div>
+    <div class="vc"><div class="ve">💎</div><div class="vt">Середній чек зростає не від тиску, а від турботи.</div><div class="vs">"До ікри чудово підійде лосось" — це не продаж, це підказка. Клієнт дякує за таку турботу і бере. Ось і весь секрет допродажу.</div></div>
+    <div class="vc"><div class="ve">🏅</div><div class="vt">Найкращі продажі — у тих, хто не здався о 11-й ранку.</div><div class="vs">День ще тільки починається. Навіть якщо перші дзвінки були холодні — наступний клієнт вже чекає. Ти ближче до результату, ніж здається.</div></div>
+    <div class="vc"><div class="ve">🌊</div><div class="vt">Стабільність б'є натхнення щодня.</div><div class="vs">Не потрібно чекати "правильного настрою". Просто роби своє — дзвінок за дзвінком, повідомлення за повідомленням. Результат приходить до тих, хто не зупиняється.</div></div>
+    <div class="vc"><div class="ve">💛</div><div class="vt">Ikorka — це команда, а не просто робота.</div><div class="vs">Кожен твій продаж — це внесок у спільний результат. Ми всі тягнемо разом. І коли ти перемагаєш — перемагаємо всі.</div></div>
   </div>
 
 </div>
@@ -759,6 +803,10 @@ const prices={
   fish:[
     {n:'Лосось слабосолений 300г',w:'300г',b:369,d7:369,d10:339,d12:339,fish:true,note:'2-га упаковка: 339 грн'},
     {n:'Лосось слабосолений 500г',w:'500г',b:499,d7:499,d10:459,d12:459,fish:true,note:'2-га упаковка: 459 грн'},
+    {n:'— КРЕМ-СИР —',w:'',b:0,d7:0,d10:0,d12:0,sep:true},
+    {n:'🧀 Philadelphia Balance',w:'',b:115,d7:115,d10:115,d12:115,note:'Додаток до риби або ікри'},
+    {n:'🧀 Philadelphia із зеленню',w:'',b:115,d7:115,d10:115,d12:115,note:'Додаток до риби або ікри'},
+    {n:'🧀 Philadelphia із зел. цибулею',w:'',b:125,d7:125,d10:125,d12:125,note:'Додаток до риби або ікри'},
   ]
 };
 
@@ -817,8 +865,9 @@ function renderPrice(){
 }
 
 function setSetsTab(tab,btn){
-  document.querySelectorAll('.stb').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.stb').forEach(x=>{x.classList.remove('active');x.style.background='';x.style.borderColor='';x.style.color='';});
   btn.classList.add('active');
+  if(tab==='fish'){btn.style.background='#1e4a3a';btn.style.borderColor='#4adf9a';btn.style.color='#4adf9a';}
   document.querySelectorAll('.sets-section').forEach(x=>x.classList.remove('active'));
   document.getElementById('sets-'+tab).classList.add('active');
 }
