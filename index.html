@@ -23,6 +23,15 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;backgrou
 .motd{background:linear-gradient(135deg,#1a1510,#221c10);border:1px solid #3a2e1a;border-radius:14px;padding:14px;margin-top:12px;text-align:center}
 .motd-t{font-size:15px;font-weight:700;color:#e8b55a}
 .motd-s{font-size:11px;color:#7a7060;margin-top:4px}
+.indep{background:linear-gradient(135deg,#0a2a55,#0d3a75 55%,#c9a800);border:1px solid #2e6ac9;border-radius:14px;padding:15px 16px;margin-bottom:12px;text-align:center;box-shadow:0 2px 14px rgba(20,90,190,.25)}
+.indep-flag{font-size:22px;margin-bottom:5px;letter-spacing:2px}
+.indep-t{font-size:15px;font-weight:800;color:#fff;line-height:1.3;text-shadow:0 1px 3px rgba(0,0,0,.4)}
+.indep-count{display:inline-block;margin-top:8px;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:700;color:#ffe98a}
+.indep-count b{color:#fff;font-size:16px}
+.indep-s{font-size:11px;color:#dce8ff;margin-top:8px;line-height:1.5}
+.indep-script{background:rgba(0,0,0,.22);border:1px dashed rgba(255,255,255,.3);border-radius:10px;padding:10px 12px;margin-top:10px;text-align:left}
+.indep-script-t{font-size:10px;font-weight:700;color:#ffe98a;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
+.indep-script-b{font-size:12px;color:#eef4ff;line-height:1.6;font-style:italic}
 .panel{display:none}.panel.active{display:block}
 .bk{background:#1a1712;border:1px solid #2e2b23;border-radius:11px;padding:8px 15px;cursor:pointer;font-size:12px;font-weight:600;color:#7a7060;margin-bottom:13px;display:inline-flex;align-items:center;gap:5px}
 .pt{font-size:17px;font-weight:700;color:#c9963a;margin-bottom:13px}
@@ -146,6 +155,18 @@ input::placeholder{color:#7a7060}
 <div class="wrap">
 
   <div id="mainMenu">
+    <!-- ДЕНЬ НЕЗАЛЕЖНОСТІ -->
+    <div class="indep" id="indepBanner">
+      <div class="indep-flag">🇺🇦</div>
+      <div class="indep-t">Скоро День Незалежності України!</div>
+      <div class="indep-count" id="indepCount">До свята — <b>—</b></div>
+      <div class="indep-s">24 серпня — привід нагадати клієнту про святковий стіл 🥂</div>
+      <div class="indep-script">
+        <div class="indep-script-t">📞 Святковий скрипт</div>
+        <div class="indep-script-b">«Вітаю! Незабаром День Незалежності — багато хто збирає рідних за столом. Ікра — це святково і без клопоту: наша свіжа, без консервантів. Підказати, що краще взяти до свята, щоб встигла доїхати вчасно?»</div>
+      </div>
+    </div>
+
     <div class="motd" style="margin-bottom:12px;margin-top:0">
       <div class="motd-t">💪 Ти вже тут — значить вже молодець!</div>
       <div class="motd-s">Один дзвінок може змінити весь день. Починай прямо зараз 🚀</div>
@@ -707,6 +728,43 @@ input::placeholder{color:#7a7060}
 
 </div>
 <script>
+// ===== ДЕНЬ НЕЗАЛЕЖНОСТІ — обратный отсчёт до 24 серпня =====
+function updateIndepCountdown(){
+  const el=document.getElementById('indepCount');
+  const banner=document.getElementById('indepBanner');
+  if(!el)return;
+  const now=new Date();
+  const today=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  let target=new Date(now.getFullYear(),7,24); // 7 = серпень (0-indexed)
+  if(today>target)target=new Date(now.getFullYear()+1,7,24);
+  const days=Math.round((target-today)/86400000);
+  function plural(n){
+    const n10=n%10,n100=n%100;
+    if(n10===1&&n100!==11)return 'день';
+    if(n10>=2&&n10<=4&&(n100<10||n100>=20))return 'дні';
+    return 'днів';
+  }
+  if(days===0){
+    el.innerHTML='🎉 Сьогодні День Незалежності України! 🇺🇦';
+    if(banner)banner.style.background='linear-gradient(135deg,#0a2a55,#0d3a75 55%,#c9a800)';
+  }else{
+    el.innerHTML='До свята — <b>'+days+'</b> '+plural(days);
+  }
+}
+
+let cTab='gb',cDisc=0;
+function setTab(t,b){
+  cTab=t;
+  document.querySelectorAll('.tb').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  renderPrice();
+}
+function setDisc(d,b){
+  cDisc=d;
+  document.querySelectorAll('.db').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  renderPrice();
+}
 const prices={
   gb:[
     {n:'Щука',w:'500г',b:429,d7:399,d10:386,d12:378},
@@ -820,19 +878,6 @@ const warnings={
   fish:'🐟 РИБА: -10% та -12% = ціна на кожну 2-гу упаковку (339/459 грн). Безкоштовна доставка окремо не діє.'
 };
 
-let cTab='gb',cDisc=0;
-function setTab(t,b){
-  cTab=t;
-  document.querySelectorAll('.tb').forEach(x=>x.classList.remove('active'));
-  b.classList.add('active');
-  renderPrice();
-}
-function setDisc(d,b){
-  cDisc=d;
-  document.querySelectorAll('.db').forEach(x=>x.classList.remove('active'));
-  b.classList.add('active');
-  renderPrice();
-}
 function gp(item){
   if(item.sep)return null;
   return cDisc===0?item.b:cDisc===7?item.d7:cDisc===10?item.d10:item.d12;
@@ -913,6 +958,9 @@ function back(){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
   window.scrollTo(0,0);
 }
+
+// запуск обратного отсчёта
+updateIndepCountdown();
 </script>
 </body>
 </html>
