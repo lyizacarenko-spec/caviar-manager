@@ -254,6 +254,7 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
       <button class="btn acc" onclick="go('sets')"><span class="ic">🛒</span>Сети</button>
       <button class="btn" onclick="go('promo')"><span class="ic">🔥</span>Акції</button>
       <button class="btn" onclick="go('types')"><span class="ic">🐠</span>Асортимент</button>
+      <button class="btn" onclick="go('grams')"><span class="ic">📏</span>Грамовка</button>
 
       <button class="btn" onclick="go('obj')"><span class="ic">💬</span>Заперечення</button>
       <button class="btn" onclick="go('upsell')"><span class="ic">🎯</span>Допродажі</button>
@@ -667,6 +668,38 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
     <div class="card"><div class="ct gold">"Дорого" = не побачив цінність</div><div class="cb">Не знижуй ціну — поясни що входить у вартість</div></div>
     <div class="card"><div class="ct gold">"Я подумаю" = боїться помилитись</div><div class="cb">Зніми ризик: "Якщо не сподобається — розберемось разом"</div></div>
     <div class="card"><div class="ct gold">"Не треба" = не включився</div><div class="cb">Задай питання: "А для кого зазвичай берете ікру?"</div></div>
+  </div>
+
+  <!-- ГРАМОВКА -->
+  <div id="gramsPanel" class="panel">
+    <button class="bk" onclick="back()">← Назад</button>
+    <div class="pt">📏 Грамовка по кожному виду</div>
+
+    <div class="card" style="border-left:3px solid #fe8b26"><div class="cb">💡 <strong style="color:#c32119">Чому грамовка різна?</strong><br>Ікра приходить від <strong>різних постачальників</strong> — у кожного своя фасовка. Тому у склі частина видів по 440 г, а частина по 500 г. Також бувають <strong>лімітовані партії</strong> (напр. Форель Преміум) зі своєю вагою. Це норма — просто дивись таблицю нижче.</div></div>
+
+    <div class="sl">⭐ Швидке правило</div>
+    <div class="card"><div class="cb">• <strong>Скло:</strong> Горбуша, Форель, Чорна (Осетр) — <strong style="color:#c32119">440 г</strong>. Решта видів — <strong style="color:#c32119">500 г</strong><br>• <strong>Пластик:</strong> усі види — <strong style="color:#c32119">500 г</strong><br>• <strong>Малі банки:</strong> Горбуша/Форель/Чорна — 200 г, решта — 230 г<br>• <strong>ХХЛ:</strong> 1.5 кг (пластик)</div></div>
+
+    <div class="sl">📋 Таблиця по видах</div>
+    <table class="ptbl">
+      <thead><tr><th>Вид</th><th>Скло</th><th>Пластик</th><th>Мала</th><th>ХХЛ</th></tr></thead>
+      <tbody>
+        <tr><td class="nm">Горбуша</td><td>440 г</td><td>500 г</td><td>200 г</td><td>—</td></tr>
+        <tr class="prow"><td class="nm">Горбуша Преміум ★</td><td>500 г</td><td>500 г</td><td>—</td><td>—</td></tr>
+        <tr><td class="nm">Форель</td><td>440 г</td><td>500 г</td><td>200 г</td><td>—</td></tr>
+        <tr class="prow"><td class="nm">Форель Преміум ★<br><span class="ns">лімітка</span></td><td>500 г</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td class="nm">Чорна (Осетр)</td><td>440 г</td><td>500 г</td><td>200 г</td><td>—</td></tr>
+        <tr class="prow"><td class="nm">Чорна Осетр Преміум ★</td><td>500 г</td><td>500 г</td><td>—</td><td>—</td></tr>
+        <tr><td class="nm">Лосось</td><td>500 г</td><td>500 г</td><td>230 г</td><td>1.5 кг</td></tr>
+        <tr><td class="nm">Кета</td><td>500 г</td><td>500 г</td><td>230 г</td><td>1.5 кг</td></tr>
+        <tr class="prow"><td class="nm">Кета Преміум ★</td><td>500 г</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td class="nm">Кижуч</td><td>500 г</td><td>500 г</td><td>230 г</td><td>1.5 кг</td></tr>
+        <tr><td class="nm">Веслоніс</td><td>500 г</td><td>500 г</td><td>230 г</td><td>1.5 кг</td></tr>
+        <tr><td class="nm">Щука</td><td>500 г</td><td>500 г</td><td>230 г</td><td>1.5 кг</td></tr>
+        <tr class="prow"><td class="nm">Щука Преміум ★</td><td>500 г</td><td>—</td><td>—</td><td>—</td></tr>
+      </tbody>
+    </table>
+    <div class="warn" style="display:block">⚠️ Преміум та лімітка — тільки у склі 500 г. У малих банках преміуму немає. «—» означає, що такої фасовки немає.</div>
   </div>
 
   <!-- НП + ДОСТАВКА -->
