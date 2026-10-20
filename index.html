@@ -260,6 +260,7 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
     <div class="grid">
       <button class="btn acc" onclick="go('price')"><span class="ic">💰</span>Прайс</button>
       <button class="btn acc" onclick="go('sets')"><span class="ic">🛒</span>Сети</button>
+      <button class="btn acc" onclick="go('swap')"><span class="ic">🔄</span>Заміни в сетах</button>
       <button class="btn" onclick="go('promo')"><span class="ic">🔥</span>Акції</button>
       <button class="btn" onclick="go('types')"><span class="ic">🐠</span>Асортимент</button>
       <button class="btn" onclick="go('grams')"><span class="ic">📏</span>Грамовка</button>
@@ -300,11 +301,12 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
   <div id="promoPanel" class="panel">
     <button class="bk" onclick="back()">← Назад</button>
     <div class="pt">🔥 Активні акції</div>
+    <div class="warn" style="display:block;background:#fff0e6;border-color:#ffcfb0;color:#c32119;font-weight:600">⚠️ Акції 1+1=3, 3=4, 4=6, 3=5 діють ТІЛЬКИ на банки 0.5 л та 440 г. На маленькі банки (200 г / 230 г) ці акції НЕ діють — для них окрема акція «10 малих банок» 👇</div>
     <div class="photo-wrap">
       <img src="https://i.postimg.cc/K8cGfryZ/2024-02-10-0342.jpg" alt="Ікра Ikorka Shop">
       <div class="photo-cap">Свіжа ікра — пряме постачання без консервантів</div>
     </div>
-    <div class="pc"><div class="pt2">🔥 1+1=3</div><div class="pd">Купуй 2 банки (440/500г) — 3-тя безкоштовно. Доставка за рахунок клієнта.</div></div>
+    <div class="pc"><div class="pt2">🔥 1+1=3</div><div class="pd">Купуй 2 банки (0.5 / 440г) — 3-тя безкоштовно. Доставка за рахунок клієнта. <strong style="color:#c32119">Тільки 0.5 і 440г.</strong></div></div>
     <div class="pc"><div class="pt2">💎 3=4 + безкоштовна доставка</div><div class="pd">Купуй 3 банки — 4-та безкоштовно + доставка за нашим рахунком.</div></div>
     <div class="pc"><div class="pt2">🏆 4=6 + безкоштовна доставка</div><div class="pd">Купуй 4 банки — отримуй 6 + доставка безкоштовно. Найвигідніша акція!</div></div>
     <div class="pc"><div class="pt2">⭐ 3=5 (без знижки)</div><div class="pd">Купуй 3 — отримуй 5. Повна вартість. Доставка за рахунок клієнта.</div></div>
@@ -367,8 +369,9 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
         <div class="sr gift-row"><span class="si">🎁 Форель 500г</span><span class="badge-gift">подарунок</span></div>
       </div>
       <div class="sc"><div class="st">Сет 1215 грн — Скло, безпл. дост.</div>
-        <div class="sr"><span class="si">КтМ × 1</span><span class="sv">151 грн</span></div>
-        <div class="sr"><span class="si">ЛМ, КжМ, ВМ, ЩМ, ГМ, ФМ, ЧМ (7 шт)</span><span class="sv">152 грн</span></div>
+        <div class="sr"><span class="si">КтМ × 1 <span style="color:#a5745e;font-size:10px">(мала банка)</span></span><span class="sv">151 грн</span></div>
+        <div class="sr"><span class="si">ЛМ, КжМ, ВМ, ЩМ, ГМ, ФМ, ЧМ (7 шт) <span style="color:#a5745e;font-size:10px">(малі банки)</span></span><span class="sv">152 грн</span></div>
+        <div class="sn">🔸 Усі позиції — маленькі банки (200/230 г)</div>
       </div>
       <div class="sc"><div class="st">Сет 1220 грн — Скло, безпл. дост.</div>
         <div class="sr"><span class="si">Горбуша Преміум × 1</span><span class="sv">406 грн</span></div>
@@ -395,9 +398,9 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
         <div class="sr gift-row"><span class="si">🎁 2 Чорні осетрові 500г або 2ГМ + 2ЧМ</span><span class="badge-gift">подарунок</span></div>
       </div>
       <div class="sc"><div class="st">Сет 1550 грн — Скло, безпл. дост.</div>
-        <div class="sr"><span class="si">Горбуша × 2</span><span class="sv">387 грн/шт</span></div>
-        <div class="sr"><span class="si">Лосось × 2</span><span class="sv">387 грн/шт</span></div>
-        <div class="sr gift-row"><span class="si">🎁 2× Чорні осетрові або 2× Форелі</span><span class="badge-gift">подарунок</span></div>
+        <div class="sr"><span class="si">Горбуша 440г × 2</span><span class="sv">387 грн/шт</span></div>
+        <div class="sr"><span class="si">Лосось 500г × 2</span><span class="sv">387 грн/шт</span></div>
+        <div class="sr gift-row"><span class="si">🎁 2× Чорні осетрові 440г або 2× Форелі 440г</span><span class="badge-gift">подарунок</span></div>
       </div>
     </div>
     <div id="sets-gb" class="sets-section">
@@ -708,6 +711,43 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
     <div class="card"><div class="ct gold">"Дорого" = не побачив цінність</div><div class="cb">Не знижуй ціну — поясни що входить у вартість</div></div>
     <div class="card"><div class="ct gold">"Я подумаю" = боїться помилитись</div><div class="cb">Зніми ризик: "Якщо не сподобається — розберемось разом"</div></div>
     <div class="card"><div class="ct gold">"Не треба" = не включився</div><div class="cb">Задай питання: "А для кого зазвичай берете ікру?"</div></div>
+  </div>
+
+  <!-- ПРАВИЛА ЗАМІНИ В СЕТАХ -->
+  <div id="swapPanel" class="panel">
+    <button class="bk" onclick="back()">← Назад</button>
+    <div class="pt">🔄 Правила заміни ікри в сетах</div>
+
+    <div class="card" style="border-left:3px solid #c32119"><div class="cb">💡 Клієнт хоче замінити вид ікри в сеті? Щоб <strong style="color:#c32119">ціна залишилась та сама</strong> — заміна можлива тільки в межах своєї групи ваги. Дивись правила нижче 👇</div></div>
+
+    <div class="sl">🫙 Заміна у СКЛІ</div>
+    <div class="card">
+      <div class="ct gold">Скло 500 г — між собою</div>
+      <div class="cb">Лосось, Кета, Щука, Веслоніс, Кижуч + усі преміальні — <strong>взаємозамінні</strong> (ціна та сама).</div>
+    </div>
+    <div class="card">
+      <div class="ct gold">Скло 440 г — між собою</div>
+      <div class="cb">Форель, Горбуша, Чорна осетрова — <strong>взаємозамінні</strong>: Горбуша ↔ Форель ↔ Осетрова (ціна та сама).</div>
+    </div>
+
+    <div class="sl">📦 Заміна у ПЛАСТИКУ</div>
+    <div class="card">
+      <div class="ct gold">Пластик 500 г — між собою</div>
+      <div class="cb">Лосось, Кета, Щука, Веслоніс, Кижуч + усі преміальні — <strong>взаємозамінні</strong>.</div>
+    </div>
+    <div class="card">
+      <div class="ct gold">Пластик — Форель / Горбуша / Осетрова</div>
+      <div class="cb">Форель, Горбуша, Чорна осетрова — <strong>взаємозамінні</strong> між собою.</div>
+    </div>
+
+    <div class="warn" style="display:block;background:#fff5f2;border-color:#e04a3a44;color:#c32119">🚫 <strong>Не можна</strong> без зміни ціни: міняти 440 г на 500 г (крім дозволених у сеті подарунків). Якщо клієнт хоче інший вид з іншої вагової групи — рахуємо по прайсу (РЗПК -5/-7%).</div>
+
+    <div class="sl">📝 Приклад</div>
+    <div class="card" style="border-left:3px solid #fe8b26">
+      <div class="cb"><strong style="color:#c32119">Сет 1440 грн (2Г+2Ф+2Ч, пластик):</strong><br><br>✅ Клієнт хоче прибрати Чорну осетрову — можна замінити на <strong>2 Лосося</strong> (як вказано в сеті), ціна <strong>залишається 1440 грн</strong>.<br><br>❌ Хоче Осетрову → на Кету (або іншу 500 г, крім Лосося) — <strong>не можемо за тією ж ціною</strong>. Рахуємо по прайсу: 379×2 + 389×2 = <strong>1536 грн</strong>.<br><br>💡 Щоб зберегти ціну — Осетрову можна поміняти тільки на 440 г (Форель або Горбушу).</div>
+    </div>
+
+    <div class="card" style="background:#eafff4;border-color:#b8e8ce"><div class="cb" style="color:#1e9e55">✅ <strong>Коротко:</strong> заміна «ціна в ціну» — тільки всередині однієї вагової групи (440↔440, 500↔500) і того ж типу упаковки. Все інше — рахуємо по прайсу.</div></div>
   </div>
 
   <!-- ГРАМОВКА -->
