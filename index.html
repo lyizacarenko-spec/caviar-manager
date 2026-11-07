@@ -197,10 +197,10 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
 .mood-bf{display:inline-block;margin-top:8px;background:#1a1a1a;color:#ff9a3c;font-size:12px;font-weight:800;letter-spacing:1px;padding:5px 14px;border-radius:20px;border:1px solid #ff9a3c}
 
 /* 🖤 BLACK FRIDAY — вузька біжуча стрічка */
-.bf-bar{position:sticky;top:0;z-index:70;background:#111;overflow:hidden;white-space:nowrap;
+.bf-bar{position:sticky;top:0;z-index:70;background:#111;overflow:hidden;
   padding:6px 0;border-bottom:1px solid #f5b800;box-shadow:0 2px 8px rgba(0,0,0,.25)}
-.bf-track{display:inline-block;white-space:nowrap;will-change:transform;animation:bf-run 18s linear infinite}
-.bf-track span{color:#f5b800;font-size:12px;font-weight:800;letter-spacing:2px;padding:0 8px}
+.bf-track{display:flex;width:max-content;will-change:transform;animation:bf-run 20s linear infinite}
+.bf-track span{flex:none;white-space:nowrap;color:#f5b800;font-size:12px;font-weight:800;letter-spacing:2px;padding-right:0}
 .bf-track b{color:#fff}
 @keyframes bf-run{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media(max-width:400px){.bf-track span{font-size:11px;letter-spacing:1px}}
@@ -215,7 +215,7 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
 </head>
 <body>
 <!-- 🖤 BLACK FRIDAY — вузька біжуча стрічка -->
-<div class="bf-bar"><div class="bf-track"><span>🖤 <b>BLACK FRIDAY</b> • ГАРЯЧІ ЗНИЖКИ • 🖤 <b>BLACK FRIDAY</b> • ГАРЯЧІ ЗНИЖКИ • </span><span>🖤 <b>BLACK FRIDAY</b> • ГАРЯЧІ ЗНИЖКИ • 🖤 <b>BLACK FRIDAY</b> • ГАРЯЧІ ЗНИЖКИ • </span></div></div>
+<div class="bf-bar"><div class="bf-track"><span>🖤&nbsp;<b>BLACK&nbsp;FRIDAY</b>&nbsp;•&nbsp;ГАРЯЧІ&nbsp;ЗНИЖКИ&nbsp;•&nbsp;🖤&nbsp;<b>BLACK&nbsp;FRIDAY</b>&nbsp;•&nbsp;ГАРЯЧІ&nbsp;ЗНИЖКИ&nbsp;•&nbsp;🖤&nbsp;<b>BLACK&nbsp;FRIDAY</b>&nbsp;•&nbsp;ГАРЯЧІ&nbsp;ЗНИЖКИ&nbsp;•&nbsp;</span><span>🖤&nbsp;<b>BLACK&nbsp;FRIDAY</b>&nbsp;•&nbsp;ГАРЯЧІ&nbsp;ЗНИЖКИ&nbsp;•&nbsp;🖤&nbsp;<b>BLACK&nbsp;FRIDAY</b>&nbsp;•&nbsp;ГАРЯЧІ&nbsp;ЗНИЖКИ&nbsp;•&nbsp;🖤&nbsp;<b>BLACK&nbsp;FRIDAY</b>&nbsp;•&nbsp;ГАРЯЧІ&nbsp;ЗНИЖКИ&nbsp;•&nbsp;</span></div></div>
 
 <!-- 🐟 Фірмовий декор — рибки кої -->
 <div class="koi k1">🐟</div>
@@ -322,11 +322,80 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
     <button class="bk" onclick="back()">← Назад</button>
     <div class="pt">🛒 Готові сети</div>
     <div class="sets-tabs">
-      <button class="stb active" style="background:#d6ffe8;border-color:#2e9e5b;color:#1e9e55" onclick="setSetsTab('fish',this)">🐟 Риба + Ікра</button>
+      <button class="stb active" style="background:#ffe9b3;border-color:#d99a00;color:#8a6500" onclick="setSetsTab('nov',this)">✨ Новинки</button>
+      <button class="stb" onclick="setSetsTab('fish',this)">🐟 Риба + Ікра</button>
       <button class="stb" onclick="setSetsTab('rzpk',this)">🛒 РЗПК</button>
       <button class="stb gbtn" onclick="setSetsTab('gb',this)">🔥 Гарячий відділ</button>
     </div>
-    <div id="sets-fish" class="sets-section active">
+    <div id="sets-nov" class="sets-section active">
+      <div class="sc" style="border-left:3px solid #111;background:#fffbe9">
+        <span class="sale-flag">SALE</span>
+        <div class="st">✨ Сет 1449 грн — Скло, безпл. дост.</div>
+        <div class="sr"><span class="si">ФМ+ГМ+ЧМ+ЛМ+КтМ+ЩМ 200-230г</span><span class="sv">180 грн</span></div>
+        <div class="sr"><span class="si">Філе лосося 300г</span><span class="sv">369 грн</span></div>
+        <div class="sr gift-row"><span class="si">🎁 Ковбаса рибна 250г</span><span class="badge-gift">1 грн</span></div>
+        <div class="sn">Сума замовлення — 1449 грн • скло</div>
+      </div>
+      <div class="sc" style="border-left:3px solid #111;background:#fffbe9">
+        <span class="sale-flag">SALE</span>
+        <div class="st">✨ Сет 1579 грн — Скло, безпл. дост.</div>
+        <div class="sr"><span class="si">ФМ+ГМ+ЧМ+ЛМ+КтМ+ЩМ 200-230г</span><span class="sv">180 грн</span></div>
+        <div class="sr"><span class="si">Філе лосося 500г</span><span class="sv">499 грн</span></div>
+        <div class="sr gift-row"><span class="si">🎁 Ковбаса рибна 250г</span><span class="badge-gift">1 грн</span></div>
+        <div class="sn">Сума замовлення — 1579 грн • скло</div>
+      </div>
+      <div class="sc" style="border-left:3px solid #111;background:#fffbe9">
+        <span class="sale-flag">SALE</span>
+        <div class="st">✨ Сет 1449 грн — Скло, безпл. дост.</div>
+        <div class="sr"><span class="si">Філе лосося 500г</span><span class="sv">320 грн</span></div>
+        <div class="sr"><span class="si">Філе тунця 500г</span><span class="sv">336 грн</span></div>
+        <div class="sr"><span class="si">Горбуша 440г</span><span class="sv">388 грн</span></div>
+        <div class="sr"><span class="si">Форель 440г</span><span class="sv">405 грн</span></div>
+        <div class="sr gift-row"><span class="si">🎁 Ковбаса рибна 250г</span><span class="badge-gift">1 грн</span></div>
+        <div class="sn">Сума замовлення — 1449 грн • скло</div>
+      </div>
+      <div class="sc" style="border-left:3px solid #111;background:#fffbe9">
+        <span class="sale-flag">SALE</span>
+        <div class="st">✨ Сет 1699 грн — Скло, безпл. дост.</div>
+        <div class="sr"><span class="si">Філе лосося 500г</span><span class="sv">436 грн</span></div>
+        <div class="sr"><span class="si">Філе тунця 500г</span><span class="sv">462 грн</span></div>
+        <div class="sr"><span class="si">Горбуша 440г</span><span class="sv">392 грн</span></div>
+        <div class="sr"><span class="si">Форель 440г</span><span class="sv">409 грн</span></div>
+        <div class="sr gift-row"><span class="si">🎁 Ковбаса рибна 250г + ГМ 200г</span><span class="badge-gift">2 грн</span></div>
+        <div class="sn">Сума замовлення — 1699 грн • скло</div>
+      </div>
+      <div class="sc" style="border-left:3px solid #111;background:#fffbe9">
+        <span class="sale-flag">SALE</span>
+        <div class="st">✨ Сет 1799 грн — Скло, безпл. дост.</div>
+        <div class="sr"><span class="si">Філе лосося 500г</span><span class="sv">462 грн</span></div>
+        <div class="sr"><span class="si">Філе тунця 500г</span><span class="sv">489 грн</span></div>
+        <div class="sr"><span class="si">Горбуша 440г</span><span class="sv">415 грн</span></div>
+        <div class="sr"><span class="si">Форель 440г</span><span class="sv">433 грн</span></div>
+        <div class="sr gift-row"><span class="si">🎁 2 Ковбаси рибної 250г</span><span class="badge-gift">2 грн</span></div>
+        <div class="sn">Сума замовлення — 1799 грн • скло</div>
+      </div>
+      <div class="sc" style="border-left:3px solid #111;background:#fffbe9">
+        <span class="sale-flag">SALE</span>
+        <div class="st">✨ Сет 2199 грн — Скло, безпл. дост.</div>
+        <div class="sr"><span class="si">Горбуша преміум 500г</span><span class="sv">575 грн</span></div>
+        <div class="sr"><span class="si">Кета преміум 500г</span><span class="sv">605 грн</span></div>
+        <div class="sr"><span class="si">Філе лосося 500г</span><span class="sv">495 грн</span></div>
+        <div class="sr"><span class="si">Філе тунця 500г</span><span class="sv">524 грн</span></div>
+        <div class="sr gift-row"><span class="si">🎁 2 Ковбаси рибної 250г</span><span class="badge-gift">2 грн</span></div>
+        <div class="sn">Сума замовлення — 2199 грн • скло</div>
+      </div>
+      <div class="sc" style="border-left:3px solid #111;background:#fffbe9">
+        <span class="sale-flag">SALE</span>
+        <div class="st">🆕 Набір 950 грн — Скло (доставка за рахунок клієнта)</div>
+        <div class="sr"><span class="si">Горбуша 440г</span><span class="sv">316 грн</span></div>
+        <div class="sr"><span class="si">Форель 440г</span><span class="sv">316 грн</span></div>
+        <div class="sr"><span class="si">Осетрова 440г</span><span class="sv">316 грн</span></div>
+        <div class="sr gift-row"><span class="si">🎁 Нерка 370г</span><span class="badge-gift">подарунок</span></div>
+        <div class="sn">Сума замовлення — 950 грн • доставка за рахунок клієнта</div>
+      </div>
+    </div>
+
+    <div id="sets-fish" class="sets-section">
       <div class="sc" style="border-left:3px solid #111;background:#fffbe9">
         <span class="sale-flag">SALE</span>
         <div class="st">🆕 Набір 1490 грн — Скло, безпл. дост.</div>
@@ -346,15 +415,6 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
         <div class="sr"><span class="si">Горбуша 440г</span><span class="sv">467 грн</span></div>
         <div class="sr gift-row"><span class="si">🎁 Форель 440г</span><span class="badge-gift">подарунок</span></div>
         <div class="sn">Сума замовлення — 1590 грн • скло</div>
-      </div>
-      <div class="sc" style="border-left:3px solid #111;background:#fffbe9">
-        <span class="sale-flag">SALE</span>
-        <div class="st">🆕 Набір 950 грн — Скло (доставка за рахунок клієнта)</div>
-        <div class="sr"><span class="si">Горбуша 440г</span><span class="sv">316 грн</span></div>
-        <div class="sr"><span class="si">Форель 440г</span><span class="sv">316 грн</span></div>
-        <div class="sr"><span class="si">Осетрова 440г</span><span class="sv">316 грн</span></div>
-        <div class="sr gift-row"><span class="si">🎁 Нерка 370г</span><span class="badge-gift">подарунок</span></div>
-        <div class="sn">Сума замовлення — 950 грн • доставка за рахунок клієнта</div>
       </div>
       <div class="sc" style="border-left:3px solid #2e9e5b;background:#eafff4">
         <div class="st" style="color:#1e9e55">🐟 Сет 1269 грн — Риба + Ікра</div>
@@ -1064,6 +1124,7 @@ function setSetsTab(tab,btn){
   document.querySelectorAll('.stb').forEach(x=>{x.classList.remove('active');x.style.background='';x.style.borderColor='';x.style.color='';});
   btn.classList.add('active');
   if(tab==='fish'){btn.style.background='#d6ffe8';btn.style.borderColor='#2e9e5b';btn.style.color='#1e9e55';}
+  if(tab==='nov'){btn.style.background='#ffe9b3';btn.style.borderColor='#d99a00';btn.style.color='#8a6500';}
   document.querySelectorAll('.sets-section').forEach(x=>x.classList.remove('active'));
   document.getElementById('sets-'+tab).classList.add('active');
 }
