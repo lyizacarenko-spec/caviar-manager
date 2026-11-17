@@ -315,6 +315,7 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
     <div class="pc"><div class="pt2">🎁 10 малих банок + безкоштовна доставка</div><div class="pd">Форель/Горбуша 200г — 159 грн (постійним 139 грн). Решта 230г — 169 грн (постійним 159 грн). Чорна осетрова — 179 грн (постійним 169 грн).</div></div>
     <div class="pc" style="border-left-color:#2e9e5b;background:#eafff4"><div class="pt2" style="color:#1e9e55">🐟 Лосось слабосолений</div><div class="pd">Роздріб: 300г — 369 грн / 500г — 499 грн.<br>Знижена ціна (кожна 2-га упаковка): 300г — 339 грн / 500г — 459 грн.</div></div>
     <div class="pc" style="border-left-color:#2e9e5b;background:#eafff4"><div class="pt2" style="color:#1e9e55">🆕 Філе тунця слабосолений</div><div class="pd">Роздріб: 300г — 399 грн / 500г — 539 грн.<br>Знижена ціна (кожна 2-га упаковка): 300г — 371 грн / 500г — 501 грн.</div></div>
+    <div class="pc" style="border-left-color:#2e9e5b;background:#eafff4"><div class="pt2" style="color:#1e9e55">🆕 Рибний рулет</div><div class="pd">Роздріб: 250г — 499 грн. Без знижки.</div></div>
   </div>
 
   <!-- СЕТИ -->
@@ -328,6 +329,16 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
       <button class="stb gbtn" onclick="setSetsTab('gb',this)">🔥 Гарячий відділ</button>
     </div>
     <div id="sets-nov" class="sets-section active">
+      <div class="sc" style="border-left:3px solid #111;background:#fffbe9">
+        <span class="sale-flag">SALE</span>
+        <div class="st">✨ Набір 1896 грн — Скло, безпл. дост.</div>
+        <div class="sr"><span class="si">Форель 440г</span><span class="sv">469 грн</span></div>
+        <div class="sr"><span class="si">Чорна осетрова 440г</span><span class="sv">559 грн</span></div>
+        <div class="sr"><span class="si">Філе лосося 300г</span><span class="sv">369 грн</span></div>
+        <div class="sr"><span class="si">Рибний рулет 250г</span><span class="sv">499 грн</span></div>
+        <div class="sr gift-row"><span class="si">🎁 КсБ + Горбуша 440г</span><span class="badge-gift">2 грн</span></div>
+        <div class="sn">Сума замовлення — 1896 грн • скло</div>
+      </div>
       <div class="sc" style="border-left:3px solid #111;background:#fffbe9">
         <span class="sale-flag">SALE</span>
         <div class="st">✨ Сет 1449 грн — Скло</div>
@@ -693,6 +704,10 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
     <div class="card fish-card">
       <div class="ct teal">🆕 Філе тунця слабосолений 500г — 539 грн</div>
       <div class="cb">Свіже філе тунця слабосолене, без консервантів. Кожна 2-га упаковка зі знижкою: 501 грн.</div>
+    </div>
+    <div class="card fish-card">
+      <div class="ct teal">🆕 Рибний рулет 250г — 499 грн</div>
+      <div class="cb">Готова рибна закуска — рулет із делікатесної риби. Продаж по 250г. Без знижки.</div>
     </div>
 
     <div class="sl" style="color:#b06a30">🧀 Крем-сир Philadelphia</div>
@@ -1074,6 +1089,7 @@ const prices={
     {n:'Лосось слабосолений 500г',w:'500г',b:499,d5:499,d7:459,fish:true,note:'2-га упаковка: 459 грн'},
     {n:'🆕 Філе тунця слабосолений 300г',w:'300г',b:399,d5:399,d7:371,fish:true,note:'2-га упаковка: 371 грн'},
     {n:'🆕 Філе тунця слабосолений 500г',w:'500г',b:539,d5:539,d7:501,fish:true,note:'2-га упаковка: 501 грн'},
+    {n:'🆕 Рибний рулет',w:'250г',b:499,d5:499,d7:499,fish:true,note:'Без знижки'},
     {n:'— КРЕМ-СИР —',w:'',b:0,d5:0,d7:0,sep:true},
     {n:'🧀 Philadelphia Balance',w:'',b:125,d5:125,d7:125,note:'Додаток до риби або ікри'},
     {n:'🧀 Philadelphia із зеленню',w:'',b:125,d5:125,d7:125,note:'Додаток до риби або ікри'},
