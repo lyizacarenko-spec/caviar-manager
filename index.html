@@ -215,7 +215,7 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
 </head>
 <body>
 <!-- 🖤 BLACK FRIDAY — вузька біжуча стрічка -->
-<div class="bf-bar"><div class="bf-track"><span>🖤&nbsp;<b>BLACK&nbsp;FRIDAY</b>&nbsp;•&nbsp;ГАРЯЧІ&nbsp;ЗНИЖКИ&nbsp;•&nbsp;🖤&nbsp;<b>BLACK&nbsp;FRIDAY</b>&nbsp;•&nbsp;ГАРЯЧІ&nbsp;ЗНИЖКИ&nbsp;•&nbsp;🖤&nbsp;<b>BLACK&nbsp;FRIDAY</b>&nbsp;•&nbsp;ГАРЯЧІ&nbsp;ЗНИЖКИ&nbsp;•&nbsp;</span><span>🖤&nbsp;<b>BLACK&nbsp;FRIDAY</b>&nbsp;•&nbsp;ГАРЯЧІ&nbsp;ЗНИЖКИ&nbsp;•&nbsp;🖤&nbsp;<b>BLACK&nbsp;FRIDAY</b>&nbsp;•&nbsp;ГАРЯЧІ&nbsp;ЗНИЖКИ&nbsp;•&nbsp;🖤&nbsp;<b>BLACK&nbsp;FRIDAY</b>&nbsp;•&nbsp;ГАРЯЧІ&nbsp;ЗНИЖКИ&nbsp;•&nbsp;</span></div></div>
+<div class="bf-bar"><div class="bf-track"><span>🖤&nbsp;<b>BLACK&nbsp;FRIDAY</b>&nbsp;•&nbsp;18.11–30.11&nbsp;•&nbsp;ГАРЯЧІ&nbsp;ЗНИЖКИ&nbsp;•&nbsp;передзвон&nbsp;до&nbsp;07.12&nbsp;•&nbsp;🖤&nbsp;<b>BLACK&nbsp;FRIDAY</b>&nbsp;•&nbsp;18.11–30.11&nbsp;•&nbsp;ГАРЯЧІ&nbsp;ЗНИЖКИ&nbsp;•&nbsp;передзвон&nbsp;до&nbsp;07.12&nbsp;•&nbsp;</span><span>🖤&nbsp;<b>BLACK&nbsp;FRIDAY</b>&nbsp;•&nbsp;18.11–30.11&nbsp;•&nbsp;ГАРЯЧІ&nbsp;ЗНИЖКИ&nbsp;•&nbsp;передзвон&nbsp;до&nbsp;07.12&nbsp;•&nbsp;🖤&nbsp;<b>BLACK&nbsp;FRIDAY</b>&nbsp;•&nbsp;18.11–30.11&nbsp;•&nbsp;ГАРЯЧІ&nbsp;ЗНИЖКИ&nbsp;•&nbsp;передзвон&nbsp;до&nbsp;07.12&nbsp;•&nbsp;</span></div></div>
 
 <!-- 🐟 Фірмовий декор — рибки кої -->
 <div class="koi k1">🐟</div>
@@ -293,6 +293,7 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
       <button class="db active" onclick="setDisc(0,this)">Повна</button>
       <button class="db" onclick="setDisc(5,this)">-5%</button>
       <button class="db" onclick="setDisc(7,this)">-7%</button>
+      <button class="db db-bf" id="bfDiscBtn" style="display:none;background:#111;color:#f5b800;border-color:#f5b800;font-weight:800" onclick="setDisc(15,this)">🖤 -15% ЧП</button>
     </div>
     <div id="priceContent"></div>
     <div class="warn" id="priceWarn"></div>
@@ -1010,6 +1011,13 @@ function setTab(t,b){
   cTab=t;
   document.querySelectorAll('.tb').forEach(x=>x.classList.remove('active'));
   b.classList.add('active');
+  // ХХЛ не бере участь в акції ЧП — скидаємо на повну
+  if(t==='xxl' && cDisc===15){
+    cDisc=0;
+    document.querySelectorAll('.db').forEach(x=>x.classList.remove('active'));
+    const full=document.querySelector('.db');
+    if(full)full.classList.add('active');
+  }
   renderPrice();
 }
 function setDisc(d,b){
@@ -1020,43 +1028,43 @@ function setDisc(d,b){
 }
 const prices={
   gb:[
-    {n:'Щука',w:'500г СКЛО',b:439,d5:417,d7:408},
-    {n:'Щука Преміум',w:'500г СКЛО',b:499,d5:474,d7:464,p:true},
-    {n:'Форель',w:'440г СКЛО',b:469,d5:446,d7:436},
-    {n:'Форель Преміум ✨НОВИНКА (лімітка)',w:'500г СКЛО',b:599,d5:569,d7:557,p:true},
-    {n:'Горбуша',w:'440г СКЛО',b:449,d5:427,d7:418},
-    {n:'Горбуша Преміум',w:'500г СКЛО',b:579,d5:550,d7:538,p:true},
-    {n:'Лосось',w:'500г СКЛО',b:519,d5:493,d7:483},
-    {n:'Кижуч',w:'500г СКЛО',b:519,d5:493,d7:483},
-    {n:'Кета',w:'500г СКЛО',b:549,d5:522,d7:511},
-    {n:'Кета Преміум',w:'500г СКЛО',b:609,d5:579,d7:566,p:true},
-    {n:'Веслоніс',w:'500г СКЛО',b:569,d5:541,d7:529},
-    {n:'Чорна (Осетр)',w:'440г СКЛО',b:559,d5:531,d7:520},
-    {n:'Чорна (Осетр) Преміум',w:'500г СКЛО',b:629,d5:598,d7:585,p:true},
-    {n:'🆕 Нерка',w:'370г СКЛО',b:399,d5:399,d7:399},
+    {n:'Щука',w:'500г СКЛО',b:439,d5:417,d7:408,bf:349},
+    {n:'Щука Преміум',w:'500г СКЛО',b:499,d5:474,d7:464,p:true,bf:399},
+    {n:'Форель',w:'440г СКЛО',b:469,d5:446,d7:436,bf:379},
+    {n:'Форель Преміум ✨НОВИНКА (лімітка)',w:'500г СКЛО',b:599,d5:569,d7:557,p:true,bf:479},
+    {n:'Горбуша',w:'440г СКЛО',b:449,d5:427,d7:418,bf:359},
+    {n:'Горбуша Преміум',w:'500г СКЛО',b:579,d5:550,d7:538,p:true,bf:459},
+    {n:'Лосось',w:'500г СКЛО',b:519,d5:493,d7:483,bf:419},
+    {n:'Кижуч',w:'500г СКЛО',b:519,d5:493,d7:483,bf:419},
+    {n:'Кета',w:'500г СКЛО',b:549,d5:522,d7:511,bf:439},
+    {n:'Кета Преміум',w:'500г СКЛО',b:609,d5:579,d7:566,p:true,bf:489},
+    {n:'Веслоніс',w:'500г СКЛО',b:569,d5:541,d7:529,bf:459},
+    {n:'Чорна (Осетр)',w:'440г СКЛО',b:559,d5:531,d7:520,bf:449},
+    {n:'Чорна (Осетр) Преміум',w:'500г СКЛО',b:629,d5:598,d7:585,p:true,bf:499},
+    {n:'🆕 Нерка',w:'370г СКЛО',b:399,d5:399,d7:399,bf:319},
   ],
   pb:[
-    {n:'Щука',w:'500г пласт',b:389,d5:370,d7:362},
-    {n:'Форель',w:'500г пласт',b:419,d5:398,d7:390},
-    {n:'Горбуша',w:'500г пласт',b:399,d5:379,d7:371},
-    {n:'Горбуша Прем',w:'500г пласт',b:549,d5:522,d7:511,p:true},
-    {n:'Лосось',w:'500г пласт',b:469,d5:446,d7:436},
-    {n:'Кижуч',w:'500г пласт',b:469,d5:446,d7:436},
-    {n:'Кета',w:'500г пласт',b:509,d5:484,d7:473},
-    {n:'Веслоніс',w:'500г пласт',b:519,d5:493,d7:483},
-    {n:'Чорна (Осетр)',w:'500г пласт',b:539,d5:512,d7:501},
-    {n:'Чорна (Осетр) Прем',w:'500г пласт',b:609,d5:579,d7:566,p:true},
+    {n:'Щука',w:'500г пласт',b:389,d5:370,d7:362,bf:309},
+    {n:'Форель',w:'500г пласт',b:419,d5:398,d7:390,bf:339},
+    {n:'Горбуша',w:'500г пласт',b:399,d5:379,d7:371,bf:319},
+    {n:'Горбуша Прем',w:'500г пласт',b:549,d5:522,d7:511,p:true,bf:439},
+    {n:'Лосось',w:'500г пласт',b:469,d5:446,d7:436,bf:379},
+    {n:'Кижуч',w:'500г пласт',b:469,d5:446,d7:436,bf:379},
+    {n:'Кета',w:'500г пласт',b:509,d5:484,d7:473,bf:409},
+    {n:'Веслоніс',w:'500г пласт',b:519,d5:493,d7:483,bf:419},
+    {n:'Чорна (Осетр)',w:'500г пласт',b:539,d5:512,d7:501,bf:429},
+    {n:'Чорна (Осетр) Прем',w:'500г пласт',b:609,d5:579,d7:566,p:true,bf:489},
   ],
   gs:[
-    {n:'Горбуша',w:'200г СКЛО',b:159,d5:159,d7:159},
-    {n:'Форель',w:'200г СКЛО',b:189,d5:189,d7:189},
-    {n:'Чорна (Осетр)',w:'200г СКЛО',b:189,d5:189,d7:189},
-    {n:'Кета',w:'230г СКЛО',b:189,d5:189,d7:189},
-    {n:'Лосось',w:'230г СКЛО',b:189,d5:189,d7:189},
-    {n:'Щука',w:'230г СКЛО',b:189,d5:189,d7:189},
-    {n:'Кижуч',w:'230г СКЛО',b:189,d5:189,d7:189},
-    {n:'Веслоніс',w:'230г СКЛО',b:189,d5:189,d7:189},
-    {n:'🆕 Нерка',w:'200г СКЛО',b:189,d5:189,d7:189},
+    {n:'Горбуша',w:'200г СКЛО',b:159,d5:159,d7:159,bf:149},
+    {n:'Форель',w:'200г СКЛО',b:189,d5:189,d7:189,bf:179},
+    {n:'Чорна (Осетр)',w:'200г СКЛО',b:189,d5:189,d7:189,bf:179},
+    {n:'Кета',w:'230г СКЛО',b:189,d5:189,d7:189,bf:179},
+    {n:'Лосось',w:'230г СКЛО',b:189,d5:189,d7:189,bf:179},
+    {n:'Щука',w:'230г СКЛО',b:189,d5:189,d7:189,bf:179},
+    {n:'Кижуч',w:'230г СКЛО',b:189,d5:189,d7:189,bf:179},
+    {n:'Веслоніс',w:'230г СКЛО',b:189,d5:189,d7:189,bf:179},
+    {n:'🆕 Нерка',w:'200г СКЛО',b:189,d5:189,d7:189,bf:179},
   ],
   xxl:[
     {n:'Щука',w:'1.5кг пласт',b:1299,d5:1299,d7:1299,note:'1=2 | Постійним: 1199 грн'},
@@ -1094,15 +1102,15 @@ const prices={
     {n:'Осетр Прем',w:'пласт',b:629,d5:598,d7:585,p:true},
   ],
   fish:[
-    {n:'Лосось слабосолений 300г',w:'300г',b:369,d5:369,d7:339,fish:true,note:'2-га упаковка: 339 грн'},
-    {n:'Лосось слабосолений 500г',w:'500г',b:499,d5:499,d7:459,fish:true,note:'2-га упаковка: 459 грн'},
-    {n:'🆕 Філе тунця слабосолений 300г',w:'300г',b:399,d5:399,d7:371,fish:true,note:'2-га упаковка: 371 грн'},
-    {n:'🆕 Філе тунця слабосолений 500г',w:'500г',b:539,d5:539,d7:501,fish:true,note:'2-га упаковка: 501 грн'},
-    {n:'🆕 Рибний рулет',w:'250г',b:499,d5:499,d7:499,fish:true,note:'Без знижки'},
-    {n:'🆕 Рибна ковбаса',w:'250г',b:209,d5:209,d7:209,fish:true,note:'Без знижки'},
+    {n:'Лосось слабосолений 300г',w:'300г',b:369,d5:369,d7:339,fish:true,note:'2-га упаковка: 339 грн',bf:349},
+    {n:'Лосось слабосолений 500г',w:'500г',b:499,d5:499,d7:459,fish:true,note:'2-га упаковка: 459 грн',bf:469},
+    {n:'🆕 Філе тунця слабосолений 300г',w:'300г',b:399,d5:399,d7:371,fish:true,note:'2-га упаковка: 371 грн',bf:359},
+    {n:'🆕 Філе тунця слабосолений 500г',w:'500г',b:539,d5:539,d7:501,fish:true,note:'2-га упаковка: 501 грн',bf:429},
+    {n:'🆕 Рибний рулет',w:'250г',b:499,d5:499,d7:499,fish:true,note:'Без знижки',bf:479},
+    {n:'🆕 Рибна ковбаса',w:'250г',b:209,d5:209,d7:209,fish:true,note:'Без знижки',bf:199},
     {n:'— КРЕМ-СИР —',w:'',b:0,d5:0,d7:0,sep:true},
-    {n:'🧀 Philadelphia Balance',w:'',b:125,d5:125,d7:125,note:'Додаток до риби або ікри'},
-    {n:'🧀 Philadelphia із зеленню',w:'',b:125,d5:125,d7:125,note:'Додаток до риби або ікри'},
+    {n:'🧀 Philadelphia Balance',w:'',b:125,d5:125,d7:125,note:'Додаток до риби або ікри',bf:115},
+    {n:'🧀 Philadelphia із зеленню',w:'',b:125,d5:125,d7:125,note:'Додаток до риби або ікри',bf:115},
   ]
 };
 
@@ -1111,17 +1119,18 @@ const warnings={
   pb:'',
   gs:'⚠️ Преміальної ікри в маленьких банках немає!',
   xxl:'📦 ХХЛ 1.5кг — акція 1=2. Постійним клієнтам — 1199 грн.',
-  hot:'🔥 Гарячий відділ. Знижки -5% та -7% для постійних клієнтів.',
+  hot:'🖤 BLACK FRIDAY: -15% від повної ціни! Також -5% та -7% для постійних клієнтів.',
   fish:'🐟 РИБА: -7% = ціна на кожну 2-гу упаковку (339/459 грн). Безкоштовна доставка окремо не діє.'
 };
 
 function gp(item){
   if(item.sep)return null;
+  if(cDisc===15)return item.bf?item.bf:Math.round(item.b*0.85);
   return cDisc===0?item.b:cDisc===5?item.d5:item.d7;
 }
 function renderPrice(){
   const data=prices[cTab];
-  const lbl=cDisc===0?'Ціна':cDisc===5?'Ціна -5%':'Ціна -7%';
+  const lbl=cDisc===0?'Ціна':cDisc===5?'Ціна -5%':cDisc===15?'🖤 Ціна -15%':'Ціна -7%';
   let h=`<table class="ptbl"><thead><tr><th>Продукт</th><th>Об'єм</th><th>${lbl}</th></tr></thead><tbody>`;
   data.forEach(item=>{
     if(item.sep){
@@ -1144,6 +1153,9 @@ function renderPrice(){
   warnEl.style.display=w?'block':'none';
   if(cTab==='fish'){warnEl.style.background='#eafff4';warnEl.style.borderColor='#b8e8ce';warnEl.style.color='#1e9e55';}
   else{warnEl.style.background='';warnEl.style.borderColor='';warnEl.style.color='';}
+  // Кнопка ЧП — для всіх відділів, крім ХХЛ (там акція 1=2)
+  const bfBtn=document.getElementById('bfDiscBtn');
+  if(bfBtn)bfBtn.style.display=(cTab==='xxl')?'none':'';
 }
 
 function setSetsTab(tab,btn){
