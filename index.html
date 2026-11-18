@@ -217,7 +217,7 @@ body::before{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%
 </head>
 <body>
 <!-- 🖤 BLACK FRIDAY — вузька біжуча стрічка -->
-<div class="bf-bar"><div class="bf-track"><span>🖤&nbsp;<b>BLACK&nbsp;FRIDAY</b>&nbsp;•&nbsp;🖤&nbsp;<b>BLACK&nbsp;FRIDAY</b>&nbsp;•&nbsp;🖤&nbsp;<b>BLACK&nbsp;FRIDAY</b>&nbsp;•&nbsp;🖤&nbsp;<b>BLACK&nbsp;FRIDAY</b>&nbsp;•&nbsp;</span><span>🖤&nbsp;<b>BLACK&nbsp;FRIDAY</b>&nbsp;•&nbsp;🖤&nbsp;<b>BLACK&nbsp;FRIDAY</b>&nbsp;•&nbsp;🖤&nbsp;<b>BLACK&nbsp;FRIDAY</b>&nbsp;•&nbsp;🖤&nbsp;<b>BLACK&nbsp;FRIDAY</b>&nbsp;•&nbsp;</span></div></div>
+<div class="bf-bar"><div class="bf-track" id="bfTrack"><span>🖤&nbsp;<b>BLACK&nbsp;FRIDAY</b>&nbsp;•&nbsp;</span><span>🖤&nbsp;<b>BLACK&nbsp;FRIDAY</b>&nbsp;•&nbsp;</span></div></div>
 
 <!-- 🐟 Фірмовий декор — рибки кої -->
 <div class="koi k1">🐟</div>
@@ -1213,6 +1213,22 @@ function back(){
 
 // запуск обратного отсчёта
 updateIndepCountdown();
+
+// 🖤 Бігуча стрічка BLACK FRIDAY — заповнення на всю ширину (без порожнечі)
+(function initBFBar(){
+  const track=document.getElementById('bfTrack');
+  if(!track)return;
+  const unit='🖤 <b>BLACK FRIDAY</b> • ';
+  function build(){
+    // скільки повторів треба, щоб один блок був ширший за екран (із запасом)
+    const need=Math.ceil(window.innerWidth/180)+4; // ~180px на повтор + запас
+    const block=unit.repeat(need);
+    track.innerHTML='<span>'+block+'</span><span>'+block+'</span>';
+  }
+  build();
+  let t;
+  window.addEventListener('resize',()=>{clearTimeout(t);t=setTimeout(build,200);});
+})();
 </script>
 </body>
 </html>
